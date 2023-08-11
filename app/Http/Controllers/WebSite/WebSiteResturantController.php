@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 
-class ResturantController extends Controller
+class WebSiteResturantController extends Controller
 {
     /**
      * Display a listing of the resource.

@@ -6,7 +6,7 @@ use App\Http\Controllers\Administration\DashboardController;
 use App\Http\Controllers\Administration\PackageController;
 use App\Http\Controllers\Administration\ResturantController;
 use App\Http\Controllers\WebSite\HomeController;
-use App\Http\Controllers\WebSite\ResturantController;
+use App\Http\Controllers\WebSite\WebSiteResturantController;
 use App\Http\Controllers\WebSite\WebSiteUserLoginController;
 use App\Http\Controllers\WebSite\WebSiteUserRegisterController;
 use Illuminate\Support\Facades\Route;
@@ -50,7 +50,7 @@ Route::group(['middleware'=>['is_admin'],'prefix'=>'admin'], function () {
 
 /*frontend Routing*/
 Route::get('/',[HomeController::class,'index'])->name('index');
-Route::get('resturant',[ResturantController::class,'index'])->name('resturant');
+Route::get('resturant',[WebSiteResturantController::class,'index'])->name('resturant');
 
 Route::get('login',[WebSiteUserLoginController::class,'index'])->name('login_user.index');
 Route::post('login',[WebSiteUserLoginController::class,'loginUser'])->name('login_user.loginUser');
