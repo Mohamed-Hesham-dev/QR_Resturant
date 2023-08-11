@@ -51,6 +51,7 @@ Dashboard
                 <img src="{{$all_aboutUsSetting->image}}" id="output" width="70px" height="40px">
                 <input class="form-control" placeholder="Image" type="file" accept="image/*"  name="image">
             </div>
+            
             <br>
               <div class="">
              <label for="password">WebSite Logo*</label>
