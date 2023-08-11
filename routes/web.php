@@ -1,6 +1,10 @@
 <?php
 
+use App\Http\Controllers\Administration\AboutUsSettingController;
+use App\Http\Controllers\Administration\ContactUsSettingController;
 use App\Http\Controllers\Administration\DashboardController;
+use App\Http\Controllers\Administration\PackageController;
+use App\Http\Controllers\Administration\ResturantController;
 use App\Http\Controllers\WebSite\HomeController;
 use App\Http\Controllers\WebSite\WebSiteUserLoginController;
 use App\Http\Controllers\WebSite\WebSiteUserRegisterController;
@@ -21,6 +25,12 @@ Route::get('admin/login',[DashboardController::class, 'loginAdmin'])->name('admi
 Route::post('admin/login',[DashboardController::class, 'login']);
 Route::group(['middleware'=>['is_admin'],'prefix'=>'admin'], function () {
     Route::get('/', [DashboardController::class,'index'])->name('dashboard');
+    Route::resource('resturant', ResturantController::class)->names('resturant');
+    Route::resource('package', PackageController::class)->names('package');
+    Route::get('contactUsSetting/edit',[ContactUsSettingController::class,'edit'])->name("contactUsSetting.edit");
+    Route::put('contactUsSetting/update/{id}',[ContactUsSettingController::class,'update'])->name("contactUsSetting.update");
+    Route::get('aboutUsSetting/edit',[AboutUsSettingController::class,'edit'])->name("aboutUsSetting.edit");
+    Route::put('aboutUsSetting/update/{id}',[AboutUsSettingController::class,'update'])->name("aboutUsSetting.update");
     Route::post('logout',[DashboardController::class,'logout'])->name('logout');
 
 });

@@ -66,7 +66,7 @@
 
                                 </li>
                                 <li class="menu-item"><a href="delivery.html">Delivery</a></li>
-                                @if(auth()->user())
+                                @if(auth()->user() && auth()->user()->type=="user")
                                 <li>
                                         <a href="{{route('logout_user.logout')}}" style="text-decoration: none; color:white;">LOGOUT</a>
                                    

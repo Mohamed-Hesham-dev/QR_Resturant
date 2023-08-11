@@ -1,0 +1,127 @@
+<?php
+
+namespace App\Http\Controllers\Administration;
+
+use App\Http\Controllers\Controller;
+use App\Models\Package;
+use App\Models\Resturant;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+
+class ResturantController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        $all_owner = Resturant::get();
+        
+        return view('Dashboard.ResturantOwner.index',compact('all_owner'));
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        $all_packages = Package::where('is_active',1)->get();
+        return view('Dashboard.ResturantOwner.create',compact('all_packages'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        
+           $owner_date=User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'type'=>"owner_resturant",
+        ]);
+            $data=[
+                'is_active'=>$request->boolean('is_active'),
+                'user_id'=>$owner_date->id,
+                'package'=>$request->package,
+                'resturant_name'=>$request->resturant_name,
+                ];
+                if($request->hasfile('image')) 
+      {
+           $image = $request->file('image');
+            $image_name = $image->getClientOriginalName();
+            $image->move(public_path('/image'),$image_name);
+            $image_path = "/image/" . $image_name;
+            $data['image']=$image_path;
+      }
+            $data=Resturant::create($data);
+            
+            return redirect('/admin/resturant')->with('success','Resturant Owner Created Successfully');
+        
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(Resturant $resturant)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Resturant $resturant)
+    {
+        $all_packages = Package::where('is_active',1)->get();
+            return view('Dashboard.ResturantOwner.edit',compact('resturant','all_packages'));
+        
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, Resturant $resturant)
+    {
+      
+        $user=User::findOrFail($resturant->user->id);
+        
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+
+        // Update the password if provided
+        if ($request->filled('password')) {
+            $user->password = Hash::make($request->input('password'));
+        }
+
+        $user->save();
+        $data=[
+            'is_active' => $request->boolean('is_active'),
+            'package' => $request->package,
+            'resturant_name' => $request->resturant_name,
+        ];
+        if($request->hasfile('image')) 
+      {
+           $image = $request->file('image');
+            $image_name = $image->getClientOriginalName();
+            $image->move(public_path('/image'),$image_name);
+            $image_path = "/image/" . $image_name;
+            $data['image']=$image_path;
+      }
+        $resturant->update($data);
+      
+        return redirect('/admin/resturant')->with('success','Resturant Owner Updated Successfully');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Resturant $resturant)
+    {
+        $resturant->user->delete();
+        return redirect('/admin/resturant')->with('success','Resturant Owner Delete Successfully');
+    }
+    
+}

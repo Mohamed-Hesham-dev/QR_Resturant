@@ -52,15 +52,41 @@
 
                 </li>
                  <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-chart-pie"></i>
+                    <a href="{{route('package.index')}}" class="nav-link">
+                        <i class="nav-icon fas fa-comment-dollar" style='font-size:25px;color:red'></i>
                         <p>
-                            Resturants
-                            <i class="right fas fa-angle-right"></i>
+                            Packages
+                          
                         </p>
                     </a>
 
                 </li>
+                 <li class="nav-item">
+                    <a href="{{route('resturant.index')}}" class="nav-link">
+                        <i class="nav-icon fas fa-hamburger" style='font-size:25px;color:red'></i>
+                        <p>
+                            Resturants
+                          
+                        </p>
+                    </a>
+
+                </li>
+                 <li class="nav-item">
+                                    <a href="{{route('contactUsSetting.edit')}}" class="nav-link {{  request()->is('contactUsSetting.edit')|| request()->is('contactUsSetting/*') ? 'active':'' }}">
+                                        <i class="nav-icon fa fa-address-book" style='font-size:25px;color:red'></i>
+                                        <p>
+                                            Contact Us Setting
+                                        </p>
+                                    </a>
+                                </li>
+                 <li class="nav-item">
+                                    <a href="{{route('aboutUsSetting.edit')}}" class="nav-link {{  request()->is('contactUsSetting.edit')|| request()->is('contactUsSetting/*') ? 'active':'' }}">
+                                        <i class="nav-icon fa fa-info" style='font-size:25px;color:red'></i>
+                                        <p>
+                                            About Us Setting
+                                        </p>
+                                    </a>
+                                </li>
                @if(auth()->check() && auth()->user()->type == 'owner')
                 <li class="nav-item">
                     <a href="#" onclick="content()" class="nav-link">

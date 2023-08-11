@@ -35,7 +35,7 @@ class DashboardController extends Controller
             return redirect('/admin')
                         ->withSuccess('You have Successfully loggedin');
         }else{
-            return redirect()->route('admin.login') ->withError("You don't have admin access.");
+            return redirect()->route('admin.login')->withError("You don't have admin access.");
         }
     }
     public function logout(Request $request)

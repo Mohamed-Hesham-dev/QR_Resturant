@@ -30,13 +30,14 @@ class WebSiteUserLoginController extends Controller
         ]);
    
         $credentials = $request->only('email', 'password');
-        if (Auth::attempt($credentials)) {
+        if ((Auth::attempt($credentials)) && (Auth::user()->type=='user')) {
          
             return redirect('/')
                         ->withSuccess('You have Successfully loggedin');
+        }else{
+            return redirect()->route('login_user.index')->with('error','Oppes! You have entered invalid credentials');
         }
      
-        return redirect()->back()->withSuccess('Oppes! You have entered invalid credentials');
     }
    public function logout(Request $request) {
         Auth::logout();
