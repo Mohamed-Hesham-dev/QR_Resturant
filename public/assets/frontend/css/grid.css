@@ -773,8 +773,8 @@
 	.ui-accordion .ui-accordion-header a { padding: 1em .5em 1em .5em; }
 	#page_caption.hasbg { max-height: 300px; }
 	#reservation_wrapper { background: #000; }
-	.reservation_form_wrapper { width: 100%; height: 100%; box-sizing: border-box; overflow: scroll; }
-	.reservation_form { display: block; height: 100%; overflow: scroll; }
+	.reservation_form_wrapper { width: 100%; height: 100%; box-sizing: border-box; }
+	.reservation_form { display: block; height: 100%;  }
 	#tg_sidemenu_reservation { display: block; clear: both; }
 	.menu_content_classic .menu_title { display: block; width: 70%; }
 	

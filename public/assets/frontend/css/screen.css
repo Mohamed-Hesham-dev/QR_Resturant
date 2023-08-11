@@ -3999,7 +3999,7 @@ input[type=submit].center, input[type=button].center, a.button.center
 	padding: 30px;
 	border: 1px solid #fff;
 	position: relative;
-	z-index: 999;
+	/* z-index: 999; */
 }
 
 #tg_reservation_form 

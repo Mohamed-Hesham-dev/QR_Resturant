@@ -1,6 +1,8 @@
 <link rel="shortcut icon" href="upload/TG-Thumb.png" />
 
-<title>Grand Restaurant | Restaurant HTML Template</title>
+<title>@yield('title')</title>
+<link rel='stylesheet' href={{ asset('assets/frontend/css/bootstrap.min.css') }} type='text/css' media='all' />
+
 
 <link rel='stylesheet' href={{ asset('assets/frontend/css/settings.css') }} type='text/css' media='all' />
 <link rel='stylesheet' href={{ asset('assets/frontend/css/reset.css') }} type='text/css' media='all' />

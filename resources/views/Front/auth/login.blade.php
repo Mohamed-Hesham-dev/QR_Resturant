@@ -4,8 +4,7 @@
     <div >
  
         <div class="">
-       
-            <div class="" style=" padding-top: 20%; padding-bottom: 20%; color:white">
+            <div class="" style=" padding-top: 10%; padding-bottom: 10%; color:white">
                 <div class="reservation_form_wrapper">
                     <h2 class="ppb_title " style="color:white; margin-bottom:40px"><span
                             class="ppb_title_first">Resturant</span>Login</h2>

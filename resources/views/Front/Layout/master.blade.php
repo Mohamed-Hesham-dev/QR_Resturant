@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
     @include('Front.Layout.headfiles')
-
+    @yield('head')
 </head>
 
 <body class="home page-template-default page page-id-2 woocommerce-no-js">
@@ -33,109 +33,25 @@
     <!-- Begin mobile menu -->
     <div class="mobile_menu_wrapper">
         <a id="close_mobile_menu" href="javascript:;"><i class="fa fa-close"></i></a>
-        <form role="search" method="get" name="searchform" id="searchform" action="#">
-            <div>
-                <input type="text" value="" name="s" id="s" autocomplete="off"
-                    placeholder="Search..." />
-                <button>
-                    <i class="fa fa-search"></i>
-                </button>
-            </div>
-            <div id="autocomplete">
-            </div>
-        </form>
+            <img src={{ asset('assets/frontend/upload/logo@2x.png') }} alt="Grand Restaurant | Restaurant Theme"
+                width="101" height="34" style="width:101px;height:40px;" />
         <div class="menu-side-menu-container">
             <ul id="mobile_main_menu" class="mobile_main_nav">
-                <li class="menu-item current-menu-item menu-item-has-children "><a href="index.html">Home</a>
+                <li class="menu-item current-menu-item menu-item-has-children "><a href="{{ route('index') }}">Home</a>
                 </li>
-                <li class="menu-item menu-item-has-children"><a href="our-menu-mixed.html">Menu</a>
+                <li class="menu-item menu-item-has-children "><a href="#aboutus">About US</a>
                 </li>
-                <li class="menu-item menu-item-has-children "><a href="#">Pages</a>
+                <li class="menu-item"><a href="#resturants">Resturants</a></li>
+                <li class="menu-item menu-item-has-children "><a href="#pricing">Pricing</a>
                 </li>
-                <li class="menu-item"><a href="delivery.html">Delivery</a></li>
-                <li class="menu-item menu-item-has-children "><a href="blog.html">News</a>
-                </li>
-                <li class="menu-item menu-item-has-children"><a href="accordion-toggles.html">Shortcodes</a>
-                </li>
+
             </ul>
         </div>
         <!-- Begin Reservation -->
         <a href="javascript:;" id="tg_sidemenu_reservation" class="button ">Reservation</a>
         <!-- End Reservation -->
         <!-- Begin side menu sidebar -->
-        <div class="page_content_wrapper">
-            <div class="sidebar_wrapper">
-                <div class="sidebar">
-                    <div class="content">
-                        <ul class="sidebar_widget">
-                            <li id="custom_flickr-7" class="widget Custom_Flickr">
-                                <h2 class="widgettitle">Gallery On Flickr</h2>
-                                <ul class="flickr">
-                                    <li>
-                                        <a class="img_frame" target="_blank"
-                                            href="upload/47015511494_a45979912a_b.jpg"
-                                            title="roasted rhubarb with yogurt, mint, pistachio"><img
-                                                src={{ asset('assets/frontend/upload/47015511494_a45979912a_s.jpg') }}
-                                                alt="roasted rhubarb with yogurt, mint, pistachio" width="75"
-                                                height="75" /></a>
-                                    </li>
-                                    <li>
-                                        <a class="img_frame" target="_blank"
-                                            href="upload/46968818334_b4bb23dc19_b.jpg"
-                                            title="radish pod and tomato salad"><img
-                                                src={{ asset('assets/frontend/upload/46968818334_b4bb23dc19_s.jpg') }}
-                                                alt="radish pod and tomato salad" width="75"
-                                                height="75" /></a>
-                                    </li>
-                                    <li>
-                                        <a class="img_frame" target="_blank"
-                                            href="upload/40747094363_16c3b23b2f_b.jpg" title="macarons and tea"><img
-                                                src={{ asset('assets/frontend/upload/40747094363_16c3b23b2f_s.jpg') }}
-                                                alt="macarons and tea" width="75" height="75" /></a>
-                                    </li>
-                                    <li>
-                                        <a class="img_frame" target="_blank"
-                                            href="upload/33827445818_dac37b2303_b.jpg"
-                                            title="macaron- commercial &amp; editorial"><img
-                                                src={{ asset('assets/frontend/upload/33827445818_dac37b2303_s.jpg') }}
-                                                alt="macaron- commercial &amp; editorial" width="75"
-                                                height="75" /></a>
-                                    </li>
-                                    <li>
-                                        <a class="img_frame" target="_blank"
-                                            href="upload/40713766323_618893a490_b.jpg"
-                                            title="tomato with (thick) soy sauce, sugar and grated ginger"><img
-                                                src={{ asset('assets/frontend/upload/40713766323_618893a490_s.jpg') }}
-                                                alt="tomato with (thick) soy sauce, sugar and grated ginger"
-                                                width="75" height="75" /></a>
-                                    </li>
-                                    <li>
-                                        <a class="img_frame" target="_blank"
-                                            href="upload/46721156475_f02fc75334_b.jpg" title="summer corn soup"><img
-                                                src={{ asset('assets/frontend/upload/46721156475_f02fc75334_s.jpg') }}
-                                                alt="summer corn soup" width="75" height="75" /></a>
-                                    </li>
-                                    <li>
-                                        <a class="img_frame" target="_blank"
-                                            href="upload/47631045331_46341532c8_b.jpg"
-                                            title="roasted sweet potato"><img
-                                                src={{ asset('assets/frontend/upload/47631045331_46341532c8_s.jpg') }}
-                                                alt="roasted sweet potato" width="75" height="75" /></a>
-                                    </li>
-                                    <li>
-                                        <a class="img_frame" target="_blank"
-                                            href="upload/46670903915_a22e6c2472_b.jpg" title="tea eggs"><img
-                                                src={{ asset('assets/frontend/upload/46670903915_a22e6c2472_s.jpg') }}
-                                                alt="tea eggs" width="75" height="75" /></a>
-                                    </li>
-                                </ul>
-                                <br class="clear" />
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
+
         <!-- End side menu sidebar -->
     </div>
     <!-- End mobile menu -->
@@ -154,6 +70,7 @@
 
 
     @include('Front.Layout.scripts')
+    @yield('script')
 </body>
 
 </html>
