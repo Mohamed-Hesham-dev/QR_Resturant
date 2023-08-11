@@ -78,13 +78,10 @@
                                         href="#pricing">Pricing</a>
 
                                 </li>
-                                @if(auth()->user() && auth()->user()->type=="user")
-                                <li>
-                                        <a href="{{route('logout_user.logout')}}" style="text-decoration: none; color:white;">LOGOUT</a>
-                                   
+                              
                                
 
-                                @if (auth()->user())
+                                   @if(auth()->user() && auth()->user()->type=="user")
                                     <li>
                                         <a href="{{ route('logout_user.logout') }}"
                                             style="text-decoration: none; color:white;">LOGOUT</a>
