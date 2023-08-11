@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\WebSite;
 use App\Http\Controllers\Controller;
+use App\Models\AboutUsSetting;
 use App\Models\Meta;
+use App\Models\Package;
 use App\Models\Post;
 use App\Models\Setting;
 use Illuminate\Http\Request;
@@ -16,7 +18,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('Front.home');
+        $aboutUs=AboutUsSetting::first();
+        $packages=Package::where('is_active',1)->get();
+        return view('Front.home',compact('aboutUs','packages'));
     }
 
     /**

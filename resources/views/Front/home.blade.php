@@ -118,7 +118,7 @@
                                 <div class="image_classic_frame expand">
                                     <div class="image_wrapper">
                                         <a href={{ asset('assets/frontend/upload/about.jpg') }} class="img_frame"><img
-                                                src={{ asset('assets/frontend/upload/about.jpg') }} class="portfolio_img"
+                                                src={{ asset($aboutUs->image) }} class="portfolio_img"
                                                 alt="" /></a>
                                     </div>
                                 </div>
@@ -127,16 +127,12 @@
                                 style="width:40%;position:absolute;right:90px;padding:40px;background:#ffffff;"
                                 data-stellar-ratio="1.3">
                                 <h2 class="ppb_title"><span class="ppb_title_first">Discover</span>About Us</h2>
-                                <div class="ppb_subtitle">
+                                {{-- <div class="ppb_subtitle">
                                     Ultimate dining experience like no other
-                                </div>
+                                </div> --}}
                                 <div class="page_header_sep left">
                                 </div>
-                                Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
-                                laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi.
-                                Exercitation photo booth stumptown tote bag Banksy, elit small batch freegan sed. Craft beer
-                                elit seitan exercitation, photo booth et 8-bit kale chips proident chillwave deep v laborum.
-                                Aliquip veniam delectus, Marfa eiusmod Pinterest in do umami readymade.
+                                {{$aboutUs->description}}
                             </div>
                             <br class="clear" />
                         </div>
@@ -234,21 +230,25 @@
                 <h1 class="mb-4">
                     <span class="ppb_title_first">choose your</span>package
                 </h1>
-                <div class=" row  justify-content-center gap-4">
-                    <div id="pricing" class=" col-12 col-md-4  card" style="height: 30rem; width:25rem">
+                <div class=" row  justify-content-center gap-4"id="pricing">
+                @if($packages->count() > 0)
+                @foreach($packages as $value)
+                     <div  class=" col-12 col-md-4  card" style="height: 30rem; width:25rem">
                         <div class="card-body" style="margin-top: 30% ">
-                            <h5 class="card-title fw-bold">Package number 1</h5>
-                            <h6 class="card-subtitle mb-2 text-body-secondary">200 <span>EGP</span></h6>
-                            <p class="card-text">Some quick example text to build on the card title and make up the
-                                bulk of
-                                the
-                                card's content.</p>
+                            <h5 class="card-title fw-bold">{{$value->title}}</h5>
+                            <h6 class="card-subtitle mb-2 text-body-secondary">{{$value->price}} <span>EGP</span></h6>
+                            <p class="card-text">{{$value->description}} .</p>
                             <a href="#" class="card-link">Card link</a>
                             <a href="#" class="card-link">Another link</a>
                         </div>
                     </div>
+                @endforeach
+                @else
+                  <b><p class="card-text">Sorry! No packages Now.</p></b>
+                @endif
+                   
 
-                    <div class=" col-12 col-md-4  card" style="height: 30rem; width:25rem">
+                    {{-- <div class=" col-12 col-md-4  card" style="height: 30rem; width:25rem">
                         <div class="card-body" style="margin-top: 30% ">
                             <h5 class="card-title fw-bold">Package number 1</h5>
                             <h6 class="card-subtitle mb-2 text-body-secondary">200 <span>EGP</span></h6>
@@ -271,7 +271,7 @@
                             <a href="#" class="card-link">Card link</a>
                             <a href="#" class="card-link">Another link</a>
                         </div>
-                    </div>
+                    </div> --}}
 
                 </div>
             </div>

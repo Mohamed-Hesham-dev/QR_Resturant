@@ -30,7 +30,7 @@
             <div id="logo_normal" class="logo_container">
                 <div class="logo_align">
                     <a id="custom_logo" class="logo_wrapper hidden" href="index.html">
-                        <img src={{ asset('assets/frontend/upload/logo@2x.png') }}
+                        <img src={{  asset($aboutUs->logo)}}
                             alt="Grand Restaurant | Restaurant Theme" width="101" height="34"
                             style="width:101px;height:34px;" />
                     </a>
@@ -39,7 +39,7 @@
             <div id="logo_transparent" class="logo_container">
                 <div class="logo_align">
                     <a id="custom_logo_transparent" class="logo_wrapper default" href="index.html">
-                        <img src={{ asset('assets/frontend/upload/logo2x_white.png') }}
+                        <img src={{ asset($aboutUs->logo) }}
                             alt="Grand Restaurant | Restaurant Theme" width="101" height="34"
                             style="width:101px;height:34px;" />
                     </a>
