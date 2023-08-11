@@ -7,15 +7,19 @@
                     <li class="facebook"><a target="_blank" href="#"><i class="fa fa-facebook"></i></a></li>
                     <li class="twitter"><a target="_blank" href="http://twitter.com/#"><i class="fa fa-twitter"></i></a>
                     </li>
-                    <li class="youtube"><a target="_blank" title="Youtube" href="#"><i class="fa fa-youtube"></i></a></li>
-                    <li class="pinterest"><a target="_blank" title="Pinterest" href="http://pinterest.com/#"><i class="fa fa-pinterest"></i></a></li>
-                    <li class="instagram"><a target="_blank" title="Instagram" href="http://instagram.com/#"><i class="fa fa-instagram"></i></a></li>
+                    <li class="youtube"><a target="_blank" title="Youtube" href="#"><i
+                                class="fa fa-youtube"></i></a></li>
+                    <li class="pinterest"><a target="_blank" title="Pinterest" href="http://pinterest.com/#"><i
+                                class="fa fa-pinterest"></i></a></li>
+                    <li class="instagram"><a target="_blank" title="Instagram" href="http://instagram.com/#"><i
+                                class="fa fa-instagram"></i></a></li>
                 </ul>
             </div>
             <div class="extend_top_contact_info top_contact_info">
                 <span id="top_contact_address"><i class="fa fa-map-marker"></i>732/21 Second Street, King
                     Street, United Kingdom</span>
-                <span id="top_contact_number"><a href="tel:+65.4566743"><i class="fa fa-phone"></i>+65.4566743</a></span>
+                <span id="top_contact_number"><a href="tel:+65.4566743"><i
+                            class="fa fa-phone"></i>+65.4566743</a></span>
             </div>
         </div>
     </div>
@@ -26,14 +30,18 @@
             <div id="logo_normal" class="logo_container">
                 <div class="logo_align">
                     <a id="custom_logo" class="logo_wrapper hidden" href="index.html">
-                        <img src={{ asset('assets/frontend/upload/logo@2x.png') }} alt="Grand Restaurant | Restaurant Theme" width="101" height="34" style="width:101px;height:34px;" />
+                        <img src={{ asset('assets/frontend/upload/logo@2x.png') }}
+                            alt="Grand Restaurant | Restaurant Theme" width="101" height="34"
+                            style="width:101px;height:34px;" />
                     </a>
                 </div>
             </div>
             <div id="logo_transparent" class="logo_container">
                 <div class="logo_align">
                     <a id="custom_logo_transparent" class="logo_wrapper default" href="index.html">
-                        <img src={{ asset('assets/frontend/upload/logo2x_white.png') }} alt="Grand Restaurant | Restaurant Theme" width="101" height="34" style="width:101px;height:34px;" />
+                        <img src={{ asset('assets/frontend/upload/logo2x_white.png') }}
+                            alt="Grand Restaurant | Restaurant Theme" width="101" height="34"
+                            style="width:101px;height:34px;" />
                     </a>
                 </div>
             </div>
@@ -42,7 +50,7 @@
             <div class="menu_buttons_container">
                 <div class="menu_buttons_content">
                     <!-- Begin Reservation -->
-                    <a href="javascript:;" id="tg_reservation" class="button ">Reservation</a>
+                    {{-- <a href="javascript:;" id="tg_reservation" class="button ">Reservation</a> --}}
                     <!-- End Reservation -->
                     <!-- Begin side menu -->
                     <a href="javascript:;" id="mobile_nav_icon"></a>
@@ -56,24 +64,30 @@
                     <div id="menu_border_wrapper">
                         <div class="menu-main-menu-container">
                             <ul id="main_menu" class="nav">
-                                <li class="menu-item current-menu-item menu-item-has-children "><a href="index.html">Home</a>
+                                <li class="menu-item current-menu-item menu-item-has-children "><a
+                                        href={{ route('index') }}>Home</a>
 
                                 </li>
-                                <li class="menu-item menu-item-has-children "><a href="our-menu-mixed.html">Resturants</a>
+                                <li class="menu-item menu-item-has-children "><a href="#aboutus">Abou us</a>
 
                                 </li>
-                                <li class="megamenu col3 menu-item menu-item-has-children  "><a href="#">Pricing</a>
+                                <li class="menu-item menu-item-has-children "><a href="#resturants">Resturants</a>
 
                                 </li>
-                                <li class="menu-item"><a href="delivery.html">Delivery</a></li>
-                                @if(auth()->user())
-                                <li>
-                                        <a href="{{route('logout_user.logout')}}" style="text-decoration: none; color:white;">LOGOUT</a>
-                                   
+                                <li class="megamenu col3 menu-item menu-item-has-children  "><a
+                                        href="#pricing">Pricing</a>
+
                                 </li>
+
+                                @if (auth()->user())
+                                    <li>
+                                        <a href="{{ route('logout_user.logout') }}"
+                                            style="text-decoration: none; color:white;">LOGOUT</a>
+
+                                    </li>
                                 @else
-                                <li class="menu-item"><a href="{{route('register_user.index')}}">Sign Up</a></li>
-                                <li class="menu-item"><a href="{{route('login_user.index')}}">Login</a></li>
+                                    <li class="menu-item"><a href="{{ route('register_user.index') }}">Sign Up</a></li>
+                                    <li class="menu-item"><a href="{{ route('login_user.index') }}">Login</a></li>
                                 @endif
 
 
@@ -117,11 +131,13 @@
                     <br />
                     <div class="one_third">
                         <label for="date" class="hidden">Date*</label>
-                        <input type="text" class="pp_date required_field" id="date" name="date" value="05/10/2019">
+                        <input type="text" class="pp_date required_field" id="date" name="date"
+                            value="05/10/2019">
                     </div>
                     <div class="one_third">
                         <label for="time">Time*</label>
-                        <input type="text" class="pp_time required_field" id="time" name="time" value="06:00 PM" />
+                        <input type="text" class="pp_time required_field" id="time" name="time"
+                            value="06:00 PM" />
                     </div>
                     <div class="one_third last">
                         <label for="seats">Seats*</label>

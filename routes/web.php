@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Administration\DashboardController;
 use App\Http\Controllers\WebSite\HomeController;
+use App\Http\Controllers\WebSite\ResturantController;
 use App\Http\Controllers\WebSite\WebSiteUserLoginController;
 use App\Http\Controllers\WebSite\WebSiteUserRegisterController;
 use Illuminate\Support\Facades\Route;
@@ -16,6 +17,9 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+
+
 
 Route::get('admin/login',[DashboardController::class, 'loginAdmin'])->name('admin.login');
 Route::post('admin/login',[DashboardController::class, 'login']);
@@ -34,7 +38,10 @@ Route::group(['middleware'=>['is_admin'],'prefix'=>'admin'], function () {
 
 
 
+/*frontend Routing*/
 Route::get('/',[HomeController::class,'index'])->name('index');
+Route::get('resturant',[ResturantController::class,'index'])->name('resturant');
+
 Route::get('login',[WebSiteUserLoginController::class,'index'])->name('login_user.index');
 Route::post('login',[WebSiteUserLoginController::class,'loginUser'])->name('login_user.loginUser');
 Route::get('logout',[WebSiteUserLoginController::class,'logout'])->name('logout_user.logout');
