@@ -23,9 +23,9 @@ class DashboardController extends Controller
     }
     public function loginAdmin()
     {
+        $userType="admin";
        
-       
-        return view('Dashboard.auth.login');
+        return view('Dashboard.auth.login',compact('userType'));
     }
 
     public function login(Request $request)
@@ -45,4 +45,28 @@ class DashboardController extends Controller
             return redirect('/admin/login');
     }
 
+
+    public function loginowner()
+    {
+       
+        $userType="owner";
+        return view('Dashboard.auth.login',compact('userType'));
+    }
+
+    public function loginOwnerResturant(Request $request)
+    {
+      
+        $credentials = $request->only('email', 'password');
+        if (Auth::guard('owner')->attempt($credentials)) {
+            return redirect('/owner')
+                        ->withSuccess('You have Successfully loggedin');
+        }else{
+            return redirect()->route('owner.login')->withError("You don't have owner access.");
+        }
+    }
+    public function logoutOwner(Request $request)
+    {
+            Auth::guard('owner')->logout();
+            return redirect('/owner/login');
+    }
 }

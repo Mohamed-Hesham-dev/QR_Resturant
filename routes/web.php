@@ -7,6 +7,8 @@ use App\Http\Controllers\Administration\UserController;
 use App\Http\Controllers\Administration\DashboardController;
 use App\Http\Controllers\Administration\PackageController;
 use App\Http\Controllers\Administration\ResturantController;
+use App\Http\Controllers\OwnerResturant\ResturantDashboardController;
+use App\Http\Controllers\OwnerResturant\ResturantTableDashboardController;
 use App\Http\Controllers\WebSite\HomeController;
 use App\Http\Controllers\WebSite\WebSiteResturantController;
 use App\Http\Controllers\WebSite\WebSiteUserLoginController;
@@ -40,6 +42,21 @@ Route::group(['middleware'=>['is_admin'],'prefix'=>'admin'], function () {
     Route::get('aboutUsSetting/edit',[AboutUsSettingController::class,'edit'])->name("aboutUsSetting.edit");
     Route::put('aboutUsSetting/update/{id}',[AboutUsSettingController::class,'update'])->name("aboutUsSetting.update");
     Route::post('logout',[DashboardController::class,'logout'])->name('logout');
+
+});
+Route::get('owner/login',[ResturantDashboardController::class, 'loginowner'])->name('owner.login');
+Route::post('owner/login',[ResturantDashboardController::class, 'loginOwnerResturant']);
+Route::group(['middleware'=>['is_owner'],'prefix'=>'owner'], function () {
+    Route::get('/', [ResturantDashboardController::class,'index'])->name('dashboard');
+    // Route::resource('resturant', ResturantController::class)->names('resturant');
+     Route::resource('resturantTableDashboard', ResturantTableDashboardController::class)->names('table');
+     Route::get('/qrcode/{id}', [ResturantTableDashboardController::class, 'generate'])->name('qrcode.generate');
+
+    // Route::get('contactUsSetting/edit',[ContactUsSettingController::class,'edit'])->name("contactUsSetting.edit");
+    // Route::put('contactUsSetting/update/{id}',[ContactUsSettingController::class,'update'])->name("contactUsSetting.update");
+    // Route::get('aboutUsSetting/edit',[AboutUsSettingController::class,'edit'])->name("aboutUsSetting.edit");
+    // Route::put('aboutUsSetting/update/{id}',[AboutUsSettingController::class,'update'])->name("aboutUsSetting.update");
+    Route::post('logout',[DashboardController::class,'logoutOwner'])->name('owner.logout');
 
 });
 

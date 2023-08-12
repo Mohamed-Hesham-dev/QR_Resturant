@@ -2,8 +2,7 @@
     <!-- Brand Logo -->
     <a href="{{ route('dashboard') }}" class="brand-link">
 
-        <img src="{{ asset('assets/img/AdminLTELogo.png') }}" alt="AdminLTE Logo"
-            class="brand-image img-circle elevation-3" style="opacity: .8">
+        <img src="{{ asset('assets/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">QR-Reaturant</span>
     </a>
 
@@ -13,20 +12,26 @@
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
 
-                <img src="{{ asset('assets/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2"
-                    alt="User Image">
+                <img src="{{ asset('assets/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
             </div>
 
             <div class="info">
+<<<<<<< HEAD
                 <a href="#" class="d-block">{{ Auth::guard('admin')->user()->name }}</a>
+=======
+                <a href="#" class="d-block">
+                   
+
+                    {{Auth::guard('admin')->user()->name}}
+                </a>
+>>>>>>> 5288eb4762171a6ca97e922eac26ec19835d710a
             </div>
         </div>
 
         <!-- SidebarSearch Form -->
         <div class="form-inline">
             <div class="input-group" data-widget="sidebar-search">
-                <input class="form-control form-control-sidebar" type="search" placeholder="Search"
-                    aria-label="Search">
+                <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
                 <div class="input-group-append">
                     <button class="btn btn-sidebar">
                         <i class="fas fa-search fa-fw"></i>
@@ -37,8 +42,7 @@
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                data-accordion="false">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
        with font-awesome or any other icon font library -->
                 <li class="nav-item menu-open">
@@ -51,6 +55,7 @@
                     </a>
 
                 </li>
+<<<<<<< HEAD
                 <li class="nav-item  ">
 
                     <a class="nav-link" href="{{ route('users') }}">
@@ -64,6 +69,12 @@
                 <li class="nav-item">
                     <a href="{{ route('package.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-comment-dollar" style='font-size:20px;color:rgb(255, 255, 255)'></i>
+=======
+
+                <li class="nav-item">
+                    <a href="{{route('package.index')}}" class="nav-link">
+                        <i class="nav-icon fas fa-comment-dollar" style='font-size:25px;color:red'></i>
+>>>>>>> 5288eb4762171a6ca97e922eac26ec19835d710a
                         <p>
                             Packages
 
@@ -72,8 +83,13 @@
 
                 </li>
                 <li class="nav-item">
+<<<<<<< HEAD
                     <a href="{{ route('resturant.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-hamburger" style='font-size:20px;color:rgb(255, 255, 255)'></i>
+=======
+                    <a href="{{route('resturant.index')}}" class="nav-link">
+                        <i class="nav-icon fas fa-hamburger" style='font-size:25px;color:red'></i>
+>>>>>>> 5288eb4762171a6ca97e922eac26ec19835d710a
                         <p>
                             Resturants
 
@@ -82,23 +98,34 @@
 
                 </li>
                 <li class="nav-item">
+<<<<<<< HEAD
                     <a href="{{ route('contactUsSetting.edit') }}"
                         class="nav-link {{ request()->is('contactUsSetting.edit') || request()->is('contactUsSetting/*') ? 'active' : '' }}">
                         <i class="nav-icon fa fa-address-book" style='font-size:20px;color:rgb(255, 255, 255)'></i>
+=======
+                    <a href="{{route('contactUsSetting.edit')}}" class="nav-link {{  request()->is('contactUsSetting.edit')|| request()->is('contactUsSetting/*') ? 'active':'' }}">
+                        <i class="nav-icon fa fa-address-book" style='font-size:25px;color:red'></i>
+>>>>>>> 5288eb4762171a6ca97e922eac26ec19835d710a
                         <p>
                             Contact Us Setting
                         </p>
                     </a>
                 </li>
                 <li class="nav-item">
+<<<<<<< HEAD
                     <a href="{{ route('aboutUsSetting.edit') }}"
                         class="nav-link {{ request()->is('contactUsSetting.edit') || request()->is('contactUsSetting/*') ? 'active' : '' }}">
                         <i class="nav-icon fa fa-info" style='font-size:20px;color:rgb(255, 255, 255)'></i>
+=======
+                    <a href="{{route('aboutUsSetting.edit')}}" class="nav-link {{  request()->is('contactUsSetting.edit')|| request()->is('contactUsSetting/*') ? 'active':'' }}">
+                        <i class="nav-icon fa fa-info" style='font-size:25px;color:red'></i>
+>>>>>>> 5288eb4762171a6ca97e922eac26ec19835d710a
                         <p>
                             About Us Setting
                         </p>
                     </a>
                 </li>
+<<<<<<< HEAD
                 @if (auth()->check() && auth()->user()->type == 'owner')
                     <li class="nav-item">
                         <a href="#" onclick="content()" class="nav-link">
@@ -215,6 +242,9 @@
                         </ul>
                     </li>
                 @endif
+=======
+               
+>>>>>>> 5288eb4762171a6ca97e922eac26ec19835d710a
             </ul>
         </nav>
         <!-- /.sidebar-menu -->
