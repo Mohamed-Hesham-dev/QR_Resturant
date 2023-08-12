@@ -27,7 +27,7 @@
             <div class="card-body register-card-body">
                 <p class="login-box-msg">Login</p>
 
-                <form action="{{  $userType=="owner"  ? url('owner/login') : url('admin/login') }}" method="post">
+                <form action="{{ url('owner/login') }}" method="post">
                     @csrf
                     <div class="input-group mb-3">
                         <input type="email" name="email" class="form-control" placeholder="Email" required autofocus>
