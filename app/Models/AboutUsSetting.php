@@ -13,8 +13,5 @@ class AboutUsSetting extends Model
         'image',
         'logo',
         'video',
-       
-
-        
     ];
 }

@@ -16,9 +16,10 @@ class DashboardController extends Controller
     // }
     public function index()
     {
-       
+       $users=User::get() ;
+  
         //$usersCount = count(User::all());
-        return view('Dashboard.home');
+        return view('Dashboard.home',compact('users'));
     }
     public function loginAdmin()
     {

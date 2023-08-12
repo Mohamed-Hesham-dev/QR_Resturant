@@ -1,6 +1,8 @@
 <?php
 namespace App\Http\Controllers\WebSite;
 use App\Http\Controllers\Controller;
+use App\Models\AboutUsSetting;
+use App\Models\ContactUsSetting;
 use App\Models\User;
 use App\Models\Role;
 use App\Models\Permission;
@@ -14,11 +16,14 @@ use function PHPUnit\Framework\isEmpty;
 
 class WebSiteUserLoginController extends Controller
 {
-    public function index()
-    {
-       
+    public function index(){
+    $aboutUs=AboutUsSetting::first();
+    
+    
+    $contact=ContactUsSetting::first();
+    
       
-        return view('Front.auth.login');
+        return view('Front.auth.login',compact('aboutUs','contact'));
     }
 
     public function loginUser(Request $request)

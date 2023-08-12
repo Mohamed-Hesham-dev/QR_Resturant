@@ -563,7 +563,7 @@ blockquote h3
 .logo_wrapper img
 {
 	transition: transform 0.2s linear;
-	width: auto;
+	/* width: auto; */
 }
 
 .logo_wrapper img.zoom

@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Administration\AboutUsSettingController;
 use App\Http\Controllers\Administration\ContactUsSettingController;
+use App\Http\Controllers\Administration\UserController;
+
 use App\Http\Controllers\Administration\DashboardController;
 use App\Http\Controllers\Administration\PackageController;
 use App\Http\Controllers\Administration\ResturantController;
@@ -31,6 +33,8 @@ Route::group(['middleware'=>['is_admin'],'prefix'=>'admin'], function () {
     Route::get('/', [DashboardController::class,'index'])->name('dashboard');
     Route::resource('resturant', ResturantController::class)->names('resturant');
     Route::resource('package', PackageController::class)->names('package');
+    Route::get('user',[UserController::class,'index'])->name('users');
+    Route::get('user/{id}',[UserController::class,'deleteuser'])->name('delete.user');
     Route::get('contactUsSetting/edit',[ContactUsSettingController::class,'edit'])->name("contactUsSetting.edit");
     Route::put('contactUsSetting/update/{id}',[ContactUsSettingController::class,'update'])->name("contactUsSetting.update");
     Route::get('aboutUsSetting/edit',[AboutUsSettingController::class,'edit'])->name("aboutUsSetting.edit");
@@ -49,6 +53,8 @@ Route::group(['middleware'=>['is_admin'],'prefix'=>'admin'], function () {
 
 
 /*frontend Routing*/
+
+
 Route::get('/',[HomeController::class,'index'])->name('index');
 Route::get('resturant',[WebSiteResturantController::class,'index'])->name('resturant');
 Route::get('login',[WebSiteUserLoginController::class,'index'])->name('login_user.index');
