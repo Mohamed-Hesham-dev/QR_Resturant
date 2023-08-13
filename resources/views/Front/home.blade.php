@@ -174,7 +174,7 @@
                             <div class="row gap-4 container justify-content-center">
                                 @foreach ($resturant as $rest_item)
                                     <div class=" col-12 col-md-3 p-5 " style="width: 15rem;  ">
-                                        <a href="{{route('resturant')}}">
+                                        <a href="{{ route('resturant', $rest_item->id) }}">
                                             <img class="card-img-top" style="border-radius:50%"
                                                 src={{ $rest_item->image }} alt="Card image cap">
                                             <div class="card-body">
@@ -213,16 +213,16 @@
             <div class=" row justify-content-center gap-4" id="pricing">
                 @if ($packages->count() > 0)
                     @foreach ($packages as $value)
-                        <div class=" col-12 col-md-4  card" style="height: 20rem; width:20rem;">
+                        <div class=" col-12 col-md-4  card" style=" width:20%">
                             <div class="card-body" style="margin-top: 10% ">
                                 <img src={{ asset('assets/frontend/upload/dollar.png') }} width="30%" class="mb-3">
                                 <h3 class="card-title fw-bold">{{ $value->title }}</h3>
                                 <h6 class="card-subtitle mb-2 text-body-secondary">{{ $value->price }}
                                     <span><small>EGP</small></span>
                                 </h6>
-                                <p class="card-text ">{{ $value->description }} .</p>
+                                <p class="card-text mb-4 ">{{ $value->description }}</p>
                                 <a href="#" class="btn"
-                                    style="background: #cfa670;color:white ; bottom:0">Contact with
+                                    style="background: #cfa670;color:white ; bottom:0; ">Contact with
                                     Us </a>
 
                             </div>

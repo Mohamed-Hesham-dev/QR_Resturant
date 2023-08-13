@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\OwnerResturant;
 
 use App\Http\Controllers\Controller;
-
+use App\Models\Resturant;
 use App\Models\ResturantTableDashboard;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 
@@ -16,8 +17,11 @@ class ResturantTableDashboardController extends Controller
      */
     public function index()
     {
+        $user=Auth::guard('owner')->user()->id;
+        $resturantname=Resturant::where('user_id',$user)->first();
+
         $all_tables = ResturantTableDashboard::get();
-        return view('DashboardOwnerResturant.table.index', compact('all_tables'));
+        return view('DashboardOwnerResturant.table.index', compact('all_tables','resturantname' ));
     }
 
     /**
@@ -25,7 +29,10 @@ class ResturantTableDashboardController extends Controller
      */
     public function create()
     {
-        return view('DashboardOwnerResturant.table.create');
+        $user=Auth::guard('owner')->user()->id;
+        $resturantname=Resturant::where('user_id',$user)->first();
+ 
+        return view('DashboardOwnerResturant.table.create',compact('resturantname'));
     }
 
     /**

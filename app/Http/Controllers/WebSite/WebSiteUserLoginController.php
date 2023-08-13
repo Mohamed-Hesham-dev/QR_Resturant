@@ -17,13 +17,12 @@ use function PHPUnit\Framework\isEmpty;
 class WebSiteUserLoginController extends Controller
 {
     public function index(){
-    $aboutUs=AboutUsSetting::first();
-    
+ 
     
     $contact=ContactUsSetting::first();
     
       
-        return view('Front.auth.login',compact('aboutUs','contact'));
+        return view('Front.auth.login',compact( 'contact'));
     }
 
     public function loginUser(Request $request)

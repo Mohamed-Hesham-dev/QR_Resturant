@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\OwnerResturant;
 
 use App\Http\Controllers\Controller;
+use App\Models\Resturant;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
@@ -16,9 +17,11 @@ class ResturantDashboardController extends Controller
     // }
     public function index()
     {
-       
-        //$usersCount = count(User::all());
-        return view('DashboardOwnerResturant.home');
+        $user=Auth::guard('owner')->user()->id;
+
+        $resturantname=Resturant::where('user_id',$user)->first();
+ 
+        return view('DashboardOwnerResturant.home',compact('resturantname','user'));
     }
   
 

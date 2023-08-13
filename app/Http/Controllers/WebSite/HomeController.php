@@ -21,7 +21,6 @@ class HomeController extends Controller
     public function index()
     {
         //about us
-        $aboutUs=AboutUsSetting::first();
         //packages
         $packages=Package::where('is_active',1)->get();
         
@@ -31,7 +30,7 @@ class HomeController extends Controller
 
         $contact=ContactUsSetting::first();
  
-        return view('Front.home',compact('aboutUs','packages','resturant','contact'));
+        return view('Front.home',compact('packages','resturant','contact'));
 
     }
 

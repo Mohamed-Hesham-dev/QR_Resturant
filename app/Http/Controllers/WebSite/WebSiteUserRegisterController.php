@@ -21,14 +21,12 @@ class WebSiteUserRegisterController extends Controller
     public function index()
     {
 
-        $aboutUs=AboutUsSetting::first();
-    
     
         $contact=ContactUsSetting::first();
         
           
           
-        return view('Front.auth.register',compact('aboutUs','contact'));
+        return view('Front.auth.register',compact('contact'));
     }
     public function store(Request $request)
     {

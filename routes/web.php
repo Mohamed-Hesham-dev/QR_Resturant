@@ -78,6 +78,8 @@ Route::group(['middleware'=>['is_owner'],'prefix'=>'owner'], function () {
 
 Route::get('/',[HomeController::class,'index'])->name('index');
 Route::get('resturant',[WebSiteResturantController::class,'index'])->name('resturant');
+Route::get('resturant/{id}',[WebSiteResturantController::class,'index'])->name('resturant');
+
 Route::get('login',[WebSiteUserLoginController::class,'index'])->name('login_user.index');
 Route::post('login',[WebSiteUserLoginController::class,'loginUser'])->name('login_user.loginUser');
 Route::get('logout',[WebSiteUserLoginController::class,'logout'])->name('logout_user.logout');

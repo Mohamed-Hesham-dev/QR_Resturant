@@ -40,4 +40,19 @@
 <link href="http://fonts.googleapis.com/css?family=Kristi:400%7CLato:300%2C400" rel="stylesheet" property="stylesheet"
     type="text/css" media="all">
 
- 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900;1000&display=swap"
+    rel="stylesheet">
+<style>
+    body,
+    h2,
+    h3,
+    h1,
+    h5,
+    h6,
+    h4,
+    p {
+        font-family: 'Cairo', sans-serif !important;
+    }
+</style>

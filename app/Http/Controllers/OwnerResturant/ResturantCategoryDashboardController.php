@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\OwnerResturant;
 
 use App\Http\Controllers\Controller;
+use App\Models\Resturant;
 use App\Models\ResturantCategoryDashboard;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ResturantCategoryDashboardController extends Controller
 {
@@ -13,8 +15,11 @@ class ResturantCategoryDashboardController extends Controller
      */
     public function index()
     {
+        $user=Auth::guard('owner')->user()->id;
+
+        $resturantname=Resturant::where('user_id',$user)->first();
         $all_categories = ResturantCategoryDashboard::get();
-        return view('DashboardOwnerResturant.menu.category.index', compact('all_categories'));
+        return view('DashboardOwnerResturant.menu.category.index', compact('all_categories','resturantname'));
     }
 
     /**
@@ -22,7 +27,10 @@ class ResturantCategoryDashboardController extends Controller
      */
     public function create()
     {
-        return view('DashboardOwnerResturant.menu.category.create');
+        $user=Auth::guard('owner')->user()->id;
+
+        $resturantname=Resturant::where('user_id',$user)->first();
+        return view('DashboardOwnerResturant.menu.category.create',compact('resturantname'));
     }
 
     /**

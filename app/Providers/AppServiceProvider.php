@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\AboutUsSetting;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +21,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        $aboutUs=AboutUsSetting::first();
+        View::share('aboutUs',$aboutUs);
+
         //
     }
 }

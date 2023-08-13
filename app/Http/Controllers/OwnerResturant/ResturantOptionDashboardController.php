@@ -3,16 +3,21 @@
 namespace App\Http\Controllers\OwnerResturant;
 
 use App\Http\Controllers\Controller;
+use App\Models\Resturant;
 use App\Models\ResturantOptionDashboard;
 use App\Models\ResturantValueDashboard;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ResturantOptionDashboardController extends Controller
 {
     public function index()
     {
+        $user=Auth::guard('owner')->user()->id;
+
+        $resturantname=Resturant::where('user_id',$user)->first();
         $all_poptions = ResturantOptionDashboard::get();
-        return view('DashboardOwnerResturant.menu.option.index', compact('all_poptions'));
+        return view('DashboardOwnerResturant.menu.option.index', compact('all_poptions','resturantname'));
     }
 
     /**
@@ -20,7 +25,10 @@ class ResturantOptionDashboardController extends Controller
      */
     public function create()
     {
-        return view('DashboardOwnerResturant.menu.option.create');
+        $user=Auth::guard('owner')->user()->id;
+
+        $resturantname=Resturant::where('user_id',$user)->first();
+        return view('DashboardOwnerResturant.menu.option.create',compact('resturantname'));
     }
 
     /**
