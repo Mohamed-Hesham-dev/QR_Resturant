@@ -5,6 +5,24 @@
 
 
 @section('head')
+    <link rel='stylesheet' href={{ asset('assets/frontend/upload/css/datepicker.css') }} type='text/css' media='all' />
+    <style>
+        .social {
+            color: #cfa670 !important;
+            padding: 5px;
+            border-radius: 10%;
+
+
+        }
+
+        .soci {
+            cursor: pointer;
+        }
+
+        .social:hover {
+            color: #000;
+        }
+    </style>
 @endsection
 
 
@@ -39,11 +57,11 @@
                                 data-videoheight="100%" data-videoposter={{ asset('assets/frontend/video.jpg') }}
                                 data-videoogv={{ asset('assets/frontend/upload/restaurant_video.oggtheora.ogv') }}
                                 data-videowebm={{ asset('assets/frontend/upload/restaurant_video.webmsd.webm') }}
-                                data-videomp4={{ asset('assets/frontend/upload/restaurant_video.mp4.mp4') }}
-                                data-noposteronmobile="off" data-videopreload="auto" data-videoloop="loop"
-                                data-forceCover="1" data-aspectratio="16:9" data-textAlign="['left','left','left','left']"
-                                data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]"
-                                data-paddingleft="[0,0,0,0]" data-autoplay="on" data-volume="mute" style="z-index: 5;">
+                                data-videomp4={{ asset($aboutUs->video) }} data-noposteronmobile="off"
+                                data-videopreload="auto" data-videoloop="loop" data-forceCover="1" data-aspectratio="16:9"
+                                data-textAlign="['left','left','left','left']" data-paddingtop="[0,0,0,0]"
+                                data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]"
+                                data-autoplay="on" data-volume="mute" style="z-index: 5;">
                             </div>
                             {{-- <img src={{ asset('assets/frontend/upload/slide1_bg.jpg') }} alt="" title="slide1_bg"
                                 width="1300" height="867" data-bgposition="center top" data-bgfit="cover"
@@ -116,6 +134,7 @@
                         <div class="inner">
                             <div class="one_half parallax_scroll_image" style="width:65%;">
                                 <div class="image_classic_frame expand">
+
                                     <div class="image_wrapper">
                                         <a href={{ asset('assets/frontend/upload/about.jpg') }} class="img_frame"><img
                                                 src={{ asset($aboutUs->image) }} class="portfolio_img"
@@ -132,7 +151,7 @@
                                 </div> --}}
                                 <div class="page_header_sep left">
                                 </div>
-                                {{$aboutUs->description}}
+                                {{ $aboutUs->description }}
                             </div>
                             <br class="clear" />
                         </div>
@@ -142,113 +161,81 @@
 
 
             <!------------------resturants----------------------->
-            <div class="standard_wrapper">
 
-                <div id="resturants" class="one withsmallpadding ppb_team_column"
-                    style="padding-top: 100px !important;padding:30px;">
-                    <div class="page_content_wrapper" style="text-align:center">
-                        <h1 class="">
-                            <span class="ppb_title_first">Our</span>Resturants
-                        </h1>
-                        <div class="inner">
-                            <div class="team_wrapper">
-                                <div class="one_third animated1 ">
-                                    <div class="post_img team"><img class="team_pic animated" data-animation="fadeIn"
-                                            src={{ asset('assets/frontend/upload/personell2-400x400.jpg') }}
-                                            alt="" />
-                                    </div>
-                                    <br class="clear" />
-                                    <div id="portfolio_desc_2626" class="portfolio_desc team "
-                                        style="text-align:center;">
-                                        <h5>Tessane Padares</h5>
-                                        <div class="post_detail">French Cuisine</div>
-                                        <ul class="social_wrapper team">
-                                            <li><a title="Tessane Padares on Twitter" target="_blank" class="tooltip"
-                                                    href="http://twitter.com/#"><i class="fa fa-twitter"></i></a></li>
-                                            <li><a title="Tessane Padares on Facebook" target="_blank" class="tooltip"
-                                                    href="http://facebook.com/#"><i class="fa fa-facebook"></i></a></li>
-                                            <li><a title="Tessane Padares on Google+" target="_blank" class="tooltip"
-                                                    href="#"><i class="fa fa-google-plus"></i></a></li>
-                                        </ul>
-                                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo
-                                            ligula eget dolor. Aliquam et elit eu nunc rhoncus viverra</p>
-                                    </div>
-                                </div>
-                                <div class="one_third animated2 ">
-                                    <div class="post_img team"><img class="team_pic animated" data-animation="fadeIn"
-                                            src={{ asset('assets/frontend/upload/shutterstock_116468653-400x400.jpg') }}
-                                            alt="" /></div>
-                                    <br class="clear" />
-                                    <div id="portfolio_desc_2622" class="portfolio_desc team "
-                                        style="text-align:center;">
-                                        <h5>John Bennett</h5>
-                                        <div class="post_detail">French Kitchen Lead</div>
-                                        <ul class="social_wrapper team">
-                                            <li><a title="John Bennett on Twitter" target="_blank" class="tooltip"
-                                                    href="http://twitter.com/#"><i class="fa fa-twitter"></i></a></li>
-                                            <li><a title="John Bennett on Facebook" target="_blank" class="tooltip"
-                                                    href="http://facebook.com/#"><i class="fa fa-facebook"></i></a>
+
+            <div id="resturants" class="one withsmallpadding ppb_team_column"
+                style="padding-top: 100px !important;padding:30px;">
+                <div class="page_content_wrapper" style="text-align:center">
+                    <h1 class="">
+                        <span class="ppb_title_first">Our</span>Resturants
+                    </h1>
+                    <div class="inner">
+                        <div class="container ">
+                            <div class="row gap-4 container justify-content-center">
+                                @foreach ($resturant as $rest_item)
+                                    <div class=" col-12 col-md-3 p-5 " style="width: 15rem;  ">
+                                        <a href="{{route('resturant')}}">
+                                            <img class="card-img-top" style="border-radius:50%"
+                                                src={{ $rest_item->image }} alt="Card image cap">
+                                            <div class="card-body">
+                                                <h5 class="card-title fw-bold">{{ $rest_item->resturant_name }}</h5>
+                                        </a>
+                                        <ul class="d-flex justify-content-center gap-4 list-unstyled mt-3">
+                                            <li class="facebook soci"><a target="_blank" title="Facebook"
+                                                    href="#"><i class="fa fa-facebook  social fs-5"></i></a>
                                             </li>
-                                            <li><a title="John Bennett on Google+" target="_blank" class="tooltip"
-                                                    href="#"><i class="fa fa-google-plus"></i></a></li>
+
+                                            <li class="youtube soci"><a target="_blank" title="Youtube"
+                                                    href="#"><i class="fa fa-youtube social fs-5"></i></a>
+                                            </li>
+
+                                            <li class="instagram soci"><a target="_blank" title="Instagram"
+                                                    href="http://instagram.com/#"><i
+                                                        class="fa fa-instagram social fs-5"></i></a></li>
                                         </ul>
-                                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo
-                                            ligula eget dolor. Aliquam et elit eu nunc rhoncus viverra</p>
                                     </div>
-                                </div>
-                                <div class="one_third animated3 last">
-                                    <div class="post_img team"><img class="team_pic animated" data-animation="fadeIn"
-                                            src={{ asset('assets/frontend/upload/Depositphotos_3233253_original-400x400.jpg') }}
-                                            alt="" />
-                                    </div>
-                                    <br class="clear" />
-                                    <div id="portfolio_desc_2623" class="portfolio_desc team last"
-                                        style="text-align:center;">
-                                        <h5>Christina Hardy</h5>
-                                        <div class="post_detail">Thai Cuisine</div>
-                                        <ul class="social_wrapper team">
-                                            <li><a title="Christina Hardy on Twitter" target="_blank" class="tooltip"
-                                                    href="http://twitter.com/#"><i class="fa fa-twitter"></i></a></li>
-                                            <li><a title="Christina Hardy on Facebook" target="_blank" class="tooltip"
-                                                    href="http://facebook.com/#"><i class="fa fa-facebook"></i></a></li>
-                                            <li><a title="Christina Hardy on Google+" target="_blank" class="tooltip"
-                                                    href="#"><i class="fa fa-google-plus"></i></a></li>
-                                        </ul>
-                                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo
-                                            ligula eget dolor. Aliquam et elit eu nunc rhoncus viverra</p>
-                                    </div>
-                                </div>
+
                             </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
-
-
             </div>
-            <!------pricing------>
-            <div class="standard_wrapper mb-5">
-                <h1 class="mb-4">
-                    <span class="ppb_title_first">choose your</span>package
-                </h1>
-                <div class=" row  justify-content-center gap-4"id="pricing">
-                @if($packages->count() > 0)
-                @foreach($packages as $value)
-                     <div  class=" col-12 col-md-4  card" style="height: 30rem; width:25rem">
-                        <div class="card-body" style="margin-top: 30% ">
-                            <h5 class="card-title fw-bold">{{$value->title}}</h5>
-                            <h6 class="card-subtitle mb-2 text-body-secondary">{{$value->price}} <span>EGP</span></h6>
-                            <p class="card-text">{{$value->description}} .</p>
-                            <a href="#" class="card-link">Card link</a>
-                            <a href="#" class="card-link">Another link</a>
-                        </div>
-                    </div>
-                @endforeach
-                @else
-                  <b><p class="card-text">Sorry! No packages Now.</p></b>
-                @endif
-                   
+        </div>
 
-                    {{-- <div class=" col-12 col-md-4  card" style="height: 30rem; width:25rem">
+
+
+        <!------pricing------>
+        <div class="  mb-5">
+            <h1 class="mb-4">
+                packages
+            </h1>
+            <div class=" row justify-content-center gap-4" id="pricing">
+                @if ($packages->count() > 0)
+                    @foreach ($packages as $value)
+                        <div class=" col-12 col-md-4  card" style="height: 20rem; width:20rem;">
+                            <div class="card-body" style="margin-top: 10% ">
+                                <img src={{ asset('assets/frontend/upload/dollar.png') }} width="30%" class="mb-3">
+                                <h3 class="card-title fw-bold">{{ $value->title }}</h3>
+                                <h6 class="card-subtitle mb-2 text-body-secondary">{{ $value->price }}
+                                    <span><small>EGP</small></span>
+                                </h6>
+                                <p class="card-text ">{{ $value->description }} .</p>
+                                <a href="#" class="btn"
+                                    style="background: #cfa670;color:white ; bottom:0">Contact with
+                                    Us </a>
+
+                            </div>
+                        </div>
+                    @endforeach
+                @else
+                    <b>
+                        <p class="card-text">Sorry! No packages Now.</p>
+                    </b>
+                @endif
+
+
+                {{-- <div class=" col-12 col-md-4  card" style="height: 30rem; width:25rem">
                         <div class="card-body" style="margin-top: 30% ">
                             <h5 class="card-title fw-bold">Package number 1</h5>
                             <h6 class="card-subtitle mb-2 text-body-secondary">200 <span>EGP</span></h6>
@@ -273,10 +260,10 @@
                         </div>
                     </div> --}}
 
-                </div>
             </div>
-        @endsection
+        </div>
+    @endsection
 
 
-        @section('script')
-        @endsection
+    @section('script')
+    @endsection

@@ -1,28 +1,6 @@
 <div class="header_style_wrapper">
     <!-- Begin top bar -->
-    <div class="above_top_bar">
-        <div class="page_content_wrapper">
-            <div class="social_wrapper">
-                <ul>
-                    <li class="facebook"><a target="_blank" href="#"><i class="fa fa-facebook"></i></a></li>
-                    <li class="twitter"><a target="_blank" href="http://twitter.com/#"><i class="fa fa-twitter"></i></a>
-                    </li>
-                    <li class="youtube"><a target="_blank" title="Youtube" href="#"><i
-                                class="fa fa-youtube"></i></a></li>
-                    <li class="pinterest"><a target="_blank" title="Pinterest" href="http://pinterest.com/#"><i
-                                class="fa fa-pinterest"></i></a></li>
-                    <li class="instagram"><a target="_blank" title="Instagram" href="http://instagram.com/#"><i
-                                class="fa fa-instagram"></i></a></li>
-                </ul>
-            </div>
-            <div class="extend_top_contact_info top_contact_info">
-                <span id="top_contact_address"><i class="fa fa-map-marker"></i>732/21 Second Street, King
-                    Street, United Kingdom</span>
-                <span id="top_contact_number"><a href="tel:+65.4566743"><i
-                            class="fa fa-phone"></i>+65.4566743</a></span>
-            </div>
-        </div>
-    </div>
+
     <!-- End top bar -->
     <div class="top_bar hasbg">
         <div id="menu_wrapper">
@@ -30,18 +8,14 @@
             <div id="logo_normal" class="logo_container">
                 <div class="logo_align">
                     <a id="custom_logo" class="logo_wrapper hidden" href="index.html">
-                        <img src={{  asset($aboutUs->logo)}}
-                            alt="Grand Restaurant | Restaurant Theme" width="101" height="34"
-                            style="width:101px;height:34px;" />
+                        <img src={{ asset($aboutUs->logo) }} alt="logo" width="100" />
                     </a>
                 </div>
             </div>
             <div id="logo_transparent" class="logo_container">
                 <div class="logo_align">
                     <a id="custom_logo_transparent" class="logo_wrapper default" href="index.html">
-                        <img src={{ asset($aboutUs->logo) }}
-                            alt="Grand Restaurant | Restaurant Theme" width="101" height="34"
-                            style="width:101px;height:34px;" />
+                        <img src={{ asset($aboutUs->logo) }} alt="logo" width="100" />
                     </a>
                 </div>
             </div>
@@ -74,14 +48,14 @@
                                 <li class="menu-item menu-item-has-children "><a href="#resturants">Resturants</a>
 
                                 </li>
-                                 <li class="megamenu col3 menu-item menu-item-has-children  "><a
+                                <li class="megamenu col3 menu-item menu-item-has-children  "><a
                                         href="#pricing">Pricing</a>
 
                                 </li>
-                              
-                               
 
-                                   @if(auth()->user() && auth()->user()->type=="user")
+
+
+                                @if (auth()->user() && auth()->user()->type == 'user')
                                     <li>
                                         <a href="{{ route('logout_user.logout') }}"
                                             style="text-decoration: none; color:white;">LOGOUT</a>

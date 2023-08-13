@@ -3,7 +3,8 @@
  
 namespace App\Http\Controllers\WebSite;
 use App\Http\Controllers\Controller;
-
+use App\Models\AboutUsSetting;
+use App\Models\ContactUsSetting;
 use Illuminate\Http\Request;
 
 class WebSiteResturantController extends Controller
@@ -15,8 +16,14 @@ class WebSiteResturantController extends Controller
      */
     public function index()
     {
-      
-        return view('Front.resturant');
+        $aboutUs=AboutUsSetting::first();
+    
+    
+        $contact=ContactUsSetting::first();
+        
+          
+            return view('Front.resturant',compact('aboutUs','contact'));
+  
     }
 
     /**

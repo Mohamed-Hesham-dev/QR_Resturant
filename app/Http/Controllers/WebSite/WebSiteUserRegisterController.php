@@ -1,6 +1,8 @@
 <?php
 namespace App\Http\Controllers\WebSite;
 use App\Http\Controllers\Controller;
+use App\Models\AboutUsSetting;
+use App\Models\ContactUsSetting;
 use App\Models\User;
 use App\Models\Role;
 use App\Models\Permission;
@@ -18,7 +20,15 @@ class WebSiteUserRegisterController extends Controller
    
     public function index()
     {
-        return view('Front.auth.register');
+
+        $aboutUs=AboutUsSetting::first();
+    
+    
+        $contact=ContactUsSetting::first();
+        
+          
+          
+        return view('Front.auth.register',compact('aboutUs','contact'));
     }
     public function store(Request $request)
     {
