@@ -1,6 +1,6 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="{{ route('dashboard') }}" class="brand-link">
+    <a href="{{ route('admin.dashboard') }}" class="brand-link">
 
         <img src="{{ asset('assets/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">QR-Reaturant</span>
@@ -16,7 +16,11 @@
             </div>
 
             <div class="info">
-                <a href="#" class="d-block">{{ Auth::guard('admin')->user()->name }}</a>
+                <a href="#" class="d-block">
+
+
+                    {{Auth::guard('admin')->user()->name}}
+                </a>
             </div>
         </div>
 
@@ -39,7 +43,7 @@
        with font-awesome or any other icon font library -->
                 <li class="nav-item menu-open">
 
-                    <a class="nav-link" href="{{ route('dashboard') }}">
+                    <a class="nav-link" href="{{ route('admin.dashboard') }}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p style="pointer:cursor">
                             Dashboard
@@ -61,19 +65,16 @@
                     <a href="{{ route('package.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-comment-dollar" style='font-size:20px;color:rgb(255, 255, 255)'></i>
 
-                <li class="nav-item">
-                    <a href="{{route('package.index')}}" class="nav-link">
-                        <i class="nav-icon fas fa-comment-dollar" style='font-size:25px;color:red'></i>
                         <p>
                             Packages
 
                         </p>
-                    </a>
+                        </a>
 
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('resturant.index')}}" class="nav-link">
-                        <i class="nav-icon fas fa-hamburger" style='font-size:25px;color:red'></i>
+                    <a href="{{ route('resturant.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-hamburger" style='font-size:20px;color:rgb(255, 255, 255)'></i>
                         <p>
                             Resturants
 
@@ -82,22 +83,22 @@
 
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('contactUsSetting.edit')}}" class="nav-link {{  request()->is('contactUsSetting.edit')|| request()->is('contactUsSetting/*') ? 'active':'' }}">
-                        <i class="nav-icon fa fa-address-book" style='font-size:25px;color:red'></i>
+                    <a href="{{ route('contactUsSetting.edit') }}" class="nav-link {{ request()->is('contactUsSetting.edit') || request()->is('contactUsSetting/*') ? 'active' : '' }}">
+                        <i class="nav-icon fa fa-address-book" style='font-size:20px;color:rgb(255, 255, 255)'></i>
                         <p>
                             Contact Us Setting
                         </p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('aboutUsSetting.edit')}}" class="nav-link {{  request()->is('contactUsSetting.edit')|| request()->is('contactUsSetting/*') ? 'active':'' }}">
-                        <i class="nav-icon fa fa-info" style='font-size:25px;color:red'></i>
+                    <a href="{{ route('aboutUsSetting.edit') }}" class="nav-link {{ request()->is('contactUsSetting.edit') || request()->is('contactUsSetting/*') ? 'active' : '' }}">
+                        <i class="nav-icon fa fa-info" style='font-size:20px;color:rgb(255, 255, 255)'></i>
                         <p>
                             About Us Setting
                         </p>
                     </a>
                 </li>
-               
+
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

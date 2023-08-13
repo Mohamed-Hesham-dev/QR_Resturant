@@ -71,7 +71,7 @@
                         <div class="custom-file">
                             <input type="file" class="form-control" name="image" placeholder="Image"
                                 id="exampleInputFile" onchange="loadFile(event)" accept="image/*">
-                            <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                            <label class="custom-file-label" for="exampleInputFile" id="fileLabel">Choose file</label>
                         </div>
                     </div>
                 </div>
@@ -106,15 +106,18 @@
         <!-- /.form-box -->
     </div><!-- /.card -->
 
-    <script>
-        var loadFile = function(event) {
-            var output = document.getElementById('output');
-            output.src = URL.createObjectURL(event.target.files[0]);
-            output.onload = function() {
-                URL.revokeObjectURL(output.src) // free memory
-            }
-        };
-    </script>
+  <script>
+    function loadFile(event) {
+        var input = event.target;
+        var label = input.nextElementSibling;
+
+        if (input.files && input.files[0]) {
+            label.textContent = input.files[0].name;
+        } else {
+            label.textContent = 'Choose file';
+        }
+    }
+</script>
 
     <style>
         /* toggle in label designing */

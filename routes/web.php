@@ -34,7 +34,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('admin/login',[DashboardController::class, 'loginAdmin'])->name('admin.login');
 Route::post('admin/login',[DashboardController::class, 'login']);
 Route::group(['middleware'=>['is_admin'],'prefix'=>'admin'], function () {
-    Route::get('/', [DashboardController::class,'index'])->name('dashboard');
+    Route::get('/', [DashboardController::class,'index'])->name('admin.dashboard');
     Route::resource('resturant', ResturantController::class)->names('resturant');
     Route::resource('package', PackageController::class)->names('package');
     Route::get('user',[UserController::class,'index'])->name('users');
