@@ -112,6 +112,35 @@
                         </li>
                     </ul> --}}
                 </li>
+
+                   <li class="nav-item has-treeview">
+                            <a href="" class="nav-link">
+                                <i class="nav-icon fas fa-bars"></i>
+                                <p>
+                                   Menu
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview" style="display: none;">
+                                <li class="nav-item">
+                                    <a href="{{route('categories.index')}}" class="nav-link {{  request()->is('setting.edit')|| request()->is('setting/*') ? 'active':'' }}">
+                                        <i class="nav-icon fas  fa-list-alt"></i>
+                                        <p>
+                                                Category
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{route('options.index')}}" class="nav-link {{  request()->is('setting.edit')|| request()->is('setting/*') ? 'active':'' }}">
+                                        <i class="nav-icon fas  fa-list-alt"></i>
+                                        <p>
+                                                Option
+                                        </p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
                 {{-- <li class="nav-item">
                     <a href="pages/calendar.html" class="nav-link">
                         <i class="nav-icon far fa-calendar-alt"></i>

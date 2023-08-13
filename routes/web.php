@@ -5,8 +5,10 @@ use App\Http\Controllers\Administration\ContactUsSettingController;
 use App\Http\Controllers\Administration\DashboardController;
 use App\Http\Controllers\Administration\PackageController;
 use App\Http\Controllers\Administration\ResturantController;
+use App\Http\Controllers\OwnerResturant\ResturantCategoryDashboardController;
 use App\Http\Controllers\OwnerResturant\ResturantDashboardController;
 use App\Http\Controllers\OwnerResturant\ResturantTableDashboardController;
+use App\Http\Controllers\OwnerResturant\ResturantOptionDashboardController;
 use App\Http\Controllers\WebSite\HomeController;
 use App\Http\Controllers\WebSite\WebSiteResturantController;
 use App\Http\Controllers\WebSite\WebSiteUserLoginController;
@@ -46,6 +48,8 @@ Route::group(['middleware'=>['is_owner'],'prefix'=>'owner'], function () {
     Route::get('/', [ResturantDashboardController::class,'index'])->name('dashboard');
     // Route::resource('resturant', ResturantController::class)->names('resturant');
      Route::resource('resturantTableDashboard', ResturantTableDashboardController::class)->names('table');
+     Route::resource('resturantCategoryDashboard', ResturantCategoryDashboardController::class)->names('categories');
+     Route::resource('resturantOptionDashboard', ResturantOptionDashboardController::class)->names('options');
      Route::get('/qrcode/{id}', [ResturantTableDashboardController::class, 'generate'])->name('qrcode.generate');
 
     // Route::get('contactUsSetting/edit',[ContactUsSettingController::class,'edit'])->name("contactUsSetting.edit");
