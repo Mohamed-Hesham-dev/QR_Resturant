@@ -12,8 +12,16 @@ class ResturantOptionDashboard extends Model
         'option_name',
         
     ];
-    public function value()
+    public function values()
     {
         return $this->hasMany(ResturantValueDashboard::class,'option_id');
+    }
+
+    
+
+    public function  products(){
+
+        return $this->belongsToMany(ResturantProductDashboard::class, 'product_option_value');
+
     }
 }

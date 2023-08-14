@@ -48,12 +48,11 @@ DashboardOwnerResturant
             </div>
             <div class="">
                 <table class="table table-bordered  text-center col-md-12 mt-5" style="grid-auto-flow: column;justify-content: center; align-content: center;">
-                    <thead class='' style='background-color: #2a415b;font-size:11px;
-    color: white;'>
-                       
+                    <thead class='' style='background-color: #2a415b;font-size:11px;color: white;'>
+
                         <th class=" col-form-label">remove/add</th>
                         <th class=" col-form-label">value name</th>
-                       
+
                     </thead>
                     <tr id="value-0">
                         <th class="text-center end-td ">
@@ -62,7 +61,7 @@ DashboardOwnerResturant
                             </button>
                         </th>
                         <th><input class="form-control shadow-lg" type="text" name="value[0][value_name]"></th>
-                        
+
                     </tr>
                     <tr class="datatable-row datatable-row-even">
                         <td class="text-center end-td " id="increment">

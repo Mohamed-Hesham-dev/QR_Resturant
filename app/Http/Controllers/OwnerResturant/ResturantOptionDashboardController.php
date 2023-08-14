@@ -40,8 +40,8 @@ class ResturantOptionDashboardController extends Controller
         })
         ->toArray();
         $data = ResturantOptionDashboard::create($filterData);
-          if ($request->value) {
-            $data->value()->createMany($request->value);
+          if ($request->values) {
+            $data->values()->createMany($request->value);
         }
 
         return redirect('/owner/resturantOptionDashboard')->with('success', 'Category Created Successfully');
@@ -85,7 +85,7 @@ class ResturantOptionDashboardController extends Controller
         if ($request->value) {
        
             ResturantValueDashboard::where('option_id',$resturantOptionDashboard->id)->delete();
-            $resturantOptionDashboard->value()->createMany($request->value);
+            $resturantOptionDashboard->values()->createMany($request->value);
         }
         return redirect('/owner/resturantOptionDashboard')->with('success', 'Option Updated Successfully');
     }
@@ -95,7 +95,7 @@ class ResturantOptionDashboardController extends Controller
      */
     public function destroy(ResturantOptionDashboard $resturantOptionDashboard)
     {
-        $resturantOptionDashboard->value()->delete();
+        $resturantOptionDashboard->values()->delete();
         $resturantOptionDashboard->forceDelete();
         return redirect('/owner/resturantOptionDashboard')->with('success', 'Option Delete Successfully');
     }
