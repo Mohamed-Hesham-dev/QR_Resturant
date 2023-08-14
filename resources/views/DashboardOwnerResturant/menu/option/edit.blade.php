@@ -57,8 +57,9 @@ DashboardOwnerResturant
                         <th class=" col-form-label">value name</th>
                            
                         </tr>
-                        @if (count($resturantOptionDashboard->value) > 0)
-                            @foreach ($resturantOptionDashboard->value as $key => $val)
+                     
+                        @if (count($resturantOptionDashboard->values) > 0)
+                            @foreach ($resturantOptionDashboard->values as $key => $val)
                                 <tr id="value-{{ $key }}">
                                  
                                         <td class="text-center end-td ">
@@ -79,8 +80,8 @@ DashboardOwnerResturant
                                 <tr class="datatable-row datatable-row-even">
                                     <td class="text-center end-td " id="increment">
                                         <button type="button" class="btn btn-primary add_new"
-                                            id="btn-{{ count($resturantOptionDashboard->value) - 1 }}"
-                                            onclick="appendRow({{ count($resturantOptionDashboard->value) - 1 }})"><i
+                                            id="btn-{{ count($resturantOptionDashboard->values) - 1 }}"
+                                            onclick="appendRow({{ count($resturantOptionDashboard->values) - 1 }})"><i
                                                 class="fa fa-plus-circle"></i></button>
                                     </td>
                                 </tr>

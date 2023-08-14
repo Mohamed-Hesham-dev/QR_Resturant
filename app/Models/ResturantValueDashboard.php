@@ -10,4 +10,8 @@ class ResturantValueDashboard extends Model
     use HasFactory;
     protected $guarded  = [];
     protected $table = 'resturant_value_dashboards';
+    public function option()
+    {
+        return $this->belongsTo(ResturantOptionDashboard::class);
+    }
 }

@@ -138,6 +138,13 @@
                                         </p>
                                     </a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="{{route('products.index')}}" class="nav-link {{  request()->is('setting.edit')|| request()->is('setting/*') ? 'active':'' }}">
+                                        <i class="nav-icon fab fa-product-hunt"></i>                                        <p>
+                                                Product
+                                        </p>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
 
