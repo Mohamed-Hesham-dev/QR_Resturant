@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
         $this->call(AdminSeeder::class);
         $this->call(ContactUsSettingSeeder::class);
         $this->call(AboutUsSettingSeeder::class);
+        $this->call(ResturantContactUsSettingSeeder::class);
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([

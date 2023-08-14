@@ -42,7 +42,6 @@
         </div>
 
         <form action="{{ route('options.store') }}" method="POST" enctype="multipart/form-data">
-<<<<<<< HEAD
             <div class="card-body  ">
                 @csrf
                 <div class="">
@@ -54,42 +53,6 @@
                         style="grid-auto-flow: column;justify-content: center; align-content: center;">
                         <thead class='' style='background-color: #2a415b;font-size:11px;
     color: white;'>
-=======
-            @csrf
-            <div class="">
-                <label for="email">Option Name*</label>
-                <input style="width: 100%" id="name" name="option_name" type="text" class="required_field" />
-            </div>
-            <div class="">
-                <table class="table table-bordered  text-center col-md-12 mt-5" style="grid-auto-flow: column;justify-content: center; align-content: center;">
-                    <thead class='' style='background-color: #2a415b;font-size:11px;color: white;'>
-
-                        <th class=" col-form-label">remove/add</th>
-                        <th class=" col-form-label">value name</th>
-
-                    </thead>
-                    <tr id="value-0">
-                        <th class="text-center end-td ">
-                            <button type="button" title="Remove" disabled="disabled" class="btn btn-danger btn-option">
-                                <i class="fa fa-minus-circle"></i>
-                            </button>
-                        </th>
-                        <th><input class="form-control shadow-lg" type="text" name="value[0][value_name]"></th>
-
-                    </tr>
-                    <tr class="datatable-row datatable-row-even">
-                        <td class="text-center end-td " id="increment">
-                            <button type="button" class="btn btn-primary add_new" id="btn-0" onclick="appendRow(0)"><i class="fa fa-plus-circle"></i></button>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-            <br>
-            <div class="col-6" style="float:right;">
-                <button type="submit" class="btn btn-primary">Add Option</button>
-            </div>
-            <!-- /.col -->
->>>>>>> 68b10af15c4e01f781a6e7a30c79970c91b539a7
 
                             <th class=" col-form-label">remove/add</th>
                             <th class=" col-form-label">value name</th>

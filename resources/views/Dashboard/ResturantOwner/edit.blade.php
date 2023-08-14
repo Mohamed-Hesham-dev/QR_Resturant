@@ -88,6 +88,10 @@
                         </select>
                     </div>
                 </div>
+                <div class="">
+                <label for="email">Description*</label>
+                <textarea style="width: 100%" id="name" name="description"  class="required_field" >{{$resturant->description}}</textarea>
+            </div>
                 <br>
                 <div class="input-group mb-3">
                     <label for="email">Status &nbsp; &nbsp;</label>

@@ -148,6 +148,23 @@
                             </ul>
                         </li>
 
+                           <li class="nav-item">
+                    <a href="{{ route('contactUsSettingResturant.edit') }}" class="nav-link {{ request()->is('contactUsSetting.edit') || request()->is('contactUsSetting/*') ? 'active' : '' }}">
+                        <i class="nav-icon fa fa-address-book" style='font-size:20px;color:rgb(255, 255, 255)'></i>
+                        <p>
+                            Contact Us Setting
+                        </p>
+                    </a>
+                </li>
+                 <li class="nav-item">
+                    <a href="{{ route('aboutUsSettingResturant.edit') }}" class="nav-link {{ request()->is('contactUsSetting.edit') || request()->is('contactUsSetting/*') ? 'active' : '' }}">
+                        <i class="nav-icon fa fa-info" style='font-size:20px;color:rgb(255, 255, 255)'></i>
+                        <p>
+                            About Us Setting
+                        </p>
+                    </a>
+                </li>
+
                 {{-- <li class="nav-item">
                     <a href="pages/calendar.html" class="nav-link">
                         <i class="nav-icon far fa-calendar-alt"></i>

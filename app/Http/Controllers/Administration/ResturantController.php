@@ -8,6 +8,7 @@ use App\Models\Resturant;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class ResturantController extends Controller
 {
@@ -47,6 +48,7 @@ class ResturantController extends Controller
                 'user_id'=>$owner_date->id,
                 'package'=>$request->package,
                 'resturant_name'=>$request->resturant_name,
+                'description'=>$request->description
                 ];
                 if($request->hasfile('image')) 
       {
@@ -101,6 +103,7 @@ class ResturantController extends Controller
             'is_active' => $request->boolean('is_active'),
             'package' => $request->package,
             'resturant_name' => $request->resturant_name,
+            'description'=>$request->description
         ];
         if($request->hasfile('image')) 
       {
@@ -122,6 +125,21 @@ class ResturantController extends Controller
     {
         $resturant->user->delete();
         return redirect('/admin/resturant')->with('success','Resturant Owner Delete Successfully');
+    }
+
+    public function generate($id)
+    {
+        $resturant = Resturant::where('id', $id)->first();
+       $data=[
+        'id' =>strval($resturant->id),
+        'name' => $resturant->resturant_name,
+       ];
+       $dataJson = json_encode($data); // Convert the data to a JSON string
+
+        $qrcode = QrCode::format('png')->size(300)->generate($dataJson);
+        $response = response($qrcode)->header('Content-Type', 'image/png');
+        $response->header('Content-Disposition', "attachment; filename=\"$resturant->resturant_name.png\"");
+        return $response;
     }
     
 }

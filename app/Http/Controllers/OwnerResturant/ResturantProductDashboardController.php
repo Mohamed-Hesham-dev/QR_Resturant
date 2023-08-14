@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\OwnerResturant;
 
 use App\Http\Controllers\Controller;
+use App\Models\Resturant;
 use App\Models\ResturantCategoryDashboard;
 use App\Models\ResturantOptionDashboard;
 use App\Models\ResturantProductDashboard;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ResturantProductDashboardController extends Controller
 {
@@ -16,7 +18,10 @@ class ResturantProductDashboardController extends Controller
     public function index()
     {
         $products = ResturantProductDashboard::get();
-        return view('DashboardOwnerResturant.menu.product.index',compact('products'));
+        $user=Auth::guard('owner')->user()->id;
+
+        $resturantname=Resturant::where('user_id',$user)->first();
+        return view('DashboardOwnerResturant.menu.product.index',compact('products','resturantname'));
     }
 
     /**
@@ -26,7 +31,10 @@ class ResturantProductDashboardController extends Controller
     {
         $options = ResturantOptionDashboard::with('values')->get();
         $categories = ResturantCategoryDashboard::get();
-        return view('DashboardOwnerResturant.menu.product.create',compact('options','categories'));
+        $user=Auth::guard('owner')->user()->id;
+
+        $resturantname=Resturant::where('user_id',$user)->first();
+        return view('DashboardOwnerResturant.menu.product.create',compact('options','categories','resturantname'));
     }
 
     /**

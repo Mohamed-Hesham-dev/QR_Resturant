@@ -14,6 +14,7 @@ class Resturant extends Model
         'image',
         'is_active',
         'user_id',
+        'description'
     ];
     public function user()
     {

@@ -7,7 +7,9 @@ use App\Http\Controllers\Administration\UserController;
 use App\Http\Controllers\Administration\DashboardController;
 use App\Http\Controllers\Administration\PackageController;
 use App\Http\Controllers\Administration\ResturantController;
+use App\Http\Controllers\OwnerResturant\ResturantAboutUsSettingController;
 use App\Http\Controllers\OwnerResturant\ResturantCategoryDashboardController;
+use App\Http\Controllers\OwnerResturant\ResturantContactUsSettingController;
 use App\Http\Controllers\OwnerResturant\ResturantDashboardController;
 use App\Http\Controllers\OwnerResturant\ResturantTableDashboardController;
 use App\Http\Controllers\OwnerResturant\ResturantOptionDashboardController;
@@ -37,6 +39,8 @@ Route::post('admin/login',[DashboardController::class, 'login']);
 Route::group(['middleware'=>['is_admin'],'prefix'=>'admin'], function () {
     Route::get('/', [DashboardController::class,'index'])->name('admin.dashboard');
     Route::resource('resturant', ResturantController::class)->names('resturant');
+    Route::get('/qrcode/{id}', [ResturantController::class, 'generate'])->name('resturant.qrcode.generate');
+
     Route::resource('package', PackageController::class)->names('package');
     Route::get('user',[UserController::class,'index'])->name('users');
     Route::get('user/{id}',[UserController::class,'deleteuser'])->name('delete.user');
@@ -56,6 +60,10 @@ Route::group(['middleware'=>['is_owner'],'prefix'=>'owner'], function () {
      Route::resource('resturantCategoryDashboard', ResturantCategoryDashboardController::class)->names('categories');
      Route::resource('resturantOptionDashboard', ResturantOptionDashboardController::class)->names('options');
      Route::resource('resturantProductDashboard', ResturantProductDashboardController::class)->names('products');
+     Route::get('contactUsSettingResturant/edit',[ResturantContactUsSettingController::class,'edit'])->name("contactUsSettingResturant.edit");
+     Route::put('contactUsSettingResturant/update/{id}',[ResturantContactUsSettingController::class,'update'])->name("contactUsSettingResturant.update");
+     Route::get('aboutUsSetting/edit',[ResturantAboutUsSettingController::class,'edit'])->name("aboutUsSettingResturant.edit");
+     Route::put('aboutUsSetting/update/{id}',[ResturantAboutUsSettingController::class,'update'])->name("aboutUsSettingResturant.update");
 
     // Route::get('contactUsSetting/edit',[ContactUsSettingController::class,'edit'])->name("contactUsSetting.edit");
     // Route::put('contactUsSetting/update/{id}',[ContactUsSettingController::class,'update'])->name("contactUsSetting.update");
