@@ -16,7 +16,7 @@ class ResturantOptionDashboardController extends Controller
         $user=Auth::guard('owner')->user()->id;
 
         $resturantname=Resturant::where('user_id',$user)->first();
-        $all_poptions = ResturantOptionDashboard::get();
+        $all_poptions = ResturantOptionDashboard::where('resturant_id',Auth::guard('owner')->user()->resturant->id)->get();
         return view('DashboardOwnerResturant.menu.option.index', compact('all_poptions','resturantname'));
     }
 
@@ -39,6 +39,7 @@ class ResturantOptionDashboardController extends Controller
       
         $data = [
             'option_name' => $request->option_name,
+            'resturant_id'=>Auth::guard('owner')->user()->resturant->id,
         ];
         $filterData = collect($data)
         ->filter(function ($item) {
@@ -48,7 +49,7 @@ class ResturantOptionDashboardController extends Controller
         })
         ->toArray();
         $data = ResturantOptionDashboard::create($filterData);
-          if ($request->values) {
+          if ($request->value) {
             $data->values()->createMany($request->value);
         }
 
@@ -80,6 +81,7 @@ class ResturantOptionDashboardController extends Controller
     {
         $data = [
             'option_name' => $request->option_name,
+            'resturant_id'=>Auth::guard('owner')->user()->resturant->id,
         ];
         $filterData = collect($data)
       ->filter(function ($item) {

@@ -17,7 +17,7 @@ class ResturantProductDashboardController extends Controller
      */
     public function index()
     {
-        $products = ResturantProductDashboard::get();
+        $products = ResturantProductDashboard::where('resturant_id',Auth::guard('owner')->user()->resturant->id)->get();
         $user=Auth::guard('owner')->user()->id;
 
         $resturantname=Resturant::where('user_id',$user)->first();
@@ -29,7 +29,7 @@ class ResturantProductDashboardController extends Controller
      */
     public function create()
     {
-        $options = ResturantOptionDashboard::with('values')->get();
+        $options = ResturantOptionDashboard::with('values')->where('resturant_id',Auth::guard('owner')->user()->resturant->id)->get();
         $categories = ResturantCategoryDashboard::get();
         $user=Auth::guard('owner')->user()->id;
 
@@ -46,6 +46,7 @@ class ResturantProductDashboardController extends Controller
             "name"=>$request->name,
             "category_id"=>$request->category_id,
             "description"=>$request->description,
+            'resturant_id'=>Auth::guard('owner')->user()->resturant->id,
             ];
         if($request->hasfile('image')) 
       {
@@ -73,7 +74,7 @@ class ResturantProductDashboardController extends Controller
      */
     public function edit(ResturantProductDashboard $resturantProductDashboard)
     {
-        $options = ResturantOptionDashboard::with('values')->get();
+        $options = ResturantOptionDashboard::with('values')->where('resturant_id',Auth::guard('owner')->user()->resturant->id)->get();
         $categories = ResturantCategoryDashboard::get();
 
         return view('DashboardOwnerResturant.menu.product.edit',compact('resturantProductDashboard','options','categories'));
@@ -88,6 +89,7 @@ class ResturantProductDashboardController extends Controller
             "name"=>$request->name,
             "category_id"=>$request->category_id,
             "description"=>$request->description,
+            'resturant_id'=>Auth::guard('owner')->user()->resturant->id,
             ];
         if($request->hasfile('image')) 
         {

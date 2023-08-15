@@ -10,6 +10,7 @@ class ResturantOptionDashboard extends Model
     use HasFactory;
     protected $fillable = [
         'option_name',
+        'resturant_id',
         
     ];
     public function values()
