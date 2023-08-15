@@ -46,7 +46,7 @@ class ResturantContactUsSettingController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(ResturantContactUsSetting $resturantContactUsSetting)
+    public function edit()
     {
         $contactUsSetting=ResturantContactUsSetting::where('user_id',Auth::guard('owner')->user()->id)->first();
        if($contactUsSetting){

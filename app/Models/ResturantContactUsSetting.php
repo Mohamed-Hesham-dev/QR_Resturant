@@ -11,4 +11,9 @@ class ResturantContactUsSetting extends Model
     protected $guarded  = [];
     protected $table = 'resturant_contact_us_settings';
 
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

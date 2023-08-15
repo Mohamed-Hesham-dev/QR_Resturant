@@ -35,7 +35,8 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1 class="m-0"> control of<b> {{ $resturantname->resturant_name }}</b> </h1>
+                            <h1 class="m-0"> control of<b>
+                                    {{ Auth::guard('owner')->user()->resturant->resturant_name }}</b> </h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">

@@ -3,6 +3,10 @@
 namespace App\Providers;
 
 use App\Models\AboutUsSetting;
+use App\Models\ContactUsSetting;
+use App\Models\Resturant;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 
@@ -22,7 +26,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $aboutUs=AboutUsSetting::first();
-        View::share('aboutUs',$aboutUs);
+        $contact=ContactUsSetting::first();
+
+        
+        View::share(['aboutUs'=>$aboutUs ,'contact'=>$contact]);
 
         //
     }
