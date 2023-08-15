@@ -48,9 +48,13 @@ class ResturantContactUsSettingController extends Controller
      */
     public function edit(ResturantContactUsSetting $resturantContactUsSetting)
     {
-        $all_contactUsSetting=ResturantContactUsSetting::first();
+        $contactUsSetting=ResturantContactUsSetting::where('user_id',Auth::guard('owner')->user()->id)->first();
+       if($contactUsSetting){
+        $all_contactUsSetting=$contactUsSetting;
+       }else{
+        $all_contactUsSetting='';
+       }
         $user=Auth::guard('owner')->user()->id;
-
         $resturantname=Resturant::where('user_id',$user)->first();
         return view('DashboardOwnerResturant.contactUsSetting.edit',compact('all_contactUsSetting','resturantname'));
     }
@@ -58,16 +62,28 @@ class ResturantContactUsSettingController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,  $id)
+    public function update(Request $request)
     {
         try
         {
-             $contactUsSetting = ResturantContactUsSetting::find($id);
-             $contactUsSetting->mobile=$request->mobile;
-             $contactUsSetting->facebook=$request->facebook;
-             $contactUsSetting->instagram=$request->instagram;
-             $contactUsSetting->youtube=$request->youtube;
-             $contactUsSetting->save();
+             $contactUsSetting = ResturantContactUsSetting::where('user_id',Auth::guard('owner')->user()->id)->first();
+             if($contactUsSetting){
+                $contactUsSetting->mobile=$request->mobile;
+                $contactUsSetting->facebook=$request->facebook;
+                $contactUsSetting->instagram=$request->instagram;
+                $contactUsSetting->youtube=$request->youtube;
+                $contactUsSetting->save();
+             }else{
+                $data=[
+                    'mobile'=>$request->mobile,
+                    'facebook'=>$request->facebook,
+                    'instagram'=>$request->instagram,
+                    'youtube'=>$request->youtube,
+                    'user_id'=>Auth::guard('owner')->user()->id,
+                    'resturant_id'=>Auth::guard('owner')->user()->resturant->,
+                ];
+             }
+            
              return redirect()->back()->with('success','Contact Us Setting Updated Successfully');
          }
          catch(Exception $e){

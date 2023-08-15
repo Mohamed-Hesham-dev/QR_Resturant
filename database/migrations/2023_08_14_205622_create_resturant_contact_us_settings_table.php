@@ -17,6 +17,9 @@ return new class extends Migration
             $table->string('facebook')->nullable();
             $table->string('instagram')->nullable();
             $table->string('youtube')->nullable();
+            $table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade');
+            $table->foreignId('resturant_id')->nullable()->constrained()->onDelete('cascade');
+
             $table->timestamps();
         });
     }

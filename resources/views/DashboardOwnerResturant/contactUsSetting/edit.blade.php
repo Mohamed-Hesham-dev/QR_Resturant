@@ -38,7 +38,7 @@ Dashboard
     <div class="card">
         <div class="card-body register-card-body">
             <p class="login-box-msg">Update Contact Us Setting</p>
-            <form action="{{ route('contactUsSettingResturant.update', $all_contactUsSetting->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('contactUsSettingResturant.update') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="input-group mb-3">
