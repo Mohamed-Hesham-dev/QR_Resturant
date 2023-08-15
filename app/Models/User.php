@@ -43,4 +43,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    public function resturant()
+    {
+        return $this->hasOne(Resturant::class,'user_id');
+    }
 }

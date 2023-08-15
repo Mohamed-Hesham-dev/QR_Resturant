@@ -46,9 +46,9 @@ class ResturantContactUsSettingController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(ResturantContactUsSetting $resturantContactUsSetting)
+    public function edit()
     {
-        $all_contactUsSetting=ResturantContactUsSetting::first();
+        $all_contactUsSetting=ResturantContactUsSetting::where('user_id', Auth::guard('owner')->user()->id)->first();
         $user=Auth::guard('owner')->user()->id;
 
         $resturantname=Resturant::where('user_id',$user)->first();
@@ -67,6 +67,7 @@ class ResturantContactUsSettingController extends Controller
              $contactUsSetting->facebook=$request->facebook;
              $contactUsSetting->instagram=$request->instagram;
              $contactUsSetting->youtube=$request->youtube;
+             $contactUsSetting->resturant_id= Auth::guard('owner')->user()->resturant->id;
              $contactUsSetting->save();
              return redirect()->back()->with('success','Contact Us Setting Updated Successfully');
          }

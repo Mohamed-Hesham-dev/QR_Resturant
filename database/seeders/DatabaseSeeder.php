@@ -12,9 +12,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call(AdminSeeder::class);
-        $this->call(ContactUsSettingSeeder::class);
-        $this->call(AboutUsSettingSeeder::class);
+        // $this->call(AdminSeeder::class);
+        // $this->call(ContactUsSettingSeeder::class);
+        // $this->call(AboutUsSettingSeeder::class);
         $this->call(ResturantContactUsSettingSeeder::class);
         // \App\Models\User::factory(10)->create();
 

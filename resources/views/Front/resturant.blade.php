@@ -48,20 +48,11 @@
                                 data-frames='[{"delay":500,"speed":300,"frame":"0","from":"opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"auto:auto;","ease":"nothing"}]'
                                 data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]"
                                 data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]"
-                                style="z-index: 6; white-space: nowrap; line-height: ; color: #ffffff; letter-spacing: ;">
-                                Sella <strong>Restaurant</strong> </div>
+                                style="font-family:'Cairo'!important; font-weight:bold; z-index: 6; white-space: nowrap; line-height: ; color: #ffffff; letter-spacing: ;">
+                                {{ $resturant->resturant_name }} <strong>Restaurant</strong> </div>
 
                             <!-- LAYER NR. 3 -->
-                            <div class="tp-caption sub-title-center   tp-resizeme" id="slide-3-layer-3" data-x="center"
-                                data-hoffset="" data-y="center" data-voffset="50" data-width="['auto']"
-                                data-height="['auto']" data-type="text" data-responsive_offset="on"
-                                data-frames='[{"delay":500,"speed":300,"frame":"0","from":"opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":300,"frame":"999","to":"auto:auto;","ease":"nothing"}]'
-                                data-textAlign="['inherit','inherit','inherit','inherit']" data-paddingtop="[0,0,0,0]"
-                                data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]"
-                                style="z-index: 7; white-space: nowrap; letter-spacing: ;">Making The Delicious Premium Food
-                                Since 1990
-                                <br /> Book Online Or Call (1800)456-6743
-                            </div>
+
                         </li>
                     </ul>
                     <div class="tp-bannertimer tp-bottom" style="visibility: hidden !important;"></div>
@@ -74,15 +65,55 @@
 
 
         <!-------------Story-------------->
+        <div id="aboutus" class="container d-flex  justify-content-start">
+            <div class="row justify-content-center ">
+                <div class=" col-6 d-flex align-items-center">
+                    <img src="{{ $resturant->image }}" width="15%" class="pe-3" style="border-radius:50%;">
+                    <div class="d-flex flex-column">
+                        <p class=" fs-5 fw-bold">{{ $resturant->resturant_name }}</p>
+                        <ul class="d-flex justify-content-center gap-4 list-unstyled mt-2">
+                            <li class="facebook soci"><a target="_blank" title="Facebook" href="#"><i
+                                        class="fa fa-facebook  social fs-5"></i></a>
+                            </li>
+
+                            <li class="youtube soci"><a target="_blank" title="Youtube" href="#"><i
+                                        class="fa fa-youtube social fs-5"></i></a>
+                            </li>
+
+                            <li class="instagram soci"><a target="_blank" title="Instagram"
+                                    href="http://instagram.com/#"><i class="fa fa-instagram social fs-5"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div id="aboutus" style=" position:relative; ">
+                        <div class=" " style="" data-stellar-ratio="1">
+                            <h2 class="fw-bold"><span class="ppb_title_first sw-bold">Find Us</h2>
+                            {{-- <div class="ppb_subtitle">
+                                        Ultimate dining experience like no other
+                                    </div> --}}
+                            <div class="page_header_sep left">
+                            </div>
+                            {{ $resturant->description }}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+
 
 
         <!-------------------------MENUE---------------->
 
-
+        <div style="border-top:3px solid rgb(216, 216, 216); width:50% ; margin:auto" class="mt-5"></div>
         <h2 class="ppb_title text-center mb-5 pt-5"><span class="ppb_title_first ">Resturant</span>Menu</h2>
         <div class="ppb_portfolio one nopadding " style="padding:0px 0 0px 0;">
             <div class="page_content_wrapper fullwidth">
                 <div class="portfolio_filter_wrapper four_cols gallery portfolio-content section content clearfix">
+                    foreach
                     <div class="element classic3_cols">
                         <div class="one_fourth gallery4 filterable static animated1">
                             <div class="button_wrapper">
@@ -110,193 +141,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="element classic3_cols">
-                        <div class="one_fourth gallery4 filterable static animated2">
-                            <div class="button_wrapper">
-                                <div class="button_center">
-                                    <div class="button_content"><a data-title="Crab With Curry Sources"
-                                            href="upload/223_1r140806_eat_spots_sobanndls.jpg') }} class="fancy-gallery"
-                                            title="Signature Dish"><i class="fa fa-search"></i></a><a href="#"><i
-                                                class="fa fa-shopping-cart"></i></a>
-                                    </div>
-                                </div>
-                            </div><img
-                                src={{ asset('assets/frontend/upload/223_1r140806_eat_spots_sobanndls-400x400-1433934069.jpg') }}
-                                alt="" />
-                        </div>
-                        <br class="clear" />
-                        <div id="portfolio_desc_3195" class="portfolio_desc portfolio4 filterable ">
-                            <div id="menu_3195" class="menu_content_classic">
-                                <h5 class="menu_post">
-                                    <span class="menu_title">Crab With Curry Sources</span>
-                                    <span class="menu_dots"></span>
-                                    <span class="menu_price">$24.5</span>
-                                </h5>
-                                <div class="post_detail menu_excerpt">Crab / Potatoes / Rice</div>
-                                <div class="menu_order"><a href="#">Order</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="element classic3_cols">
-                        <div class="one_fourth gallery4 filterable static animated3">
-                            <div class="button_wrapper">
-                                <div class="button_center">
-                                    <div class="button_content"><a data-title="Imported Salmon Steak"
-                                            href="upload/4ccb9fab-c445-4343-884d-3992a6588e98-620x444.jpeg') }}
-                                            class="fancy-gallery"
-                                            title="Keralan Fish Curry"><i class="fa fa-search"></i></a></div>
-                                </div>
-                            </div><img
-                                src={{ asset('assets/frontend/upload/4ccb9fab-c445-4343-884d-3992a6588e98-620x444-400x400-1433934149.jpeg') }}
-                                alt="" />
-                        </div>
-                        <br class="clear" />
-                        <div id="portfolio_desc_3196" class="portfolio_desc portfolio4 filterable ">
-                            <div id="menu_3196" class="menu_content_classic">
-                                <h5 class="menu_post">
-                                    <span class="menu_title">Imported Salmon Steak</span>
-                                    <span class="menu_dots"></span>
-                                    <span class="menu_price">$18.9</span>
-                                </h5>
-                                <div class="post_detail menu_excerpt">Salmon / Veggies / Oil</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="element classic3_cols">
-                        <div class="one_fourth gallery4 filterable static animated4">
-                            <div class="button_wrapper">
-                                <div class="button_center">
-                                    <div class="button_content"><a data-title="Baked Potato Pizza"
-                                            href="upload/dl_00_01_021.jpg') }} class="fancy-gallery"
-                                            title="Roasted Checken"><i class="fa fa-search"></i></a><a href="#"><i
-                                                class="fa fa-shopping-cart"></i></a>
-                                    </div>
-                                </div>
-                            </div><img src={{ asset('assets/frontend/upload/dl_00_01_021-400x400.jpg') }} alt="" />
-                        </div>
-                        <br class="clear" />
-                        <div id="portfolio_desc_3197" class="portfolio_desc portfolio4 filterable last">
-                            <div id="menu_3197" class="menu_content_classic">
-                                <h5 class="menu_post">
-                                    <span class="menu_title">Baked Potato Pizza</span>
-                                    <span class="menu_dots"></span>
-                                    <span class="menu_price">$12</span>
-                                </h5>
-                                <div class="post_detail menu_excerpt">Potato / Bread / Cheese</div>
-                                <div class="menu_highlight"><i class="fa fa-star"></i></div>
-                                <div class="menu_order"><a href="#">Order</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="element classic3_cols">
-                        <div class="one_fourth gallery4 filterable static animated5">
-                            <div class="button_wrapper">
-                                <div class="button_center">
-                                    <div class="button_content"><a data-title="Italian Source Mushroom"
-                                            href="upload/7311365.jpg') }} class="fancy-gallery" title=""><i
-                                                class="fa fa-search"></i></a><a href="#"><i
-                                                class="fa fa-shopping-cart"></i></a>
-                                    </div>
-                                </div>
-                            </div><img src={{ asset('assets/frontend/upload/7311365-400x400-1433934292.jpg') }}
-                                alt="" />
-                        </div>
-                        <br class="clear" />
-                        <div id="portfolio_desc_3190" class="portfolio_desc portfolio4 filterable ">
-                            <div id="menu_3190" class="menu_content_classic">
-                                <h5 class="menu_post">
-                                    <span class="menu_title">Italian Source Mushroom</span>
-                                    <span class="menu_dots"></span>
-                                    <span class="menu_price">$19.9</span>
-                                </h5>
-                                <div class="post_detail menu_excerpt">Mushroom / Garlic / Veggies</div>
-                                <div class="menu_order"><a href="#">Order</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="element classic3_cols">
-                        <div class="one_fourth gallery4 filterable static animated6">
-                            <div class="button_wrapper">
-                                <div class="button_center">
-                                    <div class="button_content"><a data-title="Fried Potatoes With Garlic"
-                                            href="upload/slide-02_tom-aikens-food-photography.jpg') }} class="fancy-gallery"
-                                            title=""><i class="fa fa-search"></i></a><a href="#"><i
-                                                class="fa fa-shopping-cart"></i></a>
-                                    </div>
-                                </div>
-                            </div><img
-                                src={{ asset('assets/frontend/upload/slide-02_tom-aikens-food-photography-400x400-1433934211.jpg') }}
-                                alt="" />
-                        </div>
-                        <br class="clear" />
-                        <div id="portfolio_desc_3191" class="portfolio_desc portfolio4 filterable ">
-                            <div id="menu_3191" class="menu_content_classic">
-                                <h5 class="menu_post">
-                                    <span class="menu_title">Fried Potatoes With Garlic</span>
-                                    <span class="menu_dots"></span>
-                                    <span class="menu_price">$12</span>
-                                </h5>
-                                <div class="post_detail menu_excerpt">Potatoes / Olive Oil / Garlic</div>
-                                <div class="menu_order"><a href="#">Order</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="element classic3_cols">
-                        <div class="one_fourth gallery4 filterable static animated7">
-                            <div class="button_wrapper">
-                                <div class="button_center">
-                                    <div class="button_content"><a data-title="Tuna Roast Source"
-                                            href="upload/greg.jpg') }}
-                                            class="fancy-gallery"
-                                            title=""><i class="fa fa-search"></i></a><a href="#"><i
-                                                class="fa fa-shopping-cart"></i></a>
-                                    </div>
-                                </div>
-                            </div><img src={{ asset('assets/frontend/upload/greg-400x400-1433934437.jpg') }}
-                                alt="" />
-                        </div>
-                        <br class="clear" />
-                        <div id="portfolio_desc_3192" class="portfolio_desc portfolio4 filterable ">
-                            <div id="menu_3192" class="menu_content_classic">
-                                <h5 class="menu_post">
-                                    <span class="menu_title">Tuna Roast Source</span>
-                                    <span class="menu_dots"></span>
-                                    <span class="menu_price">$24.5</span>
-                                </h5>
-                                <div class="post_detail menu_excerpt">Tuna / Potatoes / Rice</div>
-                                <div class="menu_highlight"><i class="fa fa-star"></i></div>
-                                <div class="menu_order"><a href="#">Order</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="element classic3_cols">
-                        <div class="one_fourth gallery4 filterable static animated8">
-                            <div class="button_wrapper">
-                                <div class="button_center">
-                                    <div class="button_content"><a data-title="Roast Pork (4 Sticks)"
-                                            href="upload/indian-food-with-chapatti-rice-curries-vegetables-papad-pickle-payasam-f4.jpg') }}
-                                            class="fancy-gallery"
-                                            title=""><i class="fa fa-search"></i></a><a href="#"><i
-                                                class="fa fa-shopping-cart"></i></a>
-                                    </div>
-                                </div>
-                            </div><img
-                                src={{ asset('assets/frontend/upload/indian-food-with-chapatti-rice-curries-vegetables-papad-pickle-payasam-f4-400x400-1433934381.jpg') }}
-                                alt="" />
-                        </div>
-                        <br class="clear" />
-                        <div id="portfolio_desc_3193" class="portfolio_desc portfolio4 filterable last">
-                            <div id="menu_3193" class="menu_content_classic">
-                                <h5 class="menu_post">
-                                    <span class="menu_title">Roast Pork (4 Sticks)</span>
-                                    <span class="menu_dots"></span>
-                                    <span class="menu_price">$15.5</span>
-                                </h5>
-                                <div class="post_detail menu_excerpt">Pork / Veggies / Shoyu</div>
-                                <div class="menu_order"><a href="#">Order</a></div>
-                            </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>

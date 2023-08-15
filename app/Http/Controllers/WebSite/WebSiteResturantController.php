@@ -5,6 +5,8 @@ namespace App\Http\Controllers\WebSite;
 use App\Http\Controllers\Controller;
 use App\Models\AboutUsSetting;
 use App\Models\ContactUsSetting;
+use App\Models\Resturant;
+use App\Models\ResturantProductDashboard;
 use Illuminate\Http\Request;
 
 class WebSiteResturantController extends Controller
@@ -14,15 +16,13 @@ class WebSiteResturantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
+
     {
-        $aboutUs=AboutUsSetting::first();
-    
-    
-        $contact=ContactUsSetting::first();
-        
+        $resturant=Resturant::where('id',$id)->first();
+
           
-            return view('Front.resturant',compact('aboutUs','contact'));
+            return view('Front.resturant',compact('resturant') );
   
     }
 

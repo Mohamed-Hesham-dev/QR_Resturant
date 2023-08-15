@@ -11,17 +11,14 @@ use Illuminate\Http\Request;
 
 class ResturantDashboardController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
+ 
     public function index()
     {
         $user=Auth::guard('owner')->user()->id;
 
-        $resturantname=Resturant::where('user_id',$user)->first();
+        
  
-        return view('DashboardOwnerResturant.home',compact('resturantname','user'));
+        return view('DashboardOwnerResturant.home',compact('user'));
     }
   
 

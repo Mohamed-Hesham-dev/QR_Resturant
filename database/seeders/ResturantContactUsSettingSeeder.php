@@ -2,8 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Resturant;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class ResturantContactUsSettingSeeder  extends Seeder
@@ -20,6 +22,7 @@ class ResturantContactUsSettingSeeder  extends Seeder
             'facebook' => '',
             'instagram' => '',
             'youtube' => '',
+            'user_id'=>''
         ]);
     }
 }

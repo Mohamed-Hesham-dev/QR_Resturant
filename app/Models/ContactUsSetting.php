@@ -10,7 +10,7 @@ class ContactUsSetting extends Model
     use HasFactory;
     protected $fillable = [
         'mobile',
-       
+ 
         'facebook',
         'instagram',
         'youtube',
