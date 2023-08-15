@@ -40,23 +40,22 @@
             <p class="login-box-msg">Update Contact Us Setting</p>
             <form action="{{ route('contactUsSettingResturant.update') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                @method('PUT')
                 <div class="input-group mb-3">
                     <input type="text" name="mobile" class="form-control" placeholder="Mobile"
-                        value="{{ $all_contactUsSetting->mobile }}">
+                        value="{{ $all_contactUsSetting->mobile ?? '' }}">
                 </div>
 
                 <div class="input-group mb-3">
                     <input type="text" name="facebook" class="form-control" placeholder="Facebook"
-                        value="{{ $all_contactUsSetting->facebook }}">
+                        value="{{ $all_contactUsSetting->facebook ?? '' }}">
                 </div>
                 <div class="input-group mb-3">
                     <input type="text" name="instagram" class="form-control" placeholder="Instagram"
-                        value="{{ $all_contactUsSetting->instagram }}">
+                        value="{{ $all_contactUsSetting->instagram  ?? '' }}">
                 </div>
                 <div class="input-group mb-3">
                     <input type="text" name="youtube" class="form-control" placeholder="Youtube"
-                        value="{{ $all_contactUsSetting->youtube }}">
+                        value="{{ $all_contactUsSetting->youtube ?? '' }}">
                 </div>
                 <div class="col-6" style="float:right;">
                     <button type="submit" class="btn btn-primary">Edit Contact Us Setting</button>

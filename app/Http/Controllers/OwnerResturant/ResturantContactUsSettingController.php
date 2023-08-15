@@ -80,8 +80,9 @@ class ResturantContactUsSettingController extends Controller
                     'instagram'=>$request->instagram,
                     'youtube'=>$request->youtube,
                     'user_id'=>Auth::guard('owner')->user()->id,
-                    'resturant_id'=>Auth::guard('owner')->user()->resturant->,
+                    'resturant_id'=>Auth::guard('owner')->user()->resturant->id,
                 ];
+                ResturantContactUsSetting::create($data);
              }
             
              return redirect()->back()->with('success','Contact Us Setting Updated Successfully');

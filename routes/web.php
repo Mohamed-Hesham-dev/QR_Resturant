@@ -61,9 +61,9 @@ Route::group(['middleware'=>['is_owner'],'prefix'=>'owner'], function () {
      Route::resource('resturantOptionDashboard', ResturantOptionDashboardController::class)->names('options');
      Route::resource('resturantProductDashboard', ResturantProductDashboardController::class)->names('products');
      Route::get('contactUsSettingResturant/edit',[ResturantContactUsSettingController::class,'edit'])->name("contactUsSettingResturant.edit");
-     Route::put('contactUsSettingResturant/update/{id}',[ResturantContactUsSettingController::class,'update'])->name("contactUsSettingResturant.update");
+     Route::post('contactUsSettingResturant/update',[ResturantContactUsSettingController::class,'update'])->name("contactUsSettingResturant.update");
      Route::get('aboutUsSetting/edit',[ResturantAboutUsSettingController::class,'edit'])->name("aboutUsSettingResturant.edit");
-     Route::put('aboutUsSetting/update',[ResturantAboutUsSettingController::class,'update'])->name("aboutUsSettingResturant.update");
+     Route::put('aboutUsSetting/update/{id}',[ResturantAboutUsSettingController::class,'update'])->name("aboutUsSettingResturant.update");
 
     // Route::get('contactUsSetting/edit',[ContactUsSettingController::class,'edit'])->name("contactUsSetting.edit");
     // Route::put('contactUsSetting/update/{id}',[ContactUsSettingController::class,'update'])->name("contactUsSetting.update");
