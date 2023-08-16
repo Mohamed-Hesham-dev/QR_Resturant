@@ -182,15 +182,17 @@
                                         </a>
                                         <ul class="d-flex justify-content-center gap-4 list-unstyled mt-3">
                                             <li class="facebook soci"><a target="_blank" title="Facebook"
-                                                    href="#"><i class="fa fa-facebook  social fs-5"></i></a>
+                                                    href="{{ $contactUs->where('resturant_id', $rest_item->id)->first()->facebook ?? ' ' }}"><i
+                                                        class="fa fa-facebook  social fs-5"></i></a>
                                             </li>
 
                                             <li class="youtube soci"><a target="_blank" title="Youtube"
-                                                    href="#"><i class="fa fa-youtube social fs-5"></i></a>
+                                                    href="{{ $contactUs->where('resturant_id', $rest_item->id)->first()->youtube ?? ' ' }}"><i
+                                                        class="fa fa-youtube social fs-5"></i></a>
                                             </li>
 
                                             <li class="instagram soci"><a target="_blank" title="Instagram"
-                                                    href="http://instagram.com/#"><i
+                                                    href="{{ $contactUs->where('resturant_id', $rest_item->id)->first()->instagram ?? '' }}"><i
                                                         class="fa fa-instagram social fs-5"></i></a></li>
                                         </ul>
                                     </div>
@@ -203,7 +205,61 @@
             </div>
         </div>
 
-
+        <!------counter--------->
+        <div class="one withsmallpadding ppb_text" style="padding:30px 0 30px 0;">
+            <div class="standard_wrapper">
+                <div class="page_content_wrapper">
+                    <div class="inner">
+                        <div style="margin:auto;width:100%">
+                            </p>
+                            <div class="one_fifth " style="padding:30px 10px 30px 10px;">
+                                <div class="animate_counter_wrapper">
+                                    <div id="1570096072336597485" class="odometer"
+                                        style="font-size:50px;line-height:50px;">0</div>
+                                    <div class="count_separator"><span></span></div>
+                                    <div class="counter_subject">Years of Experience</div>
+                                </div>
+                            </div>
+                            <div class="one_fifth " style="padding:30px 10px 30px 10px;">
+                                <div class="animate_counter_wrapper">
+                                    <div id="1570096072772185217" class="odometer"
+                                        style="font-size:50px;line-height:50px;">0</div>
+                                    <div class="count_separator"><span></span></div>
+                                    <div class="counter_subject">Award Winning Chiefs</div>
+                                </div>
+                            </div>
+                            <div class="one_fifth " style="padding:30px 10px 30px 10px;">
+                                <div class="animate_counter_wrapper">
+                                    <div id="15700960721959780185" class="odometer"
+                                        style="font-size:50px;line-height:50px;">0</div>
+                                    <div class="count_separator"><span></span></div>
+                                    <div class="counter_subject">Customers Served</div>
+                                </div>
+                            </div>
+                            <div class="one_fifth " style="padding:30px 10px 30px 10px;">
+                                <div class="animate_counter_wrapper">
+                                    <div id="15700960721803188826" class="odometer"
+                                        style="font-size:50px;line-height:50px;">0</div>
+                                    <div class="count_separator"><span></span></div>
+                                    <div class="counter_subject">Dishes</div>
+                                </div>
+                            </div>
+                            <div class="one_fifth last " style="padding:30px 10px 30px 10px;">
+                                <div class="animate_counter_wrapper">
+                                    <div id="15700960721920355529" class="odometer"
+                                        style="font-size:50px;line-height:50px;">0</div>
+                                    <div class="count_separator"><span></span></div>
+                                    <div class="counter_subject">Awards</div>
+                                </div>
+                            </div>
+                            <p>
+                                <br class="clear" />
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!------pricing------>
         <div class="  mb-5">
@@ -266,4 +322,48 @@
 
 
     @section('script')
+        <script>
+            window.odometerOptions = {
+                format: '(,ddd).dd'
+            };
+            setTimeout(function() {
+                jQuery('#1570096072336597485').html(20);
+            }, 1000);
+
+            window.odometerOptions = {
+                format: '(,ddd).dd'
+            };
+            setTimeout(function() {
+                jQuery('#1570096072772185217').html(12);
+            }, 1000);
+
+            window.odometerOptions = {
+                format: '(,ddd).dd'
+            };
+            setTimeout(function() {
+                jQuery('#15700960721959780185').html(15500);
+            }, 1000);
+
+            window.odometerOptions = {
+                format: '(,ddd).dd'
+            };
+            setTimeout(function() {
+                jQuery('#15700960721803188826').html(85);
+            }, 1000);
+
+            window.odometerOptions = {
+                format: '(,ddd).dd'
+            };
+            setTimeout(function() {
+                jQuery('#15700960721920355529').html(15);
+            }, 1000);
+        </script>
+        <script type='text/javascript'>
+            /* <![CDATA[ */
+            var tgAjax = {
+                "ajaxurl": "#",
+                "ajax_nonce": "c5281db0c2"
+            };
+            /* ]]> */
+        </script>
     @endsection

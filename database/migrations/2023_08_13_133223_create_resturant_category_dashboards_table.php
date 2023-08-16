@@ -14,7 +14,11 @@ return new class extends Migration
         Schema::create('resturant_category_dashboards', function (Blueprint $table) {
             $table->id();
             $table->string('category_name');
+             
+            $table->foreignId('resturant_id')->nullable()->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade');
             $table->timestamps();
+            
         });
     }
 

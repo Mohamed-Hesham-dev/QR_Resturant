@@ -33,8 +33,8 @@
     <!-- Begin mobile menu -->
     <div class="mobile_menu_wrapper">
         <a id="close_mobile_menu" href="javascript:;"><i class="fa fa-close"></i></a>
-            <img src={{ asset('assets/frontend/upload/logo@2x.png') }} alt="Grand Restaurant | Restaurant Theme"
-                width="101" height="34" style="width:101px;height:40px;" />
+        <img src={{ asset('assets/frontend/upload/logo@2x.png') }} alt="Grand Restaurant | Restaurant Theme"
+            width="101" height="34" style="width:101px;height:40px;" />
         <div class="menu-side-menu-container">
             <ul id="mobile_main_menu" class="mobile_main_nav">
                 <li class="menu-item current-menu-item menu-item-has-children "><a href="{{ route('index') }}">Home</a>

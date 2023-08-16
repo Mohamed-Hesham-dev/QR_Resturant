@@ -18,7 +18,7 @@ class ResturantCategoryDashboardController extends Controller
         $user=Auth::guard('owner')->user()->id;
 
         $resturantname=Resturant::where('user_id',$user)->first();
-        $all_categories = ResturantCategoryDashboard::get();
+        $all_categories = ResturantCategoryDashboard::where(['user_id'=>$user,'resturant_id'=>$resturantname->id])->get();
         return view('DashboardOwnerResturant.menu.category.index', compact('all_categories','resturantname'));
     }
 
@@ -41,6 +41,8 @@ class ResturantCategoryDashboardController extends Controller
       
         $data = [
             'category_name' => $request->category_name,
+            'user_id'=>Auth::guard('owner')->user()->id,
+            'resturant_id'=>Auth::guard('owner')->user()->resturant->id
         ];
         $data = ResturantCategoryDashboard::create($data);
 
@@ -72,6 +74,8 @@ class ResturantCategoryDashboardController extends Controller
     {
         $data = [
             'category_name' => $request->category_name,
+            'user_id'=>Auth::guard('owner')->user()->id,
+            'resturant_id'=>Auth::guard('owner')->user()->resturant->id
         ];
         $resturantCategoryDashboard->update($data);
 

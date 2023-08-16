@@ -29,8 +29,12 @@ class ResturantProductDashboardController extends Controller
      */
     public function create()
     {
+        $user=Auth::guard('owner')->user()->id;
+
+        $resturantname=Resturant::where('user_id',$user)->first();
         $options = ResturantOptionDashboard::with('values')->where('resturant_id',Auth::guard('owner')->user()->resturant->id)->get();
-        $categories = ResturantCategoryDashboard::get();
+        $categories =ResturantCategoryDashboard::where(['user_id'=>$user,'resturant_id'=>$resturantname->id])->get();
+        
         $user=Auth::guard('owner')->user()->id;
 
         $resturantname=Resturant::where('user_id',$user)->first();
@@ -46,7 +50,7 @@ class ResturantProductDashboardController extends Controller
             "name"=>$request->name,
             "category_id"=>$request->category_id,
             "description"=>$request->description,
-            'resturant_id'=>Auth::guard('owner')->user()->resturant->id,
+            "resturant_id"=>Auth::guard('owner')->user()->resturant->id,
             ];
         if($request->hasfile('image')) 
       {
