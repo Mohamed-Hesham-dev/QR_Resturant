@@ -354,7 +354,7 @@
                     const imageIndex = 0; // Change this index to display different images
                     const imageUrl = productDataImages[imageIndex] ?
                         '{{ asset($product->getFirstMedia('images')->getUrl()) }}' : '';
-                    console.log(imageUrl);
+                    console(imageUrl);
                     productImageElement.src = imageUrl;
                     productImageElement.setAttribute('src', imageUrl);
                     // productNameElement.innerText = productImageElement.src;
