@@ -9,7 +9,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
-
+use Illuminate\Pagination\Paginator;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -27,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $aboutUs=AboutUsSetting::first();
         $contact=ContactUsSetting::first();
-
+        Paginator::useBootstrap();
         
         View::share(['aboutUs'=>$aboutUs ,'contact'=>$contact]);
 

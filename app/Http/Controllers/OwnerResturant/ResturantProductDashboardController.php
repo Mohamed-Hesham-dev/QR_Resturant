@@ -29,8 +29,12 @@ class ResturantProductDashboardController extends Controller
      */
     public function create()
     {
+        $user=Auth::guard('owner')->user()->id;
+
+        $resturantname=Resturant::where('user_id',$user)->first();
         $options = ResturantOptionDashboard::with('values')->where('resturant_id',Auth::guard('owner')->user()->resturant->id)->get();
-        $categories = ResturantCategoryDashboard::get();
+        $categories =ResturantCategoryDashboard::where(['user_id'=>$user,'resturant_id'=>$resturantname->id])->get();
+        
         $user=Auth::guard('owner')->user()->id;
 
         $resturantname=Resturant::where('user_id',$user)->first();
@@ -46,17 +50,24 @@ class ResturantProductDashboardController extends Controller
             "name"=>$request->name,
             "category_id"=>$request->category_id,
             "description"=>$request->description,
-            'resturant_id'=>Auth::guard('owner')->user()->resturant->id,
+            "resturant_id"=>Auth::guard('owner')->user()->resturant->id,
             ];
-        if($request->hasfile('image')) 
+        if($request->hasfile('logo')) 
       {
-           $image = $request->file('image');
+           $image = $request->file('logo');
             $image_name = $image->getClientOriginalName();
             $image->move(public_path('/image'),$image_name);
             $image_path = "/image/" . $image_name;
-            $data['image']=$image_path;
+            $data['logo']=$image_path;
       }
+      
         $product = ResturantProductDashboard::create($data);
+        if ($request->hasFile('images')) {
+            $fileAdders = $product->addMultipleMediaFromRequest(['images'])
+                ->each(function ($fileAdder) {
+                    $fileAdder->toMediaCollection('images');
+                });
+        }
         $product->options()->sync($this->customSync($request->all(),$product->id));
         return redirect()->route('products.index');
     }
@@ -91,15 +102,26 @@ class ResturantProductDashboardController extends Controller
             "description"=>$request->description,
             'resturant_id'=>Auth::guard('owner')->user()->resturant->id,
             ];
-        if($request->hasfile('image')) 
+        if($request->hasfile('logo')) 
         {
-             $image = $request->file('image');
+             $image = $request->file('logo');
               $image_name = $image->getClientOriginalName();
               $image->move(public_path('/image'),$image_name);
               $image_path = "/image/" . $image_name;
-              $data['image']=$image_path;
+              $data['logo']=$image_path;
         }
         $resturantProductDashboard->update($data);
+        if ($request->hasFile('images')) {
+            foreach ($resturantProductDashboard->getMedia('images') as $media) {
+                $media->delete(); // This deletes the media file from storage
+            }
+         $resturantProductDashboard->clearMediaCollection('images');
+                $fileAdders = $resturantProductDashboard->addMultipleMediaFromRequest(['images'])
+                    ->each(function ($fileAdder) {
+                        $fileAdder->toMediaCollection('images');
+                   });
+
+         }
         $resturantProductDashboard->options()->sync($this->customSync($request->all(),$resturantProductDashboard->id));
 
         return redirect()->route('products.index');

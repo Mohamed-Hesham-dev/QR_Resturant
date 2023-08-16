@@ -20,7 +20,7 @@ class ResturantTableDashboardController extends Controller
         $user=Auth::guard('owner')->user()->id;
         $resturantname=Resturant::where('user_id',$user)->first();
 
-        $all_tables = ResturantTableDashboard::get();
+        $all_tables = ResturantTableDashboard:: where('user_id',$user)->get();
         return view('DashboardOwnerResturant.table.index', compact('all_tables','resturantname' ));
     }
 
@@ -40,12 +40,14 @@ class ResturantTableDashboardController extends Controller
      */
     public function store(Request $request)
     {
-        $data = [
+         $data = [
             'is_active' => $request->boolean('is_active'),
             'title' => $request->title,
             'area' => $request->area,
             'num_table' => $request->num_table,
             'num_chairs' => $request->num_chairs,
+            'user_id'=>Auth::guard('owner')->user()->id,
+            'resturant_id'=>Auth::guard('owner')->user()->resturant->id,
         ];
         $data = ResturantTableDashboard::create($data);
 
@@ -79,6 +81,8 @@ class ResturantTableDashboardController extends Controller
             'area' => $request->area,
             'num_table' => $request->num_table,
             'num_chairs' => $request->num_chairs,
+            'user_id'=>Auth::guard('owner')->user()->id,
+            'resturant_id'=>Auth::guard('owner')->user()->resturant->id
         ];
         $resturantTableDashboard->update($data);
 

@@ -14,5 +14,7 @@ class ResturantTableDashboard extends Model
         'num_chairs',
         'num_table',
         'area',
+        'user_id',
+        'resturant_id'
     ];
 }

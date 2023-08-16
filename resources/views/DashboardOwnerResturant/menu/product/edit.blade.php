@@ -66,11 +66,23 @@ Dashboard
             </div>
             <div class="form-group">
                 <label for="exampleInputFile">Product Image*</label>
-                  <img src="{{ $resturantProductDashboard->image }}" id="output" width="80px" height="40px">
+                  <img src="{{ $resturantProductDashboard->logo }}" id="output" width="80px" height="40px">
                 <div class="input-group">
                     <div class="custom-file">
-                        <input type="file" class="form-control" name="image" placeholder="Image" id="exampleInputFile" onchange="loadFile(event)" accept="image/*">
+                        <input type="file" class="form-control" name="logo" placeholder="Image" id="exampleInputFile" onchange="loadFile(event)" accept="image/*">
                         <label class="custom-file-label" for="exampleInputFile" id="fileLabel">Choose file</label>
+                    </div>
+                </div>
+            </div>
+              <div class="form-group">
+                <label for="exampleInputFile">Product Gallery</label>
+                 @foreach ($resturantProductDashboard->getMedia('images') as $img)
+                
+                        <img src="{{ $img ? $img->getUrl() : '' }}" width="70px" height="40px">
+                    @endforeach
+                <div class="input-group">
+                    <div class="custom-file">
+                          <input type="file" name="images[]" id="imageUpload" multiple>
                     </div>
                 </div>
             </div>

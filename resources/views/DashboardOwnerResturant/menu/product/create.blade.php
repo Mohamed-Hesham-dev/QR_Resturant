@@ -66,11 +66,21 @@ Dashboard
                 <label for="exampleInputFile">Product Image*</label>
                 <div class="input-group">
                     <div class="custom-file">
-                        <input type="file" class="form-control" name="image" placeholder="Image" id="exampleInputFile" onchange="loadFile(event)" accept="image/*">
+                        <input type="file" class="form-control" name="logo" placeholder="Image" id="exampleInputFile" onchange="loadFile(event)" accept="image/*">
                         <label class="custom-file-label" for="exampleInputFile" id="fileLabel">Choose file</label>
                     </div>
                 </div>
             </div>
+            <div class="form-group">
+                <label for="exampleInputFile">Product Gallery</label>
+                <div class="input-group">
+                    <div class="custom-file">
+                          <input type="file" name="images[]" id="imageUpload" multiple>
+                    </div>
+                </div>
+            </div>
+
+
             <br>
             <h4>Options</h4>
             <hr>

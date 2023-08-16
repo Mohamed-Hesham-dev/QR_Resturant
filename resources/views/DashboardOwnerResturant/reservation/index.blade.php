@@ -28,7 +28,7 @@
 
 
 @section('title-page')
-    Menu / Product
+    Tables
 @endsection
 
 @section('title-page2')
@@ -44,48 +44,46 @@
                 </div>
             @endif
             <div class="card-header">
-                <h4 class="card-title"><strong>Products</strong></h3>
-                    <div class="col-md-2" style="float:right;">
+                <h4 class="card-title"><strong>Reservations</strong></h3>
 
-                        <a href="{{ route('products.create') }}">
-
-                            <button type="button" title="Add Option" class="btn btn-success">
-                                Add new product
-                            </button>
-                        </a>
-
-                    </div>
             </div>
             <!-- /.card-header -->
-            <div class="card-body">
+            <div class="card-body  ">
                 <table class="table table-bordered table-striped">
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Category Name</th>
-                            <th>Name</th>
-                            <th>Control</th>
+                            <th>Client name</th>
+                            <th>Client Email</th>
+                            <th>phone</th>
+                            <th>Resturant name</th>
+                            <th>Client Request</th>
+                            <th>Number of chair</th>
+                            <th>date to visit</th>
+                            <th>time</th>
+                            <th>action</th>
                             <!-- <th></th> -->
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($products as $data)
+                        @foreach ($reservation as $data)
                             <td>{{ $data->id }}</td>
-                            <td>{{ $data->category->category_name }}</td>
                             <td>{{ $data->name }}</td>
+                            <td>{{ $data->email }}</td>
+                            <td>{{ $data->phone }}</td>
+                            <td>{{ $resturant->where('id', $data->resturant_id)->first()->resturant_name }}</td>
+                            <td>{{ $data->request }}</td>
+                            <td>{{ $data->seats }}</td>
+                            <td>{{ $data->date }}</td>
+                            <td>{{ $data->time }}</td>
                             <td>
-                                <form action="{{ route('products.destroy', $data->id) }}" method="POST">
-                                    <a class="btn btn-primary" title="Edit"
-                                        href="{{ route('products.edit', $data->id) }}">
-                                        <i class="fa fa-pen"></i>
-                                    </a>
+                                <form action="{{ route('reservation.destroy', $data->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
 
                                     <button type="submit" title="Delete" class="btn btn-danger">
                                         <i class="fa fa-ban"></i>
                                     </button>
-
                                 </form>
 
                             </td>

@@ -8,8 +8,10 @@ use App\Models\Meta;
 use App\Models\Package;
 use App\Models\Post;
 use App\Models\Resturant;
+use App\Models\ResturantContactUsSetting;
 use App\Models\Setting;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -23,14 +25,15 @@ class HomeController extends Controller
         //about us
         //packages
         $packages=Package::where('is_active',1)->get();
-        
+
 
         //resturant 
         $resturant=Resturant::where('is_active',1)->get();
+        $contactUs=ResturantContactUsSetting::get();
 
         $contact=ContactUsSetting::first();
  
-        return view('Front.home',compact('packages','resturant','contact'));
+        return view('Front.home',compact('packages','resturant','contact','contactUs'));
 
     }
 

@@ -7,6 +7,7 @@ use App\Http\Controllers\Administration\UserController;
 use App\Http\Controllers\Administration\DashboardController;
 use App\Http\Controllers\Administration\PackageController;
 use App\Http\Controllers\Administration\ResturantController;
+use App\Http\Controllers\OwnerResturant\ReservationController;
 use App\Http\Controllers\OwnerResturant\ResturantAboutUsSettingController;
 use App\Http\Controllers\OwnerResturant\ResturantCategoryDashboardController;
 use App\Http\Controllers\OwnerResturant\ResturantContactUsSettingController;
@@ -19,7 +20,7 @@ use App\Http\Controllers\WebSite\WebSiteResturantController;
 use App\Http\Controllers\WebSite\WebSiteUserLoginController;
 use App\Http\Controllers\WebSite\WebSiteUserRegisterController;
 use Illuminate\Support\Facades\Route;
-
+ 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -64,6 +65,8 @@ Route::group(['middleware'=>['is_owner'],'prefix'=>'owner'], function () {
      Route::post('contactUsSettingResturant/update',[ResturantContactUsSettingController::class,'update'])->name("contactUsSettingResturant.update");
      Route::get('aboutUsSetting/edit',[ResturantAboutUsSettingController::class,'edit'])->name("aboutUsSettingResturant.edit");
      Route::put('aboutUsSetting/update/{id}',[ResturantAboutUsSettingController::class,'update'])->name("aboutUsSettingResturant.update");
+     Route::get('reservaition',[ReservationController::class,'index'])->name("Reservation.dashboard");
+     Route::get('reservaition/{id}',[ReservationController::class,'destroy'])->name("reservation.destroy");
 
     // Route::get('contactUsSetting/edit',[ContactUsSettingController::class,'edit'])->name("contactUsSetting.edit");
     // Route::put('contactUsSetting/update/{id}',[ContactUsSettingController::class,'update'])->name("contactUsSetting.update");
@@ -88,7 +91,8 @@ Route::group(['middleware'=>['is_owner'],'prefix'=>'owner'], function () {
 Route::get('/',[HomeController::class,'index'])->name('index');
 Route::get('resturant',[WebSiteResturantController::class,'index'])->name('resturant');
 Route::get('resturant/{id}',[WebSiteResturantController::class,'index'])->name('resturant');
-
+Route::get('resturant/category/{category}',[WebSiteResturantController::class,'indexcategory'])->name('resturant.category');
+Route::post('reservation',[WebSiteResturantController::class,'reservation'])->name('reservation');
 Route::get('login',[WebSiteUserLoginController::class,'index'])->name('login_user.index');
 Route::post('login',[WebSiteUserLoginController::class,'loginUser'])->name('login_user.loginUser');
 Route::get('logout',[WebSiteUserLoginController::class,'logout'])->name('logout_user.logout');

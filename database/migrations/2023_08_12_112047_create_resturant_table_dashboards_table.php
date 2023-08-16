@@ -18,6 +18,8 @@ return new class extends Migration
             $table->integer('num_table');
             $table->string('area')->nullable();
             $table->boolean('is_active');
+            $table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade');
+            $table->foreignId('resturant_id')->nullable()->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -3,14 +3,26 @@
     Resturant
 @endsection
 
-
+@section('resturantonly')
+    <a href="javascript:;" id="tg_reservation" class="button ">Reservation</a>
+@endsection
 @section('head')
+    <style>
+        .card-img-top {
+            border: 5px solid #717171;
+        }
+
+        .card-img-top:hover {
+            border: 5px solid #cfa670;
+        }
+    </style>
 @endsection
 
 
 
 @section('content')
     <div class="ppb_wrapper  ">
+
         <div class="one fullwidth mb-5">
             <div id="rev_slider_3_1_wrapper" class="rev_slider_wrapper fullwidthbanner-container" data-source="gallery"
                 style="margin:0px auto;background:#262626;padding:0px;margin-top:0px;margin-bottom:0px;">
@@ -62,46 +74,96 @@
             <!-- END REVOLUTION SLIDER -->
         </div>
 
+        <!-- Button trigger modal -->
 
 
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                        <h4 id="product-name"></h4>
+                        <p id="product-description"></p>
+                        <img id="product-image" src width="70px" height="40px">
+                        {{-- @foreach ($product->getMedia('images') as $img)
+                            <img src="{{ $img ? $img->getUrl() : '' }}" width="70px" height="40px">
+                        @endforeach --}}
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-------------Story-------------->
         <div id="aboutus" class="container d-flex  justify-content-start">
             <div class="row justify-content-center ">
-                <div class=" col-6 d-flex align-items-center">
+                <div class=" col-12 d-flex align-items-center">
                     <img src="{{ $resturant->image }}" width="15%" class="pe-3" style="border-radius:50%;">
-                    <div class="d-flex flex-column">
-                        <p class=" fs-5 fw-bold">{{ $resturant->resturant_name }}</p>
-                        <ul class="d-flex justify-content-center gap-4 list-unstyled mt-2">
-                            <li class="facebook soci"><a target="_blank" title="Facebook" href="#"><i
-                                        class="fa fa-facebook  social fs-5"></i></a>
-                            </li>
+                    <div class="d-flex flex-column align-items-start">
+                        <div class="d-flex flex-column align-items-center">
+                            <p style="margin-bottom:-10px" class=" fs-2 fw-bold">{{ $resturant->resturant_name }}</p>
+                            <span><a href="tel:{{ $contactUs->mobile ?? '' }}"> {{ $contactUs->mobile ?? '' }}
 
-                            <li class="youtube soci"><a target="_blank" title="Youtube" href="#"><i
-                                        class="fa fa-youtube social fs-5"></i></a>
-                            </li>
+                                </a></span>
+                        </div>
+                        <div style="margin-top:-5px">
+                            <ul class="d-flex justify-content-center gap-4 list-unstyled mt-2">
+                                <li class="facebook soci"><a target="_blank" title="Facebook"
+                                        href="{{ $contactUs->facebook ?? ' ' }}"><i
+                                            class="fa fa-facebook  social fs-9"></i></a>
+                                </li>
 
-                            <li class="instagram soci"><a target="_blank" title="Instagram"
-                                    href="http://instagram.com/#"><i class="fa fa-instagram social fs-5"></i></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div id="aboutus" style=" position:relative; ">
-                        <div class=" " style="" data-stellar-ratio="1">
-                            <h2 class="fw-bold"><span class="ppb_title_first sw-bold">Find Us</h2>
-                            {{-- <div class="ppb_subtitle">
-                                        Ultimate dining experience like no other
-                                    </div> --}}
-                            <div class="page_header_sep left">
+                                <li class="youtube soci"><a target="_blank" title="Youtube"
+                                        href="{{ $contactUs->youtube ?? ' ' }}"><i
+                                            class="fa fa-youtube social fs-9"></i></a>
+                                </li>
+
+                                <li class="instagram soci"><a target="_blank" title="Instagram"
+                                        href="{{ $contactUs->instagram ?? '' }}"><i
+                                            class="fa fa-instagram social fs-9"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="  mt-1">
+                            <div>
+                                <nav class=" d-flex gap-4 nav-pills nav-fill">
+                                    @foreach ($categories as $category)
+                                        <a class="  btn btn-light p-2"
+                                            href={{ route('resturant.category', $category->category_name) }}>{{ $category->category_name }}</a>
+                                    @endforeach
+                                </nav>
                             </div>
-                            {{ $resturant->description }}
                         </div>
                     </div>
                 </div>
 
+
             </div>
 
 
+        </div>
+
+
+        <div class="container text-center mt-5">
+            <div id="aboutus" style=" position:relative; ">
+                <div class=" " style="" data-stellar-ratio="1">
+                    <h2 class="fw-bold"><span class="ppb_title_first sw-bold">Find Us</h2>
+                    {{-- <div class="ppb_subtitle">
+                                Ultimate dining experience like no other
+                            </div> --}}
+                    <div class="page_header_sep left">
+                    </div>
+                    {{ $resturant->description }}
+                </div>
+            </div>
         </div>
 
 
@@ -109,36 +171,28 @@
         <!-------------------------MENUE---------------->
 
         <div style="border-top:3px solid rgb(216, 216, 216); width:50% ; margin:auto" class="mt-5"></div>
-        <h2 class="ppb_title text-center mb-5 pt-5"><span class="ppb_title_first ">Resturant</span>Menu</h2>
-        <div class="ppb_portfolio one nopadding " style="padding:0px 0 0px 0;">
-            <div class="page_content_wrapper fullwidth">
-                <div class="portfolio_filter_wrapper four_cols gallery portfolio-content section content clearfix">
-                    foreach
-                    <div class="element classic3_cols">
-                        <div class="one_fourth gallery4 filterable static animated1">
-                            <div class="button_wrapper">
-                                <div class="button_center">
-                                    <div class="button_content"><a data-title="Salted Fried Chicken"
-                                            href={{ asset('assets/frontend/upload/plae_bistro_ad_food_photography_milwaukee_advertising_photographer_appleton_wisconsin_culinary_photography_retouching_preparation_cuisine_11.jpg') }}
-                                            class="fancy-gallery" title=""><i class="fa fa-search"></i></a><a
-                                            href="#"><i class="fa fa-shopping-cart"></i></a>
-                                    </div>
+
+        <div>
+            <h2 class="ppb_title text-center mb-5 pt-5"><span class="ppb_title_first ">Resturant</span>Menu</h2>
+            <div class="ppb_portfolio one nopadding " style="padding:0px 0 0px 0;">
+                <div class=" mb-5 ">
+                    <div class="container ">
+                        <div class="row align-items-center justify-contnet-center">
+                            @foreach ($allproducts as $product)
+                                <div class=" col-6 col-md-3 ">
+                                    <a class="modalnfo" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                        data-product="{{ json_encode($product) }}"
+                                        data-product-images="{{ $product->getMedia('images')->count() > 0 ? htmlspecialchars(json_encode($product->getMedia('images'))) : '' }}">
+                                        <img src={{ asset($product->logo) }} class="card-img-top"
+                                            style="width: 100%; border-radius:50%;   " alt="...">
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title">{{ $product->name }}</h5>
+                                            <p class="card-textt">
+                                                {{ Str::limit(strip_tags($product->description), 33) }}</p>
+                                        </div>
+                                    </a>
                                 </div>
-                            </div><img
-                                src={{ asset('assets/frontend/upload/plae_bistro_ad_food_photography_milwaukee_advertising_photographer_appleton_wisconsin_culinary_photography_retouching_preparation_cuisine_11-400x400-1433934411.jpg') }}
-                                alt="" />
-                        </div>
-                        <br class="clear" />
-                        <div id="portfolio_desc_3194" class="portfolio_desc portfolio4 filterable ">
-                            <div id="menu_3194" class="menu_content_classic">
-                                <h5 class="menu_post">
-                                    <span class="menu_title">Salted Fried Chicken</span>
-                                    <span class="menu_dots"></span>
-                                    <span class="menu_price">$20</span>
-                                </h5>
-                                <div class="post_detail menu_excerpt">Chicken / Olive Oil / Salt</div>
-                                <div class="menu_order"><a href="#">Order</a></div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
 
@@ -146,80 +200,183 @@
             </div>
         </div>
 
+    </div>
 
 
-        <!-----------SLIDER---------->
-        <div class="ppb_portfolio one nopadding ">
-            <div class="slider_wrapper portfolio">
-                <div class="flexslider tg_gallery" data-height="750">
-                    <ul class="slides">
-                        <li><img src={{ asset('assets/frontend/upload/7311365.jpg') }} alt="" />
-                            <div id="menuc_3190" class="portfolio_slider_desc">
-                                <h5 class="menu_post">
-                                    <span class="menu_title">Italian Source Mushroom</span>
-                                    <span class="menu_dots"></span>
-                                    <span class="menu_price">$19.9</span>
-                                </h5>
-                                <div class="post_detail menu_excerpt">Mushroom / Garlic / Veggies</div>
-                                <div class="menu_order"><a href="#">Order</a></div>
-                            </div>
-                        </li>
-                        <li><img src={{ asset('assets/frontend/upload/slide-02_tom-aikens-food-photography.jpg') }}
-                                alt="" />
-                            <div id="menuc_3191" class="portfolio_slider_desc">
-                                <h5 class="menu_post">
-                                    <span class="menu_title">Fried Potatoes With Garlic</span>
-                                    <span class="menu_dots"></span>
-                                    <span class="menu_price">$12</span>
-                                </h5>
-                                <div class="post_detail menu_excerpt">Potatoes / Olive Oil / Garlic</div>
-                                <div class="menu_order"><a href="#">Order</a></div>
-                            </div>
-                        </li>
-                        <li><img src={{ asset('assets/frontend/upload/greg.jpg') }} alt="" />
-                            <div id="menuc_3192" class="portfolio_slider_desc">
-                                <h5 class="menu_post">
-                                    <span class="menu_title">Tuna Roast Source</span>
-                                    <span class="menu_dots"></span>
-                                    <span class="menu_price">$24.5</span>
-                                </h5>
-                                <div class="post_detail menu_excerpt">Tuna / Potatoes / Rice</div>
-                                <div class="menu_highlight"><i class="fa fa-star"></i></div>
-                                <div class="menu_order"><a href="#">Order</a></div>
-                            </div>
-                        </li>
-                        <li><img src={{ asset('assets/frontend/upload/indian-food-with-chapatti-rice-curries-vegetables-papad-pickle-payasam-f4.jpg') }}
-                                alt="" />
-                            <div id="menuc_3193" class="portfolio_slider_desc">
-                                <h5 class="menu_post">
-                                    <span class="menu_title">Roast Pork (4 Sticks)</span>
-                                    <span class="menu_dots"></span>
-                                    <span class="menu_price">$15.5</span>
-                                </h5>
-                                <div class="post_detail menu_excerpt">Pork / Veggies / Shoyu</div>
-                                <div class="menu_order"><a href="#">Order</a></div>
-                            </div>
-                        </li>
-                        <li><img src={{ asset('assets/frontend/upload/plae_bistro_ad_food_photography_milwaukee_advertising_photographer_appleton_wisconsin_culinary_photography_retouching_preparation_cuisine_11.jpg') }}
-                                alt="" />
-                            <div id="menuc_3194" class="portfolio_slider_desc">
-                                <h5 class="menu_post">
-                                    <span class="menu_title">Salted Fried Chicken</span>
-                                    <span class="menu_dots"></span>
-                                    <span class="menu_price">$20</span>
-                                </h5>
-                                <div class="post_detail menu_excerpt">Chicken / Olive Oil / Salt</div>
-                                <div class="menu_order"><a href="#">Order</a></div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
+
+    <!-----------SLIDER---------->
+    <div class="ppb_portfolio one nopadding ">
+        <div class="slider_wrapper portfolio">
+            <div class="flexslider tg_gallery" data-height="750">
+                <ul class="slides">
+                    <li><img src={{ asset('assets/frontend/upload/7311365.jpg') }} alt="" />
+                        <div id="menuc_3190" class="portfolio_slider_desc">
+                            <h5 class="menu_post">
+                                <span class="menu_title">Italian Source Mushroom</span>
+                                <span class="menu_dots"></span>
+                                <span class="menu_price">$19.9</span>
+                            </h5>
+                            <div class="post_detail menu_excerpt">Mushroom / Garlic / Veggies</div>
+                            <div class="menu_order"><a href="#">Order</a></div>
+                        </div>
+                    </li>
+                    <li><img src={{ asset('assets/frontend/upload/slide-02_tom-aikens-food-photography.jpg') }}
+                            alt="" />
+                        <div id="menuc_3191" class="portfolio_slider_desc">
+                            <h5 class="menu_post">
+                                <span class="menu_title">Fried Potatoes With Garlic</span>
+                                <span class="menu_dots"></span>
+                                <span class="menu_price">$12</span>
+                            </h5>
+                            <div class="post_detail menu_excerpt">Potatoes / Olive Oil / Garlic</div>
+                            <div class="menu_order"><a href="#">Order</a></div>
+                        </div>
+                    </li>
+                    <li><img src={{ asset('assets/frontend/upload/greg.jpg') }} alt="" />
+                        <div id="menuc_3192" class="portfolio_slider_desc">
+                            <h5 class="menu_post">
+                                <span class="menu_title">Tuna Roast Source</span>
+                                <span class="menu_dots"></span>
+                                <span class="menu_price">$24.5</span>
+                            </h5>
+                            <div class="post_detail menu_excerpt">Tuna / Potatoes / Rice</div>
+                            <div class="menu_highlight"><i class="fa fa-star"></i></div>
+                            <div class="menu_order"><a href="#">Order</a></div>
+                        </div>
+                    </li>
+                    <li><img src={{ asset('assets/frontend/upload/indian-food-with-chapatti-rice-curries-vegetables-papad-pickle-payasam-f4.jpg') }}
+                            alt="" />
+                        <div id="menuc_3193" class="portfolio_slider_desc">
+                            <h5 class="menu_post">
+                                <span class="menu_title">Roast Pork (4 Sticks)</span>
+                                <span class="menu_dots"></span>
+                                <span class="menu_price">$15.5</span>
+                            </h5>
+                            <div class="post_detail menu_excerpt">Pork / Veggies / Shoyu</div>
+                            <div class="menu_order"><a href="#">Order</a></div>
+                        </div>
+                    </li>
+                    <li><img src={{ asset('assets/frontend/upload/plae_bistro_ad_food_photography_milwaukee_advertising_photographer_appleton_wisconsin_culinary_photography_retouching_preparation_cuisine_11.jpg') }}
+                            alt="" />
+                        <div id="menuc_3194" class="portfolio_slider_desc">
+                            <h5 class="menu_post">
+                                <span class="menu_title">Salted Fried Chicken</span>
+                                <span class="menu_dots"></span>
+                                <span class="menu_price">$20</span>
+                            </h5>
+                            <div class="post_detail menu_excerpt">Chicken / Olive Oil / Salt</div>
+                            <div class="menu_order"><a href="#">Order</a></div>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
+    </div>
 
     </div>
 @endsection
+@section('reservform')
+    <!-- reservation form -->
+    <div id="reservation_wrapper">
+        <div class="reservation_content">
+            <div class="reservation_form">
+                <div class="reservation_form_wrapper">
+                    <a id="reservation_cancel_btn" href="javascript:;"><i class="fa fa-close"></i></a>
+                    <h2 class="ppb_title"><span class="ppb_title_first">Table</span>Booking</h2>
+
+
+                    <form id="tg_reservation_form" action={{ route('reservation') }} method="post">
+                        @csrf
+                        <input type="hidden" id="action" name="action" value="tg_reservation_mailer" />
+                        <input type="hidden" id="action" name="resturant_id" value="{{ $resturant->id }}" />
+
+                        <div class="one_third " style="width: 100%">
+                            <label for="phone">Phone*</label>
+                            <input id="phone" name="phone" type="text" class="required_field" />
+                        </div>
+                        <br class="clear" />
+                        <br />
+                        <div class="one_third">
+                            <label for="date" class="hidden">Date*</label>
+                            <input type="text" class="  required_field" id="date" name="date"
+                                value="05/10/2019">
+                        </div>
+                        <div class="one_third">
+                            <label for="time">Time*</label>
+                            <input type="text" class="pp_time required_field" id="time" name="time"
+                                value="06:00 PM" />
+                        </div>
+                        <div class="one_third last">
+                            <label for="seats">Seats*</label>
+                            <select id="seats" name="seats" class="required_field" style="width:99%">
+                                @foreach ($tables as $table)
+                                    <option value="{{ $table->num_chairs }}">{{ $table->num_chairs }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <br class="clear" />
+                        <br />
+                        <div class="one">
+                            <label for="message">Special Requests</label>
+                            <textarea id="message" name="message" rows="7" cols="10"></textarea>
+                        </div>
+                        <br class="clear" />
+                        <br />
+                        <div class="one">
+                            <p>
+                                <input id="reservation_submit_btn" type="submit" value="Book Now" />
+                            </p>
+                        </div>
+                        <br class="clear" />
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <div class="parallax_overlay_header">
+        </div>
+    </div>
+@endsection
 @section('script')
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const modalnfo = document.querySelectorAll('.modalnfo');
+            const productNameElement = document.getElementById('product-name');
+            const productDescriptionElement = document.getElementById('product-description');
+            const productImageElement = document.getElementById(
+                'product-image');
+            modalnfo.forEach((element) => {
+                element.addEventListener('click', function() {
+                    const productData = JSON.parse(element.getAttribute('data-product'));
+                    const productDataImages = JSON.parse(element.getAttribute(
+                        'data-product-images'));
+                    const imageIndex = 0; // Change this index to display different images
+                    const imageUrl = productDataImages[imageIndex] ?
+                        '{{ asset($product->getFirstMedia('images')->getUrl()) }}' : '';
+                    console.log(imageUrl);
+                    productImageElement.src = imageUrl;
+                    productImageElement.setAttribute('src', imageUrl);
+                    // productNameElement.innerText = productImageElement.src;
+                    productDescriptionElement.innerText = productData.description;
+                    // You can access other properties of the productData object and populate the modal accordingly
+                });
+            });
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                var successAlert = document.getElementById('success-alert');
+                if (successAlert) {
+                    successAlert.style.display = 'none';
+                }
+            }, 5000); // 5000 milliseconds = 5 seconds
+        });
+    </script>
     <script type='text/javascript'>
         /* <![CDATA[ */
         var tgAjax = {
@@ -388,4 +545,12 @@
         }
     </script>
     <script src={{ asset('assets/frontend/js/plugins/jquery.flexslider-min.js') }}></script>
+    <script>
+        var myModal = document.getElementById('myModal')
+        var myInput = document.getElementById('myInput')
+
+        myModal.addEventListener('shown.bs.modal', function() {
+            myInput.focus()
+        })
+    </script>
 @endsection

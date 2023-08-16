@@ -1,4 +1,5 @@
-<script src={{ asset('assets/frontend/js/plugins/bootstrap.min.js') }}></script>
+<script src={{ asset('assets/plugins/bootstrap/js/bootstrap.min.js') }}></script>
+<script src={{ asset('assets/plugins/bootstrap/js/bootstrap.bundle.min.js') }}></script>
 <script src={{ asset('assets/frontend/js/jquery.js') }}></script>
 <script src={{ asset('assets/frontend/js/jquery-migrate.min.js') }}></script>
 <script src={{ asset('assets/frontend/js/plugins/revslider/public/assets/js/jquery.themepunch.tools.min.js') }}>

@@ -10,6 +10,8 @@ class ResturantCategoryDashboard extends Model
     use HasFactory;
     protected $fillable = [
         'category_name',
+        'user_id',
+        'resturant_id'
         
     ];
 }
