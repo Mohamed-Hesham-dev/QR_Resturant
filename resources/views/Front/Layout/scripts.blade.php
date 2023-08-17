@@ -1,7 +1,9 @@
-<script src={{ asset('assets/plugins/bootstrap/js/bootstrap.min.js') }}></script>
-<script src={{ asset('assets/plugins/bootstrap/js/bootstrap.bundle.min.js') }}></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script src={{ asset('assets/frontend/js/jquery.js') }}></script>
 <script src={{ asset('assets/frontend/js/jquery-migrate.min.js') }}></script>
+<script src={{ asset('assets/frontend/js/bootstrap.bundle.js') }}></script>
+
 <script src={{ asset('assets/frontend/js/plugins/revslider/public/assets/js/jquery.themepunch.tools.min.js') }}>
 </script>
 <script src={{ asset('assets/frontend/js/plugins/revslider/public/assets/js/jquery.themepunch.revolution.min.js') }}>
@@ -47,7 +49,16 @@
 <script src={{ asset('assets/frontend/js/plugins/custom-time.js') }}></script>
 <script src={{ asset('assets/frontend/js/plugins/jquery.validate.js') }}></script>
 
-
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(function() {
+            var successAlert = document.getElementById('success-alert');
+            if (successAlert) {
+                successAlert.style.display = 'none';
+            }
+        }, 3000); // 5000 milliseconds = 5 seconds
+    });
+</script>
 
 <script type='text/javascript'>
     /* <![CDATA[ */
@@ -196,24 +207,3 @@
         document.getElementsByTagName('head')[0].appendChild(htmlDiv.childNodes[0]);
     }
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

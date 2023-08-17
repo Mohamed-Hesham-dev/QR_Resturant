@@ -338,45 +338,8 @@
     </div>
 @endsection
 @section('script')
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const modalnfo = document.querySelectorAll('.modalnfo');
-            const productNameElement = document.getElementById('product-name');
-            const productDescriptionElement = document.getElementById('product-description');
-            const productImageElement = document.getElementById(
-                'product-image');
-            modalnfo.forEach((element) => {
-                element.addEventListener('click', function() {
-                    const productData = JSON.parse(element.getAttribute('data-product'));
-                    const productDataImages = JSON.parse(element.getAttribute(
-                        'data-product-images'));
-                    const imageIndex = 0; // Change this index to display different images
-                    const imageUrl = productDataImages[imageIndex] ?
-                        '{{ asset($product->getFirstMedia('images')->getUrl()) }}' : '';
-                    console(imageUrl);
-                    productImageElement.src = imageUrl;
-                    productImageElement.setAttribute('src', imageUrl);
-                    // productNameElement.innerText = productImageElement.src;
-                    productDescriptionElement.innerText = productData.description;
-                    // You can access other properties of the productData object and populate the modal accordingly
-                });
-            });
-        });
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
-    </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                var successAlert = document.getElementById('success-alert');
-                if (successAlert) {
-                    successAlert.style.display = 'none';
-                }
-            }, 5000); // 5000 milliseconds = 5 seconds
-        });
-    </script>
+   
+
     <script type='text/javascript'>
         /* <![CDATA[ */
         var tgAjax = {

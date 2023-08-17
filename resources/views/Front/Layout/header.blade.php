@@ -36,14 +36,14 @@
             <!-- End side menu button -->
             <!-- Begin main nav -->
             @if (session('success'))
-             <div id="success-alert" class="alert_box success"
-                style=" margin:auto; width:50%; z-index: 9999999999"><i class="fa fa-flag alert_icon"></i>
-                <div class="alert_box_msg"> {{ session('success') }}</div><a href="#"
-                    class="close_alert" data-target="success-alert"><i class="fa fa-times"></i></a>
-            </div>
-               
+                <div id="success-alert" class="alert_box success"
+                    style=" position:absolute; margin:auto; width:30%; z-index: 99999999999999999999"><i
+                        class="fa fa-flag alert_icon"></i>
+                    <div class="alert_box_msg"> {{ session('success') }}</div><a href="#" class="close_alert"
+                        data-target="success-alert"><i class="fa fa-times"></i></a>
+                </div>
             @endif
-           
+
             <div id="nav_wrapper">
                 <div class="nav_wrapper_inner">
                     <div id="menu_border_wrapper">
@@ -69,9 +69,8 @@
 
 
                                 @if (auth()->user() && auth()->user()->type == 'user')
-                                    <li>
-                                        <a href="{{ route('logout_user.logout') }}"
-                                            style="text-decoration: none; color:white;">LOGOUT</a>
+                                    <li class="megamenu col3 menu-item menu-item-has-children  ">
+                                        <a href="{{ route('logout_user.logout') }}">LOGOUT</a>
 
                                     </li>
                                 @else
