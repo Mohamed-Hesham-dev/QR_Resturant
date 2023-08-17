@@ -1,8 +1,12 @@
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script src={{ asset('assets/frontend/js/jquery.js') }}></script>
 <script src={{ asset('assets/plugins/bootstrap/js/bootstrap.bundle.min.js') }}></script>
 <script src={{ asset('assets/plugins/bootstrap/js/bootstrap.min.js') }}></script>
 
 <script src={{ asset('assets/frontend/js/jquery-migrate.min.js') }}></script>
+<script src={{ asset('assets/frontend/js/bootstrap.bundle.js') }}></script>
+
 <script src={{ asset('assets/frontend/js/plugins/revslider/public/assets/js/jquery.themepunch.tools.min.js') }}>
 </script>
 <script src={{ asset('assets/frontend/js/plugins/revslider/public/assets/js/jquery.themepunch.revolution.min.js') }}>
