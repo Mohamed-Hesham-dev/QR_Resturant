@@ -82,11 +82,11 @@
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <h5 class="modal-title" id="exampleModalLabel"></h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
-                        ...
+                   <div class="images-container">
+        
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -171,7 +171,7 @@
                     <div class="row align-items-center justify-contnet-center">
                         @foreach ($allproducts as $product)
                             <div class=" col-6 col-md-3 ">
-                                <a id="modalnfo" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                <a id="modalnfo" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="openProductModal(this);" data-product="{{ json_encode($product) }}">
                                     <img src={{ asset($product->logo) }} class="card-img-top"
                                         style="width: 100%; border-radius:50%;   " alt="...">
                                     <div class="card-body text-center">
@@ -327,7 +327,38 @@
     </div>
 @endsection
 @section('script')
-   
+
+<script>
+    function openProductModal(imageLink) {
+        var productData = $(imageLink).data('product');
+        var modal = new bootstrap.Modal(document.getElementById('exampleModal')); // Select the modal using Bootstrap's Modal class
+   var modalTitle = modal._dialog.querySelector('.modal-title');
+        modalTitle.textContent = productData.name;
+
+        modal.show(); // Open the modal
+
+        modal._element.addEventListener('shown.bs.modal', function (event) {
+            $.ajax({
+                url: '/get-images/' + productData.id,
+                method: 'GET',
+                dataType: 'json',
+                success: function(response) {
+                    var imagesContainer = modal._dialog.querySelector('.images-container');
+                    imagesContainer.innerHTML = ''; // Clear previous content
+
+                      
+                    $.each(response.images, function(index, image) {
+                        var imgElement = $('<img width="70px" height="40px" style="margin:5px;">').attr('src', image).addClass('modal-image');
+                        imagesContainer.appendChild(imgElement[0]); // Append the DOM element
+                    });
+                },
+                error: function(error) {
+                    console.error('Error fetching images:', error);
+                }
+            });
+        });
+    }
+</script>
 
     <script type='text/javascript'>
         /* <![CDATA[ */

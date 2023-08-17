@@ -91,6 +91,8 @@ Route::group(['middleware'=>['is_owner'],'prefix'=>'owner'], function () {
 Route::get('/',[HomeController::class,'index'])->name('index');
 Route::get('resturant',[WebSiteResturantController::class,'index'])->name('resturant');
 Route::get('resturant/{id}',[WebSiteResturantController::class,'index'])->name('resturant');
+Route::get('/get-images/{resturantId}', [WebSiteResturantController::class,'getImages']);
+
 Route::get('resturant/category/{category}',[WebSiteResturantController::class,'indexcategory'])->name('resturant.category');
 Route::post('reservation',[WebSiteResturantController::class,'reservation'])->name('reservation');
 Route::get('login',[WebSiteUserLoginController::class,'index'])->name('login_user.index');

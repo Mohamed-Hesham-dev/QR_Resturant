@@ -121,5 +121,15 @@ class WebSiteResturantController extends Controller
     return redirect('/resturant/1' )->with('success','Reservation Created Successfully');
         
     }
- 
+    public function getImages($resturantId)
+    {
+        $product = ResturantProductDashboard::findOrFail($resturantId);
+        $images = $product->getMedia('images');
+  
+        $imageUrls = $images->map(function ($image) {
+            return $image->getUrl(); // Get the URL for each image
+        });
+    
+        return response()->json(['images' => $imageUrls]);
+    }
 }
