@@ -86,14 +86,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-
-                        <h4 id="product-name"></h4>
-                        <p id="product-description"></p>
-                        <img id="product-image" src width="70px" height="40px">
-                        {{-- @foreach ($product->getMedia('images') as $img)
-                            <img src="{{ $img ? $img->getUrl() : '' }}" width="70px" height="40px">
-                        @endforeach --}}
-
+                        ...
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -170,35 +163,31 @@
 
         <!-------------------------MENUE---------------->
 
-        <div style="border-top:3px solid rgb(216, 216, 216); width:50% ; margin:auto" class="mt-5"></div>
 
-        <div>
-            <h2 class="ppb_title text-center mb-5 pt-5"><span class="ppb_title_first ">Resturant</span>Menu</h2>
-            <div class="ppb_portfolio one nopadding " style="padding:0px 0 0px 0;">
-                <div class=" mb-5 ">
-                    <div class="container ">
-                        <div class="row align-items-center justify-contnet-center">
-                            @foreach ($allproducts as $product)
-                                <div class=" col-6 col-md-3 ">
-                                    <a class="modalnfo" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                        data-product="{{ json_encode($product) }}"
-                                        data-product-images="{{ $product->getMedia('images')->count() > 0 ? htmlspecialchars(json_encode($product->getMedia('images'))) : '' }}">
-                                        <img src={{ asset($product->logo) }} class="card-img-top"
-                                            style="width: 100%; border-radius:50%;   " alt="...">
-                                        <div class="card-body text-center">
-                                            <h5 class="card-title">{{ $product->name }}</h5>
-                                            <p class="card-textt">
-                                                {{ Str::limit(strip_tags($product->description), 33) }}</p>
-                                        </div>
-                                    </a>
-                                </div>
-                            @endforeach
-                        </div>
+        <h2 class="ppb_title text-center mb-5 pt-5"><span class="ppb_title_first ">Resturant</span>Menu</h2>
+        <div class="ppb_portfolio one nopadding " style="padding:0px 0 0px 0;">
+            <div class=" mb-5 ">
+                <div class="container ">
+                    <div class="row align-items-center justify-contnet-center">
+                        @foreach ($allproducts as $product)
+                            <div class=" col-6 col-md-3 ">
+                                <a id="modalnfo" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <img src={{ asset($product->logo) }} class="card-img-top"
+                                        style="width: 100%; border-radius:50%;   " alt="...">
+                                    <div class="card-body text-center">
+                                        <h5 class="card-title">{{ $product->name }}</h5>
+                                        <p class="card-textt">
+                                            {{ Str::limit(strip_tags($product->description), 33) }}</p>
+                                    </div>
+                                </a>
+                            </div>
+                        @endforeach
                     </div>
-
                 </div>
+
             </div>
         </div>
+    </div>
 
     </div>
 
@@ -338,45 +327,10 @@
     </div>
 @endsection
 @section('script')
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const modalnfo = document.querySelectorAll('.modalnfo');
-            const productNameElement = document.getElementById('product-name');
-            const productDescriptionElement = document.getElementById('product-description');
-            const productImageElement = document.getElementById(
-                'product-image');
-            modalnfo.forEach((element) => {
-                element.addEventListener('click', function() {
-                    const productData = JSON.parse(element.getAttribute('data-product'));
-                    const productDataImages = JSON.parse(element.getAttribute(
-                        'data-product-images'));
-                    const imageIndex = 0; // Change this index to display different images
-                    const imageUrl = productDataImages[imageIndex] ?
-                        '{{ asset($product->getFirstMedia('images')->getUrl()) }}' : '';
-                    console.log(imageUrl);
-                    productImageElement.src = imageUrl;
-                    productImageElement.setAttribute('src', imageUrl);
-                    // productNameElement.innerText = productImageElement.src;
-                    productDescriptionElement.innerText = productData.description;
-                    // You can access other properties of the productData object and populate the modal accordingly
-                });
-            });
-        });
-    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
     </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                var successAlert = document.getElementById('success-alert');
-                if (successAlert) {
-                    successAlert.style.display = 'none';
-                }
-            }, 5000); // 5000 milliseconds = 5 seconds
-        });
-    </script>
+
     <script type='text/javascript'>
         /* <![CDATA[ */
         var tgAjax = {

@@ -31,7 +31,7 @@ class WebSiteResturantController extends Controller
        $tables=ResturantTableDashboard::where('resturant_id',$id)->get();
       
         $contactUs=ResturantContactUsSetting::where('resturant_id',$id)->first();
-        $allproducts=ResturantProductDashboard::where('resturant_id',$resturant->id)->paginate(50 );
+        $allproducts=ResturantProductDashboard::where('resturant_id',$resturant->id)->paginate(50);
         $categories=ResturantCategoryDashboard::where('resturant_id',$resturant->id)->get();
 
         return view('Front.resturant',compact('resturant','contactUs','allproducts','categories','tables') );
@@ -101,7 +101,7 @@ class WebSiteResturantController extends Controller
      * @param  \App\Models\Setting  $setting
      * @return \Illuminate\Http\Response
      */
-    public function destroy( $id)
+    public function destroy($id)
     {
         //
     }

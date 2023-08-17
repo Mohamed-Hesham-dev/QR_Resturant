@@ -1,9 +1,8 @@
 <link rel="shortcut icon" href="upload/TG-Thumb.png" />
 
 <title>@yield('title')</title>
+
 <link rel='stylesheet' href={{ asset('assets/frontend/css/bootstrap.min.css') }} type='text/css' media='all' />
-
-
 <link rel='stylesheet' href={{ asset('assets/frontend/css/settings.css') }} type='text/css' media='all' />
 <link rel='stylesheet' href={{ asset('assets/frontend/css/reset.css') }} type='text/css' media='all' />
 <link rel='stylesheet' href={{ asset('assets/frontend/css/wordpress.css') }} type='text/css' media='all' />

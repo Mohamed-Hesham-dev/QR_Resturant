@@ -83,7 +83,7 @@
 
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('contactUsSetting.edit') }}" class="nav-link {{ request()->is('contactUsSetting.edit') || request()->is('contactUsSetting/*') ? 'active' : '' }}">
+                    <a href="{{ route('contactUsSetting.edit') }}" class="nav-link">
                         <i class="nav-icon fa fa-address-book" style='font-size:20px;color:rgb(255, 255, 255)'></i>
                         <p>
                             Contact Us Setting
@@ -91,7 +91,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('aboutUsSetting.edit') }}" class="nav-link {{ request()->is('contactUsSetting.edit') || request()->is('contactUsSetting/*') ? 'active' : '' }}">
+                    <a href="{{ route('aboutUsSetting.edit') }}" class="nav-link">
                         <i class="nav-icon fa fa-info" style='font-size:20px;color:rgb(255, 255, 255)'></i>
                         <p>
                             About Us Setting
