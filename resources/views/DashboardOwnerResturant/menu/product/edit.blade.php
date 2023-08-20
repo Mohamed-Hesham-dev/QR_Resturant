@@ -59,14 +59,14 @@ Dashboard
                 <input class="required_field form-control" id="name" name="name" type="text" value="{{$resturantProductDashboard->name}}" />
             </div>
 
-             <div class="form-group">
+            <div class="form-group">
 
                 <label for="">Description</label>
                 <textarea style="width: 100%" id="name" name="description" class="required_field">{{$resturantProductDashboard->description}}</textarea>
             </div>
             <div class="form-group">
                 <label for="exampleInputFile">Product Image*</label>
-                  <img src="{{ $resturantProductDashboard->logo }}" id="output" width="80px" height="40px">
+                <img src="{{ $resturantProductDashboard->logo }}" id="output" width="80px" height="40px">
                 <div class="input-group">
                     <div class="custom-file">
                         <input type="file" class="form-control" name="logo" placeholder="Image" id="exampleInputFile" onchange="loadFile(event)" accept="image/*">
@@ -74,15 +74,15 @@ Dashboard
                     </div>
                 </div>
             </div>
-              <div class="form-group">
+            <div class="form-group">
                 <label for="exampleInputFile">Product Gallery</label>
-                 @foreach ($resturantProductDashboard->getMedia('images') as $img)
-                
-                        <img src="{{ $img ? $img->getUrl() : '' }}" width="70px" height="40px">
-                    @endforeach
+                @foreach ($resturantProductDashboard->getMedia('images') as $img)
+
+                <img src="{{ $img ? $img->getUrl() : '' }}" width="70px" height="40px">
+                @endforeach
                 <div class="input-group">
                     <div class="custom-file">
-                          <input type="file" name="images[]" id="imageUpload" multiple>
+                        <input type="file" name="images[]" id="imageUpload" multiple>
                     </div>
                 </div>
             </div>
@@ -107,7 +107,8 @@ Dashboard
                     </div>
                     <div class="col">
                         <label>Values</label>
-                        <select class="form-control" name="values[]" id="value-0">
+
+                        <select class="form-control" name="values[]" id="value-{{$key}}">
 
                             <option>Choose</option>
                             @foreach($item->values as $value)
@@ -123,7 +124,7 @@ Dashboard
                     </div>
                     <div class="col">
 
-                        <button type="button" title="Remove" @if ($key == 0) disabled="disabled" @endif style="height:43px; margin-top:29px"  class="btn btn-danger btn-option delete-repeat">
+                        <button type="button" title="Remove" @if ($key==0) disabled="disabled" @endif style="height:43px; margin-top:29px" class="btn btn-danger btn-option delete-repeat">
                             <i class="fa fa-minus-circle"></i>
                         </button>
                     </div>
@@ -132,9 +133,10 @@ Dashboard
             </div>
 
             <br>
-           
+
             @endforeach
-             <button type="button" class="btn btn-primary btn-icon-split " style=" margin-left: 20px;" id="button-repeat"> <span class="icon text-white-50">
+            
+            <button type="button" class="btn btn-primary btn-icon-split " style=" margin-left: 20px;" id="button-repeat" data-key="{{ count($resturantProductDashboard->options) - 1  }}"> <span class="icon text-white-50" >
                     <i class="fas fa-plus"></i>
                 </span></button>
             <br><br>
@@ -175,7 +177,7 @@ Dashboard
             </div>
 
             <br>
-            <button type="button" class="btn btn-primary btn-icon-split " style=" margin-left: 20px;" id="button-repeat"> <span class="icon text-white-50">
+            <button type="button" class="btn btn-primary btn-icon-split " style=" margin-left: 20px;" id="button-repeat"> <span class="icon text-white-50" >
                     <i class="fas fa-plus"></i>
                 </span></button>
             <br><br>
@@ -203,10 +205,11 @@ Dashboard
         }
     }
 
-$options = @json($options);
-$productoptions = @json($resturantProductDashboard->options);
+    $options = @json($options);
+    $productoptions = @json($resturantProductDashboard -> options);
 
-var number = $productoptions.length;
+    var number = $productoptions.length;
+
     function changeOptions(e, num) {
 
 
@@ -233,13 +236,64 @@ var number = $productoptions.length;
 
     $('#button-repeat').on('click', function(e) {
         $options = @json($options);
-$productoptions = @json($resturantProductDashboard->options);
+        $productoptions = @json($resturantProductDashboard -> options);
 
-var number = $productoptions.length;
+        var number = $productoptions.length;
 
         e.preventDefault();
-if(number != 0){
-  const content = `<div class="row">
+        if (number != 0) {
+const key = $(this).data('key');
+  const incrementedKey = key + 1;
+
+            const content = `<div class="row">
+                            <div class="col">
+                               
+                                <select class="form-control" name="options[]" onChange="changeOptions(event,${incrementedKey})"  id="option-${incrementedKey}">
+
+                                    <option>Choose</option>
+                                    @foreach($options as $option)
+                                    <option value="{{$option->id}}">{{$option->option_name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col">
+                                
+                                <select class="form-control" name="values[]" id="value-${incrementedKey}">
+
+                                    <option>Choose</option>
+
+                                </select>
+                            </div>
+
+                            <div class="col">
+                               
+                                <input type="text" name="prices[]" class="form-control" placeholder="price">
+                            </div>
+                           
+<br>
+
+ <div class="col">
+                     
+                    <button type="button" title="Remove" style="height:43px; margin-top:4px"  class="btn btn-danger btn-option delete-repeat" >
+                        <i class="fa fa-minus-circle"></i>
+                    </button>
+                    </div>
+
+
+                            
+                        </div>
+
+
+
+</div>`;
+
+            $(`.items-${number-1}`).append(content);
+   $(this).data('key', incrementedKey);
+        } else {
+
+            number++;
+
+            const content = `<div class="row">
                             <div class="col">
                                
                                 <select class="form-control" name="options[]" onChange="changeOptions(event,${number})"  id="option-${number}">
@@ -280,56 +334,9 @@ if(number != 0){
 
 
 </div>`;
+            $(`.items-${number-1}`).append(content);
+        }
 
-        $(`.items-${number-1}`).append(content);
-}else{
-   
-     number++;
-   
-      const content = `<div class="row">
-                            <div class="col">
-                               
-                                <select class="form-control" name="options[]" onChange="changeOptions(event,${number})"  id="option-${number}">
-
-                                    <option>Choose</option>
-                                    @foreach($options as $option)
-                                    <option value="{{$option->id}}">{{$option->option_name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="col">
-                                
-                                <select class="form-control" name="values[]" id="value-${number}">
-
-                                    <option>Choose</option>
-
-                                </select>
-                            </div>
-
-                            <div class="col">
-                               
-                                <input type="text" name="prices[]" class="form-control" placeholder="price">
-                            </div>
-                           
-<br>
-
- <div class="col">
-                     
-                    <button type="button" title="Remove" style="height:43px; margin-top:4px"  class="btn btn-danger btn-option delete-repeat">
-                        <i class="fa fa-minus-circle"></i>
-                    </button>
-                    </div>
-
-
-                            
-                        </div>
-
-
-
-</div>`;
-        $(`.items-${number-1}`).append(content);
-}
-      
 
     });
     $(document).on('click', '.delete-repeat', function() {

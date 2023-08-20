@@ -9,6 +9,7 @@ use App\Models\ResturantOptionDashboard;
 use App\Models\ResturantProductDashboard;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ResturantProductDashboardController extends Controller
 {
@@ -86,6 +87,7 @@ class ResturantProductDashboardController extends Controller
     public function edit(ResturantProductDashboard $resturantProductDashboard)
     {
         $options = ResturantOptionDashboard::with('values')->where('resturant_id',Auth::guard('owner')->user()->resturant->id)->get();
+      // dd($options);
         $categories = ResturantCategoryDashboard::get();
 
         return view('DashboardOwnerResturant.menu.product.edit',compact('resturantProductDashboard','options','categories'));
@@ -122,6 +124,7 @@ class ResturantProductDashboardController extends Controller
                    });
 
          }
+         DB::table('product_option_value')->where('product_id',$resturantProductDashboard->id)->delete();
         $resturantProductDashboard->options()->sync($this->customSync($request->all(),$resturantProductDashboard->id));
 
         return redirect()->route('products.index');
