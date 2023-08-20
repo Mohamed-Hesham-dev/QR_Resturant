@@ -82,19 +82,118 @@
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel"></h5>
+                        <h4>Add Product</h4>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                   <div class="images-container">
-        
+                    <div class="row align-items-center">
+                        <div class="col-12 col-md-6 ">
+                            <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+                                <div class="carousel-inner">
+                                    {{-- <div class="carousel-item active"></div> --}}
+
+                                </div>
+                                <div class="option"></div>
+                                <button class="carousel-control-prev" type="button"
+                                    data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button"
+                                    data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <div class="mb-3  m-2">
+                                <h4 class="fw-bold modal-title  "></h4>
+                                <p class=" modal-description"></p>
+                            </div>
+                            <hr />
+                            <div class="row align-items-center pb-3 m-2">
+                                <div class="col-12 col-md-6 mt-2">
+                                    <h5 class="fw-bold pb-2">Size</h5>
+                                    <div class="form-check d-flex  gap-2">
+                                        <input class="form-check-input mt-1" type="checkbox" value=""
+                                            id="flexCheckDefault">
+                                        <label class="  d-flex align-items-center gap-3" for="flexCheckDefault">
+                                            <p>Xl</p>
+                                            <p class="fw-bold">33<span>EGP</span></p>
+                                        </label>
+
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-6 mt-2">
+                                    <h5 class="fw-bold pb-2">Size</h5>
+                                    <div class="form-check d-flex  gap-2">
+                                        <input class="form-check-input mt-1" type="checkbox" value=""
+                                            id="flexCheckDefault">
+                                        <label class="  d-flex align-items-center gap-3" for="flexCheckDefault">
+                                            <p>Xl</p>
+                                            <p class="fw-bold">33<span>EGP</span></p>
+                                        </label>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-6 mt-2">
+                                    <h5 class="fw-bold pb-2">Size</h5>
+                                    <div class="form-check d-flex  gap-2">
+                                        <input class="form-check-input mt-1" type="checkbox" value=""
+                                            id="flexCheckDefault">
+                                        <label class="  d-flex align-items-center gap-3" for="flexCheckDefault">
+                                            <p>Xl</p>
+                                            <p class="fw-bold">33<span>EGP</span></p>
+                                        </label>
+
+                                    </div>
+                                </div>
+
+                                <div class="col-12 col-md-6 mt-2">
+                                    <h5 class="fw-bold pb-2">Size</h5>
+                                    <div class="form-check d-flex  gap-2">
+                                        <input class="form-check-input mt-1" type="checkbox" value=""
+                                            id="flexCheckDefault">
+                                        <label class="  d-flex align-items-center gap-3" for="flexCheckDefault">
+                                            <p>Xl</p>
+                                            <p class="fw-bold">33<span>EGP</span></p>
+                                        </label>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="mb-4 m-2">
+                                <h4 class="fw-bold mb-3"> Quantity</h4>
+                                <div class=" d-flex">
+                                    <button class="btn btn-link px-2"
+                                        onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                                        <span class=" btn btn-danger fs-5 fw-bold">-</span>
+                                    </button>
+
+                                    <input id="form1" min="0" name="quantity" value="1" type="number"
+                                        class="form-control" />
+
+                                    <button class="btn btn-link px-2"
+                                        onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                                        <span class=" btn btn-success fs-5 fw-bold">+</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
+
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-primary">Add to cart</button>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- Modal -->
         <!-------------Story-------------->
         <div id="aboutus" class="container d-flex  justify-content-start">
             <div class="row justify-content-center ">
@@ -169,15 +268,19 @@
             <div class=" mb-5 ">
                 <div class="container ">
                     <div class="row align-items-center justify-contnet-center">
-                        @foreach ($allproducts as $product)
+                        @foreach ($allproducts as $productt)
                             <div class=" col-6 col-md-3 ">
-                                <a id="modalnfo" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="openProductModal(this);" data-product="{{ json_encode($product) }}">
-                                    <img src={{ asset($product->logo) }} class="card-img-top"
+
+                                <a id="modalnfo" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                    onclick="openProductModal(this);" data-menu="{{ json_encode($productt) }}"
+                                    data-options="{{ json_encode($productt->options()->get()) }}">
+
+                                    <img src={{ asset($productt->logo) }} class="card-img-top"
                                         style="width: 100%; border-radius:50%;   " alt="...">
                                     <div class="card-body text-center">
-                                        <h5 class="card-title">{{ $product->name }}</h5>
+                                        <h5 class="card-title">{{ $productt->name }}</h5>
                                         <p class="card-textt">
-                                            {{ Str::limit(strip_tags($product->description), 33) }}</p>
+                                            {{ Str::limit(strip_tags($productt->description), 33) }}</p>
                                     </div>
                                 </a>
                             </div>
@@ -327,38 +430,58 @@
     </div>
 @endsection
 @section('script')
+    <script>
+        function openProductModal(alldata) {
 
-<script>
-    function openProductModal(imageLink) {
-        var productData = $(imageLink).data('product');
-        var modal = new bootstrap.Modal(document.getElementById('exampleModal')); // Select the modal using Bootstrap's Modal class
-   var modalTitle = modal._dialog.querySelector('.modal-title');
-        modalTitle.textContent = productData.name;
+            var productData = $(alldata).data('menu');
 
-        modal.show(); // Open the modal
 
-        modal._element.addEventListener('shown.bs.modal', function (event) {
-            $.ajax({
-                url: '/get-images/' + productData.id,
-                method: 'GET',
-                dataType: 'json',
-                success: function(response) {
-                    var imagesContainer = modal._dialog.querySelector('.images-container');
-                    imagesContainer.innerHTML = ''; // Clear previous content
 
-                      
-                    $.each(response.images, function(index, image) {
-                        var imgElement = $('<img width="70px" height="40px" style="margin:5px;">').attr('src', image).addClass('modal-image');
-                        imagesContainer.appendChild(imgElement[0]); // Append the DOM element
-                    });
-                },
-                error: function(error) {
-                    console.error('Error fetching images:', error);
-                }
+            var modal = document.getElementById('exampleModal'); // Select the modal using Bootstrap's Modal class
+            var modalTitle = modal.querySelector('.modal-title');
+            var modaldescription = modal.querySelector('.modal-description');
+
+
+            modalTitle.textContent = productData.name;
+            modaldescription.textContent = productData.description;
+
+            modal.addEventListener('shown.bs.modal', function(event) {
+
+                $.ajax({
+                    url: '/get-images/' + productData.id,
+                    method: 'GET',
+                    dataType: 'json',
+                    success: function(response) {
+                        var imagesContainer = modal.querySelector('.carousel-inner');
+                        imagesContainer.innerHTML = ''; // Clear previous content
+
+                        $.each(response.images, function(index, image) {
+
+                            if (index == 0) {
+                                var tag = $('<div class="carousel-item active"></div>');
+                            } else {
+                                var tag = $('<div class="carousel-item"></div>');
+                            }
+
+                            var imgElement = $(
+                                    '<img class="d-block w-100" alt="...">'
+                                )
+                                .attr('src', image).addClass('modal-image');
+
+                            tag[0].appendChild(imgElement[0]);
+
+                            imagesContainer.appendChild(tag[0]); // Append the DOM element
+                        });
+
+
+                    },
+                    error: function(error) {
+                        console.error('Error fetching images:', error);
+                    }
+                });
             });
-        });
-    }
-</script>
+        }
+    </script>
 
     <script type='text/javascript'>
         /* <![CDATA[ */
@@ -531,9 +654,5 @@
     <script>
         var myModal = document.getElementById('myModal')
         var myInput = document.getElementById('myInput')
-
-        myModal.addEventListener('shown.bs.modal', function() {
-            myInput.focus()
-        })
     </script>
 @endsection

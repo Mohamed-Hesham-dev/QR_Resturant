@@ -9,6 +9,7 @@ use App\Models\Reservation;
 use App\Models\Resturant;
 use App\Models\ResturantCategoryDashboard;
 use App\Models\ResturantContactUsSetting;
+use App\Models\ResturantOptionDashboard;
 use App\Models\ResturantProductDashboard;
 use App\Models\ResturantTableDashboard;
 use Illuminate\Http\Request;
@@ -28,10 +29,11 @@ class WebSiteResturantController extends Controller
     {
      
         $resturant=Resturant::where('id',$id)->first();
-       $tables=ResturantTableDashboard::where('resturant_id',$id)->get();
+       $tables=ResturantTableDashboard::find($id)->get();
       
         $contactUs=ResturantContactUsSetting::where('resturant_id',$id)->first();
         $allproducts=ResturantProductDashboard::where('resturant_id',$resturant->id)->paginate(50);
+
         $categories=ResturantCategoryDashboard::where('resturant_id',$resturant->id)->get();
 
         return view('Front.resturant',compact('resturant','contactUs','allproducts','categories','tables') );
@@ -123,13 +125,26 @@ class WebSiteResturantController extends Controller
     }
     public function getImages($resturantId)
     {
+        
         $product = ResturantProductDashboard::findOrFail($resturantId);
         $images = $product->getMedia('images');
   
         $imageUrls = $images->map(function ($image) {
             return $image->getUrl(); // Get the URL for each image
         });
-    
-        return response()->json(['images' => $imageUrls]);
+
+        $options = $product->options;
+
+        // $values =  $options->map(function ($value) {
+        //     return $value->values(); // Get the URL for each image
+        // });
+        // dd($values);
+        // dd($options);
+        // foreach($options as $option){
+        //     dd($option->values);
+        //     dd($option->pivot);
+
+        // }
+        return response()->json(['images' => $imageUrls, 'options'=>$options]);
     }
 }
