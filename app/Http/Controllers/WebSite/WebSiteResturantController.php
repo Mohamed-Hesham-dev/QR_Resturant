@@ -134,23 +134,25 @@ class WebSiteResturantController extends Controller
         $optionsWithValues = $product->options()
         ->with(['values.productOptionValues' => function ($query) use ($resturantId) {
             $query->where('product_id', $resturantId)
-                  ->whereNotNull('price'); // Only select values with prices
+                ->whereNotNull('price'); // Only select values with prices
         }])
         ->get();
     
     $result = [];
-    $addedSizes = [];
-    $addedColors = [];
     
     foreach ($optionsWithValues as $option) {
         $optionName = $option->option_name;
     
-        // Create or append to the valuesData array based on the option name
+        // Initialize the valuesData array for the option if it doesn't exist
         if (!isset($result[$optionName])) {
-            $valuesData = [];
-        } else {
-            $valuesData = $result[$optionName]['values'];
+            $result[$optionName] = [
+                'option' => $optionName,
+                'values' => [],
+                'addedValues' => [], // Initialize addedValues array
+            ];
         }
+    
+        $valuesData = $result[$optionName]['values'];
     
         foreach ($option->values as $value) {
             // Check if the value has a related productOptionValue with a price
@@ -159,38 +161,24 @@ class WebSiteResturantController extends Controller
                 $price = $value->productOptionValues->first()->price;
     
                 // Check if the value is already added for this option
-                if ($optionName === 'size' && !in_array($valueName, $addedSizes)) {
+                if (!in_array($valueName, $result[$optionName]['addedValues'])) {
                     $valuesData[] = [
                         'name' => $valueName,
                         'price' => $price,
                     ];
-                    $addedSizes[] = $valueName;
-                } elseif ($optionName === 'color' && !in_array($valueName, $addedColors)) {
-                    $valuesData[] = [
-                        'name' => $valueName,
-                        'price' => $price,
-                    ];
-                    $addedColors[] = $valueName;
+                    $result[$optionName]['addedValues'][] = $valueName;
                 }
             }
         }
     
-        // Add the option to the result only if valuesData is not empty
-        if (!empty($valuesData)) {
-            $result[$optionName] = [
-                'option' => $optionName,
-                'values' => $valuesData,
-            ];
-        }
+        // Update the values for the option
+        $result[$optionName]['values'] = $valuesData;
     }
     
     // Convert the result array back to indexed array
     $finalResult = array_values($result);
-    
 
+    return response()->json(['images' => $imageUrls, 'result' => $finalResult]);
     
-    
-
-        return response()->json(['images' => $imageUrls, 'result' => $result]);
     }
 }
