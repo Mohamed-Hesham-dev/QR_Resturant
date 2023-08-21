@@ -15,6 +15,23 @@
         .card-img-top:hover {
             border: 5px solid #cfa670;
         }
+
+        .reservation_wrapper {
+            width: 50%;
+            margin: auto;
+            text-align: center;
+            padding: 30px;
+            border: 1px solid #fff;
+            border-radius: 25px;
+            position: relative;
+            /* z-index: 999; */
+        }
+
+        #reservation_submit {
+            background: #cfa670;
+            margin-top: 20px;
+            border-radius: 15px;
+        }
     </style>
 @endsection
 
@@ -111,9 +128,10 @@
                                 <p class=" modal-description"></p>
                             </div>
                             <hr />
-                            <div class="row align-items-center pb-3 m-2">
-                                <div class="col-12 col-md-6 mt-2">
-                                    <h5 class="fw-bold pb-2">Size</h5>
+
+                            <div class="row align-items-center pb-3 m-2 options-container">
+                                <div class="col-12 col-md-6 mt-2 ">
+                                    <h5 class="fw-bold pb-2 option"></h5>
                                     <div class="form-check d-flex  gap-2">
                                         <input class="form-check-input mt-1" type="checkbox" value=""
                                             id="flexCheckDefault">
@@ -124,45 +142,6 @@
 
                                     </div>
                                 </div>
-                                <div class="col-12 col-md-6 mt-2">
-                                    <h5 class="fw-bold pb-2">Size</h5>
-                                    <div class="form-check d-flex  gap-2">
-                                        <input class="form-check-input mt-1" type="checkbox" value=""
-                                            id="flexCheckDefault">
-                                        <label class="  d-flex align-items-center gap-3" for="flexCheckDefault">
-                                            <p>Xl</p>
-                                            <p class="fw-bold">33<span>EGP</span></p>
-                                        </label>
-
-                                    </div>
-                                </div>
-
-                                <div class="col-12 col-md-6 mt-2">
-                                    <h5 class="fw-bold pb-2">Size</h5>
-                                    <div class="form-check d-flex  gap-2">
-                                        <input class="form-check-input mt-1" type="checkbox" value=""
-                                            id="flexCheckDefault">
-                                        <label class="  d-flex align-items-center gap-3" for="flexCheckDefault">
-                                            <p>Xl</p>
-                                            <p class="fw-bold">33<span>EGP</span></p>
-                                        </label>
-
-                                    </div>
-                                </div>
-
-                                <div class="col-12 col-md-6 mt-2">
-                                    <h5 class="fw-bold pb-2">Size</h5>
-                                    <div class="form-check d-flex  gap-2">
-                                        <input class="form-check-input mt-1" type="checkbox" value=""
-                                            id="flexCheckDefault">
-                                        <label class="  d-flex align-items-center gap-3" for="flexCheckDefault">
-                                            <p>Xl</p>
-                                            <p class="fw-bold">33<span>EGP</span></p>
-                                        </label>
-
-                                    </div>
-                                </div>
-
                             </div>
                             <div class="mb-4 m-2">
                                 <h4 class="fw-bold mb-3"> Quantity</h4>
@@ -297,73 +276,49 @@
 
 
     <!-----------SLIDER---------->
-    <div class="ppb_portfolio one nopadding ">
-        <div class="slider_wrapper portfolio">
-            <div class="flexslider tg_gallery" data-height="750">
-                <ul class="slides">
-                    <li><img src={{ asset('assets/frontend/upload/7311365.jpg') }} alt="" />
-                        <div id="menuc_3190" class="portfolio_slider_desc">
-                            <h5 class="menu_post">
-                                <span class="menu_title">Italian Source Mushroom</span>
-                                <span class="menu_dots"></span>
-                                <span class="menu_price">$19.9</span>
-                            </h5>
-                            <div class="post_detail menu_excerpt">Mushroom / Garlic / Veggies</div>
-                            <div class="menu_order"><a href="#">Order</a></div>
+    <div>
+        <div class="reservation_content pt-5 pb-5"
+            style="background:url('/assets/frontend/mainimage/side-view-adult-holding-smartphone.jpg');background-size:cover;background-repeat:no-repeat;background-attachment: fixed;p">
+            <div class="reservation_form">
+                <div class="reservation_wrapper container">
+                    <a id="reservation_cancel_btn" href="javascript:;"><i class="fa fa-close"></i></a>
+                    <h2 class="ppb_title"><span class="ppb_title_first">Write</span class="fw-400">Feedback</h2>
+
+
+                    <form action={{ route('feedback') }} method="post">
+                        @csrf
+                        <input type="hidden" id="action" name="resturant_id" value="{{ $resturant->id }}" />
+
+                        <div class="one_third " style="width: 100%">
+                            <label for="phone">Phone*</label>
+                            <input id="phone" name="phone" type="text" class="required_field" />
                         </div>
-                    </li>
-                    <li><img src={{ asset('assets/frontend/upload/slide-02_tom-aikens-food-photography.jpg') }}
-                            alt="" />
-                        <div id="menuc_3191" class="portfolio_slider_desc">
-                            <h5 class="menu_post">
-                                <span class="menu_title">Fried Potatoes With Garlic</span>
-                                <span class="menu_dots"></span>
-                                <span class="menu_price">$12</span>
-                            </h5>
-                            <div class="post_detail menu_excerpt">Potatoes / Olive Oil / Garlic</div>
-                            <div class="menu_order"><a href="#">Order</a></div>
+                        <br class="clear" />
+                        <br />
+
+                        <div class="one">
+                            <label for="message">Write Feedback</label>
+                            <textarea id="message" name="feedback" rows="7" cols="10"></textarea>
                         </div>
-                    </li>
-                    <li><img src={{ asset('assets/frontend/upload/greg.jpg') }} alt="" />
-                        <div id="menuc_3192" class="portfolio_slider_desc">
-                            <h5 class="menu_post">
-                                <span class="menu_title">Tuna Roast Source</span>
-                                <span class="menu_dots"></span>
-                                <span class="menu_price">$24.5</span>
-                            </h5>
-                            <div class="post_detail menu_excerpt">Tuna / Potatoes / Rice</div>
-                            <div class="menu_highlight"><i class="fa fa-star"></i></div>
-                            <div class="menu_order"><a href="#">Order</a></div>
+                        <br class="clear" />
+                        <br />
+                        <div class="one">
+                            <p>
+                                <input id="reservation_submit" type="submit" value="Send Feedback" />
+                            </p>
                         </div>
-                    </li>
-                    <li><img src={{ asset('assets/frontend/upload/indian-food-with-chapatti-rice-curries-vegetables-papad-pickle-payasam-f4.jpg') }}
-                            alt="" />
-                        <div id="menuc_3193" class="portfolio_slider_desc">
-                            <h5 class="menu_post">
-                                <span class="menu_title">Roast Pork (4 Sticks)</span>
-                                <span class="menu_dots"></span>
-                                <span class="menu_price">$15.5</span>
-                            </h5>
-                            <div class="post_detail menu_excerpt">Pork / Veggies / Shoyu</div>
-                            <div class="menu_order"><a href="#">Order</a></div>
-                        </div>
-                    </li>
-                    <li><img src={{ asset('assets/frontend/upload/plae_bistro_ad_food_photography_milwaukee_advertising_photographer_appleton_wisconsin_culinary_photography_retouching_preparation_cuisine_11.jpg') }}
-                            alt="" />
-                        <div id="menuc_3194" class="portfolio_slider_desc">
-                            <h5 class="menu_post">
-                                <span class="menu_title">Salted Fried Chicken</span>
-                                <span class="menu_dots"></span>
-                                <span class="menu_price">$20</span>
-                            </h5>
-                            <div class="post_detail menu_excerpt">Chicken / Olive Oil / Salt</div>
-                            <div class="menu_order"><a href="#">Order</a></div>
-                        </div>
-                    </li>
-                </ul>
+                        <br class="clear" />
+                    </form>
+
+                </div>
             </div>
         </div>
+        <div class="parallax_overlay_header">
+        </div>
     </div>
+    <!-- Button trigger modal -->
+
+
 
     </div>
 @endsection
@@ -432,21 +387,16 @@
 @section('script')
     <script>
         function openProductModal(alldata) {
-
             var productData = $(alldata).data('menu');
-
-
-
             var modal = document.getElementById('exampleModal'); // Select the modal using Bootstrap's Modal class
             var modalTitle = modal.querySelector('.modal-title');
             var modaldescription = modal.querySelector('.modal-description');
 
-
             modalTitle.textContent = productData.name;
             modaldescription.textContent = productData.description;
 
-            modal.addEventListener('shown.bs.modal', function(event) {
 
+            modal.addEventListener('shown.bs.modal', function(event) {
                 $.ajax({
                     url: '/get-images/' + productData.id,
                     method: 'GET',
@@ -454,6 +404,10 @@
                     success: function(response) {
                         var imagesContainer = modal.querySelector('.carousel-inner');
                         imagesContainer.innerHTML = ''; // Clear previous content
+
+                        var optionsContainer = modal.querySelector('.options-container');
+                        optionsContainer.innerHTML = ''; // Clear previous content
+
 
                         $.each(response.images, function(index, image) {
 
@@ -473,7 +427,47 @@
                             imagesContainer.appendChild(tag[0]); // Append the DOM element
                         });
 
+                        $.each(response.result, function(index, val) {
+                            var contain = $('<div class="col-12 col-md-6 mt-2 "></div>');
+                            var options = $(' <h5 class = "fw-bold pb-2"></h5>')
+                            var optionElement = options.text(val.option);
+                            var variab = contain.append(optionElement[0]);
 
+                            $.each(val.values, function(index, value) {
+                                var containvalue = $(
+                                    '<div class="form-check d-flex  gap-2"></div>')
+                                var inputval = $(
+                                    '<input class="form-check-input mt-1" type="checkbox"> '
+                                )
+                                inputval.attr('value', value.name);
+
+                                var label = $(
+                                    ' <label class="  d-flex align-items-center gap-3" for="flexCheckDefault"></div>'
+                                );
+                                var valuename = $('<p>').text(value.name);
+                                label[0].append(valuename[0]);
+
+                                var valueprice = $('<p class="fw-bold"></p>').text(value
+                                    .price);
+                                valueprice.append('<span>EGP</span>');
+                                label[0].append(valueprice[0]);
+
+                                var valueText = 'value_name : ' + value.name;
+                                if (value.price !== null) {
+                                    valueText += ' - Price: ' + value.price;
+                                }
+
+                                containvalue.append(inputval[0]);
+                                containvalue.append(label[0]);
+
+                                contain.append(containvalue[0]);
+
+                                // Append value text to the option element
+                                // optionElement.append($('<br>')).append(valueText);
+                            });
+                            // Append the <p> element to the options container
+                            optionsContainer.appendChild(variab[0]);
+                        });
                     },
                     error: function(error) {
                         console.error('Error fetching images:', error);
@@ -555,6 +549,10 @@
             }
         };
     </script>
+    <script src={{ asset('assets/frontend/js/plugins/jquery.flexslider-min.js') }}></script>
+
+
+
     <script>
         var htmlDiv = document.getElementById("rs-plugin-settings-inline-css");
         var htmlDivCss =
@@ -575,8 +573,7 @@
             sliderLayout: 'auto'
         });
 
-        var revapi3,
-            tpj;
+        var revapi3, tpj;
         (function() {
             if (!/loaded|interactive|complete/.test(document.readyState)) document.addEventListener("DOMContentLoaded",
                 onLoad);
@@ -651,8 +648,4 @@
         }
     </script>
     <script src={{ asset('assets/frontend/js/plugins/jquery.flexslider-min.js') }}></script>
-    <script>
-        var myModal = document.getElementById('myModal')
-        var myInput = document.getElementById('myInput')
-    </script>
 @endsection
