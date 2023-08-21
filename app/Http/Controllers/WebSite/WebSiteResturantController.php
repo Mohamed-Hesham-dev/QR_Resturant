@@ -143,14 +143,14 @@ class WebSiteResturantController extends Controller
         $imageUrls = $images->map(function ($image) {
             return $image->getUrl(); // Get the URL for each image
         });
- 
+   
         $optionsWithValues = $product->options()
         ->with(['values.productOptionValues' => function ($query) use ($resturantId) {
             $query->where('product_id', $resturantId)
                   ->whereNotNull('price'); // Only select values with prices
         }])
         ->get();
-        dd( $optionsWithValues);
+    
 
     $result = [];
     $addedSizes = [];
@@ -186,13 +186,13 @@ class WebSiteResturantController extends Controller
                     ];
                     $addedColors[] = $valueName;
                 }
-                elseif ($optionName === 'type' && !in_array($valueName, $addedColors)) {
-                    $valuesData[] = [
-                        'name' => $valueName,
-                        'price' => $price,
-                    ];
-                    $addedColors[] = $valueName;
-                }
+                // elseif ($optionName === 'type' && !in_array($valueName, $addedColors)) {
+                //     $valuesData[] = [
+                //         'name' => $valueName,
+                //         'price' => $price,
+                //     ];
+                //     $addedColors[] = $valueName;
+                // }
                 
             }
         }
@@ -210,8 +210,7 @@ class WebSiteResturantController extends Controller
     $finalResult = array_values($result);
     
 
-    
-    
+ 
 
         return response()->json(['images' => $imageUrls, 'result' => $result]);
     }
