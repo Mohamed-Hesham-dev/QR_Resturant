@@ -12,8 +12,8 @@
             border: 5px solid #717171;
         }
 
-        #overlay_background {
-            z-index: 99999 !important;
+        .reservation_content {
+            z-index: 9 !important;
         }
 
         .card-img-top:hover {
