@@ -175,32 +175,40 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('Reservation.dashboard') }}"
-                        class="nav-link {{ request()->is('contactUsSetting.edit') || request()->is('contactUsSetting/*') ? 'active' : '' }}">
+                    <a href="{{ route('Reservation.dashboard') }}" class="nav-link ">
                         <i class="nav-icon fa fa-calendar-alt" style='font-size:20px;color:rgb(255, 255, 255)'></i>
                         <p>
                             Reservations
                         </p>
                     </a>
                 </li>
-
-                {{-- <li class="nav-item">
-                    <a href="pages/calendar.html" class="nav-link">
-                        <i class="nav-icon far fa-calendar-alt"></i>
+                <li class="nav-item">
+                    <a href="{{ route('feedback.index') }}" class="nav-link">
+                        <i class="nav-icon fa fa-image" style='font-size:20px;color:rgb(255, 255, 255)'></i>
                         <p>
-                            Staff
-                            <span class="badge badge-info right">2</span>
+                            Feedback
                         </p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="pages/gallery.html" class="nav-link">
-                        <i class="nav-icon far fa-image"></i>
+                    <a href="{{ route('orders.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-columns"></i>
                         <p>
-                            QR Builder
+                            Orders
                         </p>
                     </a>
                 </li>
+
+
+                <li class="nav-item">
+                    <a href="{{ route('liveorders.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-circle"></i>
+                        <p>
+                            Live Order
+                        </p>
+                    </a>
+                </li>
+                {{-- 
                 <li class="nav-item">
                     <a href="pages/kanban.html" class="nav-link">
                         <i class="nav-icon fas fa-columns"></i>

@@ -18,6 +18,7 @@ class ResturantProductDashboard extends Model implements HasMedia
         return $this->belongsToMany(ResturantOptionDashboard::class, 'product_option_value', 'product_id', 'option_id')->withPivot('option_id', 'value_id', 'price')->withTimestamps();
     }
 
+
     public function category()
     {
         return $this->belongsTo(ResturantCategoryDashboard::class, 'category_id', 'id');
