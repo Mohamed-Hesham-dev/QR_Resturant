@@ -12,6 +12,10 @@
             border: 5px solid #717171;
         }
 
+        #overlay_background {
+            z-index: 99999 !important;
+        }
+
         .card-img-top:hover {
             border: 5px solid #cfa670;
         }
@@ -95,7 +99,8 @@
 
 
         <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div style="z-index: 99999" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -397,11 +402,13 @@
 
 
             modal.addEventListener('shown.bs.modal', function(event) {
+
                 $.ajax({
                     url: '/get-images/' + productData.id,
                     method: 'GET',
                     dataType: 'json',
                     success: function(response) {
+                        console.log('response');
                         var imagesContainer = modal.querySelector('.carousel-inner');
                         imagesContainer.innerHTML = ''; // Clear previous content
 
