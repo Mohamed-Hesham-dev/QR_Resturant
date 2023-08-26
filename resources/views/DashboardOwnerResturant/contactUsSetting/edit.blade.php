@@ -38,6 +38,7 @@
     <div class="card">
         <div class="card-body register-card-body">
             <p class="login-box-msg">Update Contact Us Setting</p>
+
             <form action="{{ route('contactUsSettingResturant.update') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="input-group mb-3">
@@ -51,11 +52,15 @@
                 </div>
                 <div class="input-group mb-3">
                     <input type="text" name="instagram" class="form-control" placeholder="Instagram"
-                        value="{{ $all_contactUsSetting->instagram  ?? '' }}">
+                        value="{{ $all_contactUsSetting->instagram ?? '' }}">
                 </div>
                 <div class="input-group mb-3">
                     <input type="text" name="youtube" class="form-control" placeholder="Youtube"
                         value="{{ $all_contactUsSetting->youtube ?? '' }}">
+                </div>
+                <div class="input-group mb-3">
+                    <input type="text" name="location" class="form-control" placeholder="location"
+                        value="{{ $all_contactUsSetting->loaction ?? '' }}">
                 </div>
                 <div class="col-6" style="float:right;">
                     <button type="submit" class="btn btn-primary">Edit Contact Us Setting</button>

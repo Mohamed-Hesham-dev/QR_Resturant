@@ -8,6 +8,7 @@ use App\Models\Meta;
 use App\Models\Package;
 use App\Models\Post;
 use App\Models\Resturant;
+use App\Models\ResturantBooking;
 use App\Models\ResturantContactUsSetting;
 use App\Models\Setting;
 use Illuminate\Http\Request;
@@ -36,7 +37,19 @@ class HomeController extends Controller
         return view('Front.home',compact('packages','resturant','contact','contactUs'));
 
     }
+    public function clientform(Request $request){
+    $data=[
+        'packageid'=>$request->packageid,
+        'name'=>$request->Name,
+        'phone'=>$request->Phone,
+        'resturantname'=>$request->resturant,
+        'Message'=>$request->Message,
+    ];
+    ResturantBooking::create($data);
+    return redirect('/')->with('success', 'Your Request Successfully Send wait call from us');
 
+
+}
     /**
      * Show the form for creating a new resource.
      *

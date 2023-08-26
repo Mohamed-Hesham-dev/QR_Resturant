@@ -103,77 +103,95 @@
             aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h4>Add Product</h4>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="row align-items-center">
-                        <div class="col-12 col-md-6 ">
-                            <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-                                <div class="carousel-inner">
-                                    {{-- <div class="carousel-item active"></div> --}}
-
-                                </div>
-                                <div class="option"></div>
-                                <button class="carousel-control-prev" type="button"
-                                    data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Previous</span>
-                                </button>
-                                <button class="carousel-control-next" type="button"
-                                    data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                    <span class="visually-hidden">Next</span>
-                                </button>
-                            </div>
+                    <form action={{ route('cart.store') }} method="post">
+                        @csrf
+                        <input type="hidden" name="productid" id="productid" />
+                        <input type='hidden' name="resturant_id" id="resturant_id" />
+                        <input type="hidden" name="productname" id="productname" />
+                        <input type="hidden" name="productdescription" id="productdescription" />
+                        <input type="hidden" name="totalprice" id="allprice" />
+                        <div class="modal-header">
+                            <h4>Add Product</h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
                         </div>
-                        <div class="col-12 col-md-6">
-                            <div class="mb-3  m-2">
-                                <h4 class="fw-bold modal-title  "></h4>
-                                <p class=" modal-description"></p>
+                        <div class="row align-items-center">
+                            <div class="col-12 col-md-6 ">
+                                <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+                                    <div class="carousel-inner">
+                                        {{-- <div class="carousel-item active"></div> --}}
+
+                                    </div>
+                                    <div class="option"></div>
+                                    <button class="carousel-control-prev" type="button"
+                                        data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+                                    <button class="carousel-control-next" type="button"
+                                        data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="visually-hidden">Next</span>
+                                    </button>
+                                </div>
                             </div>
-                            <hr />
+                            <div class="col-12 col-md-6">
+                                <div class="mb-3  m-2">
+                                    <div class="row align-items-center">
+                                        <div class="col-8">
+                                            <h4 class="fw-bold modal-title  "></h4>
+                                            <p class=" modal-description"></p>
+                                        </div>
+                                        <div class="col-4 d-flex gap-1 align-items-center">
+                                            <h4 id="totalPrice"></h4> <span class="fw-bold"> EGP</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr />
 
-                            <div class="row align-items-center pb-3 m-2 options-container">
-                                <div class="col-12 col-md-6 mt-2 ">
-                                    <h5 class="fw-bold pb-2 option"></h5>
-                                    <div class="form-check d-flex  gap-2">
-                                        <input class="form-check-input mt-1" type="checkbox" value=""
-                                            id="flexCheckDefault">
-                                        <label class="  d-flex align-items-center gap-3" for="flexCheckDefault">
-                                            <p>Xl</p>
-                                            <p class="fw-bold">33<span>EGP</span></p>
-                                        </label>
 
+                                <div class="row align-items-center pb-3 m-2 options-container">
+
+                                    <div class="col-12 col-md-6 mt-2 ">
+                                        <h5 class="fw-bold pb-2 option"></h5>
+                                        <div class="form-check d-flex  gap-2">
+                                            <input class="form-check-input mt-1" type="checkbox" value=""
+                                                id="flexCheckDefault">
+                                            <label class="  d-flex align-items-center gap-3" for="flexCheckDefault">
+                                                <p>Xl</p>
+                                                <p class="fw-bold">33<span>EGP</span></p>
+                                            </label>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-4 m-2">
+                                    <h4 class="fw-bold mb-3"> Quantity</h4>
+                                    <div class=" d-flex">
+                                        <a class="btn btn-link px-2"
+                                            onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                                            <span class=" btn btn-danger fs-5 fw-bold">-</span>
+                                        </a>
+
+                                        <input id="form1" min="0" name="quantity" value="1"
+                                            type="number" class="form-control" />
+
+                                        <a class="btn btn-link px-2"
+                                            onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                                            <span class=" btn btn-success fs-5 fw-bold">+</span>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
-                            <div class="mb-4 m-2">
-                                <h4 class="fw-bold mb-3"> Quantity</h4>
-                                <div class=" d-flex">
-                                    <button class="btn btn-link px-2"
-                                        onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                                        <span class=" btn btn-danger fs-5 fw-bold">-</span>
-                                    </button>
-
-                                    <input id="form1" min="0" name="quantity" value="1" type="number"
-                                        class="form-control" />
-
-                                    <button class="btn btn-link px-2"
-                                        onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                                        <span class=" btn btn-success fs-5 fw-bold">+</span>
-                                    </button>
-                                </div>
-                            </div>
                         </div>
-                    </div>
 
 
 
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Add to cart</button>
-                    </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Add to cart</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -184,27 +202,34 @@
                 <div class=" col-12 d-flex align-items-center">
                     <img src="{{ $resturant->image }}" width="15%" class="pe-3" style="border-radius:50%;">
                     <div class="d-flex flex-column align-items-start">
-                        <div class="d-flex flex-column align-items-center">
+                        <div class="d-flex flex-column align-items-left">
                             <p style="margin-bottom:-10px" class=" fs-2 fw-bold">{{ $resturant->resturant_name }}</p>
-                            <span><a href="tel:{{ $contactUs->mobile ?? '' }}"> {{ $contactUs->mobile ?? '' }}
+                            <p class=" fs-5 mt-2 mb-3"><a href="tel:{{ $contactUs->mobile ?? '' }}">
+                                    {{ $contactUs->mobile ?? '' }}
 
-                                </a></span>
+                                </a></p>
                         </div>
                         <div style="margin-top:-5px">
                             <ul class="d-flex justify-content-center gap-4 list-unstyled mt-2">
                                 <li class="facebook soci"><a target="_blank" title="Facebook"
                                         href="{{ $contactUs->facebook ?? ' ' }}"><i
-                                            class="fa fa-facebook  social fs-9"></i></a>
+                                            class="fa fa-facebook  social fs-5"></i></a>
                                 </li>
 
                                 <li class="youtube soci"><a target="_blank" title="Youtube"
                                         href="{{ $contactUs->youtube ?? ' ' }}"><i
-                                            class="fa fa-youtube social fs-9"></i></a>
+                                            class="fa fa-youtube social fs-5"></i></a>
                                 </li>
 
                                 <li class="instagram soci"><a target="_blank" title="Instagram"
                                         href="{{ $contactUs->instagram ?? '' }}"><i
-                                            class="fa fa-instagram social fs-9"></i></a>
+                                            class="fa fa-instagram social fs-5"></i></a>
+                                </li>
+
+                                <li class="instagram soci"><a target="_blank" title="Instagram"
+                                        href="{{ $contactUs->loaction ?? '' }}"><i
+                                            class="fa fa-crosshairs social fs-5"></i></a>
+
                                 </li>
                             </ul>
                         </div>
@@ -253,7 +278,7 @@
                 <div class="container ">
                     <div class="row align-items-center justify-contnet-center">
                         @foreach ($allproducts as $productt)
-                            <div class=" col-6 col-md-3 ">
+                            <div class=" col-6 col-md-3 mb-5">
 
                                 <a id="modalnfo" data-bs-toggle="modal" data-bs-target="#exampleModal"
                                     onclick="openProductModal(this);" data-menu="{{ json_encode($productt) }}"
@@ -318,8 +343,7 @@
                 </div>
             </div>
         </div>
-        <div class="parallax_overlay_header">
-        </div>
+
     </div>
     <!-- Button trigger modal -->
 
@@ -393,12 +417,18 @@
     <script>
         function openProductModal(alldata) {
             var productData = $(alldata).data('menu');
+
+
             var modal = document.getElementById('exampleModal'); // Select the modal using Bootstrap's Modal class
             var modalTitle = modal.querySelector('.modal-title');
             var modaldescription = modal.querySelector('.modal-description');
 
             modalTitle.textContent = productData.name;
             modaldescription.textContent = productData.description;
+            document.getElementById('productname').setAttribute('value', productData.name);
+            document.getElementById('productdescription').setAttribute('value', productData.description);
+            document.getElementById('productid').setAttribute('value', productData.id);
+            document.getElementById('resturant_id').setAttribute('value', productData.resturant_id);
 
 
             modal.addEventListener('shown.bs.modal', function(event) {
@@ -408,7 +438,7 @@
                     method: 'GET',
                     dataType: 'json',
                     success: function(response) {
-                        console.log('response');
+
                         var imagesContainer = modal.querySelector('.carousel-inner');
                         imagesContainer.innerHTML = ''; // Clear previous content
 
@@ -444,20 +474,26 @@
                                 var containvalue = $(
                                     '<div class="form-check d-flex  gap-2"></div>')
                                 var inputval = $(
-                                    '<input class="form-check-input mt-1" type="checkbox"> '
-                                )
-                                inputval.attr('value', value.name);
+                                    '<input class="form-check-input mt-1" type="checkbox" > '
+                                );
 
+                                inputval.attr('value', value.name);
+                                inputval.attr('name', val.option)
+                                inputval.attr('data-price', value.price);
                                 var label = $(
                                     ' <label class="  d-flex align-items-center gap-3" for="flexCheckDefault"></div>'
                                 );
-                                var valuename = $('<p>').text(value.name);
+                                var valuename = $('<p>').text(value
+                                    .name);
                                 label[0].append(valuename[0]);
 
-                                var valueprice = $('<p class="fw-bold"></p>').text(value
-                                    .price);
-                                valueprice.append('<span>EGP</span>');
-                                label[0].append(valueprice[0]);
+                                var valueprice = $('<p class="fw-bold"></p>')
+                                    .text(value
+                                        .price);
+                                valueprice.append(
+                                    '<span>EGP</span>');
+                                label[0].append(
+                                    valueprice[0]);
 
                                 var valueText = 'value_name : ' + value.name;
                                 if (value.price !== null) {
@@ -465,7 +501,8 @@
                                 }
 
                                 containvalue.append(inputval[0]);
-                                containvalue.append(label[0]);
+                                containvalue
+                                    .append(label[0]);
 
                                 contain.append(containvalue[0]);
 
@@ -479,8 +516,33 @@
                     error: function(error) {
                         console.error('Error fetching images:', error);
                     }
+
                 });
+
+
+                modal.addEventListener('click', function(event) {
+                    var checkboxes = document.querySelectorAll("input[type=checkbox]");
+                    var totalPrice = 0;
+
+                    for (var i = 0; i < checkboxes.length; i++) {
+
+                        var checkbox = checkboxes[i];
+
+                        if (checkbox.checked) {
+                            totalPrice += parseFloat(checkbox.dataset.price);
+                        }
+                    }
+
+
+                    var quantity = document.getElementById('form1');
+
+                    totalPrice = quantity.value * totalPrice
+                    document.getElementById("totalPrice").textContent = totalPrice; // }
+                    document.getElementById("allprice").setAttribute("value", totalPrice);
+
+                })
             });
+
         }
     </script>
 

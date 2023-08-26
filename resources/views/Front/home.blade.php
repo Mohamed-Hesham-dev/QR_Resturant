@@ -277,8 +277,10 @@
                                     <span><small>EGP</small></span>
                                 </h6>
                                 <p class="card-text mb-4 ">{{ $value->description }}</p>
-                                <a href="#" class="btn"
-                                    style="background: #cfa670;color:white ; bottom:0; ">Contact with
+                                <a onclick="val({{ $value->id }})" href="#" class="btn backgebtn"
+                                    data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                    data-value="{{ $value->id }}"
+                                    style="background: #cfa670;color:white ; bottom:0; ">Register with
                                     Us </a>
 
                             </div>
@@ -291,30 +293,60 @@
                 @endif
 
 
-                {{-- <div class=" col-12 col-md-4  card" style="height: 30rem; width:25rem">
-                        <div class="card-body" style="margin-top: 30% ">
-                            <h5 class="card-title fw-bold">Package number 1</h5>
-                            <h6 class="card-subtitle mb-2 text-body-secondary">200 <span>EGP</span></h6>
-                            <p class="card-text">Some quick example text to build on the card title and make up the
-                                bulk of
-                                the
-                                card's content.</p>
-                            <a href="#" class="card-link">Card link</a>
-                            <a href="#" class="card-link">Another link</a>
+
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Fill your contact information</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action='{{ route('clientform') }}' method="post">
+                                    @csrf
+                                    <input type="hidden" id="packageinput" name='packageid' class="form-control" />
+                                    <!-- Name input -->
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label" for="form4Example1">Name</label>
+                                        <input type="text" id="form4Example1" name='Name' class="form-control" />
+
+                                    </div>
+
+                                    <!-- Name input -->
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label" for="Phone">Phone Number</label>
+                                        <input type="number" id="Phone" name='Phone' class="form-control" />
+
+                                    </div>
+
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label" for="resturant">resturant name</label>
+                                        <input type="text" id="resturant" name='resturant' class="form-control" />
+
+                                    </div>
+
+
+                                    <!-- Message input -->
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label" for="form4Example3">Message</label>
+                                        <textarea class="form-control" id="form4Example3" name="Message" rows="4"></textarea>
+
+                                    </div>
+
+
+
+                                    <!-- Submit button -->
+                                    <button type="submit" class="btn btn-primary btn-block mb-4">Send</button>
+                                </form>
+                            </div>
+
                         </div>
                     </div>
-                    <div class=" col-12 col-md-4  card" style="height: 30rem; width:25rem">
-                        <div class="card-body" style="margin-top: 30% ">
-                            <h5 class="card-title fw-bold">Package number 1</h5>
-                            <h6 class="card-subtitle mb-2 text-body-secondary">200 <span>EGP</span></h6>
-                            <p class="card-text">Some quick example text to build on the card title and make up the
-                                bulk of
-                                the
-                                card's content.</p>
-                            <a href="#" class="card-link">Card link</a>
-                            <a href="#" class="card-link">Another link</a>
-                        </div>
-                    </div> --}}
+                </div>
 
             </div>
         </div>
@@ -322,6 +354,14 @@
 
 
     @section('script')
+        <script>
+            function val(re) {
+                var packageid = document.getElementById("packageinput");
+                packageid.setAttribute("value", re);
+
+                console.log(packageid);
+            }
+        </script>
         <script>
             window.odometerOptions = {
                 format: '(,ddd).dd'

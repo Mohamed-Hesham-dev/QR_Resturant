@@ -33,8 +33,9 @@
     <!-- Begin mobile menu -->
     <div class="mobile_menu_wrapper">
         <a id="close_mobile_menu" href="javascript:;"><i class="fa fa-close"></i></a>
-        <img src={{ asset('assets/frontend/upload/logo@2x.png') }} alt="Grand Restaurant | Restaurant Theme"
-            width="101" height="34" style="width:101px;height:40px;" />
+        <img src={{ asset($aboutUs->logo) }} alt="logo" width="101" height="34"
+            style="width:101px;height:40px;" />
+
         <div class="menu-side-menu-container">
             <ul id="mobile_main_menu" class="mobile_main_nav">
                 <li class="menu-item current-menu-item menu-item-has-children "><a href="{{ route('index') }}">Home</a>
@@ -47,13 +48,63 @@
 
             </ul>
         </div>
+
+
         <!-- Begin Reservation -->
-        <a href="javascript:;" id="tg_sidemenu_reservation" class="button ">Reservation</a>
-        <!-- End Reservation -->
+        @auth
+            @yield('resturantonly')
+        @endauth
         <!-- Begin side menu sidebar -->
 
         <!-- End side menu sidebar -->
     </div>
+
+
+
+    <div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header border-bottom-0">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                        Your Cart
+                    </h5>
+                    <a type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="fs-5">&times;</span>
+                    </a>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-image">
+                        <thead>
+                            <tr>
+
+                                <th scope="col">Product</th>
+                                <th scope="col">Options</th>
+                                <th scope="col">price</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="tbodyy">
+
+
+
+                        </tbody>
+                    </table>
+                    <div class="d-flex justify-content-end">
+                        <h5>Total: <span class="pricee text-success"></span><span style="font-size: 10px">EGP</span>
+                        </h5>
+                    </div>
+                </div>
+                <div class="modal-footer border-top-0 d-flex justify-content-between">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <a href="{{ route('cart.index') }}" type="button" class="btn btn-success">Checkout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <!-- End mobile menu -->
     <!-- Begin template wrapper -->
     <div id="wrapper" class="hasbg">

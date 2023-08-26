@@ -6,6 +6,7 @@ use App\Http\Controllers\Administration\UserController;
 
 use App\Http\Controllers\Administration\DashboardController;
 use App\Http\Controllers\Administration\PackageController;
+use App\Http\Controllers\Administration\RequestsController;
 use App\Http\Controllers\Administration\ResturantController;
 use App\Http\Controllers\OwnerResturant\FeedbackController;
 use App\Http\Controllers\OwnerResturant\LiveordersController;
@@ -18,10 +19,12 @@ use App\Http\Controllers\OwnerResturant\ResturantDashboardController;
 use App\Http\Controllers\OwnerResturant\ResturantTableDashboardController;
 use App\Http\Controllers\OwnerResturant\ResturantOptionDashboardController;
 use App\Http\Controllers\OwnerResturant\ResturantProductDashboardController;
+use App\Http\Controllers\WebSite\CartController;
 use App\Http\Controllers\WebSite\HomeController;
 use App\Http\Controllers\WebSite\WebSiteResturantController;
 use App\Http\Controllers\WebSite\WebSiteUserLoginController;
 use App\Http\Controllers\WebSite\WebSiteUserRegisterController;
+use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Route;
  
 /*
@@ -44,7 +47,7 @@ Route::group(['middleware'=>['is_admin'],'prefix'=>'admin'], function () {
     Route::get('/', [DashboardController::class,'index'])->name('admin.dashboard');
     Route::resource('resturant', ResturantController::class)->names('resturant');
     Route::get('/qrcode/{id}', [ResturantController::class, 'generate'])->name('resturant.qrcode.generate');
-
+    Route::resource('request', RequestsController::class)->names('request');
     Route::resource('package', PackageController::class)->names('package');
     Route::get('user',[UserController::class,'index'])->name('users');
     Route::get('user/{id}',[UserController::class,'deleteuser'])->name('delete.user');
@@ -70,9 +73,9 @@ Route::group(['middleware'=>['is_owner'],'prefix'=>'owner'], function () {
      Route::put('aboutUsSetting/update/{id}',[ResturantAboutUsSettingController::class,'update'])->name("aboutUsSettingResturant.update");
      Route::resource('orders',OrdersController::class)->names('orders');
      Route::resource('liveorders',LiveordersController::class)->names('liveorders');
-
      Route::get('reservaition',[ReservationController::class,'index'])->name("Reservation.dashboard");
      Route::resource('feedback', FeedbackController::class)->names('feedback');
+
 
      Route::get('reservaition/{id}',[ReservationController::class,'destroy'])->name("reservation.destroy");
 
@@ -97,10 +100,11 @@ Route::group(['middleware'=>['is_owner'],'prefix'=>'owner'], function () {
 
 
 Route::get('/',[HomeController::class,'index'])->name('index');
+Route::post('/',[HomeController::class,'clientform'])->name('clientform');
+
 Route::get('resturant',[WebSiteResturantController::class,'index'])->name('resturant');
 Route::get('resturant/{id}',[WebSiteResturantController::class,'index'])->name('resturant');
 Route::get('/get-images/{resturantId}', [WebSiteResturantController::class,'getImages']);
-
 Route::get('resturant/category/{category}',[WebSiteResturantController::class,'indexcategory'])->name('resturant.category');
 Route::post('reservation',[WebSiteResturantController::class,'reservation'])->name('reservation');
 Route::post('feedback',[WebSiteResturantController::class,'feedback'])->name('feedback');
@@ -110,3 +114,5 @@ Route::post('login',[WebSiteUserLoginController::class,'loginUser'])->name('logi
 Route::get('logout',[WebSiteUserLoginController::class,'logout'])->name('logout_user.logout');
 Route::get('signUp',[WebSiteUserRegisterController::class,'index'])->name('register_user.index');
 Route::post('signUp',[WebSiteUserRegisterController::class,'store'])->name('register_user.store');
+Route::resource('cart',CartController::class)->names('cart');
+Route::post('/cart/store', [CartController::class,'storee'])->name('cart.storee');;

@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\OwnerResturant;
 
 use App\Http\Controllers\Controller;
+use App\Models\Order;
+use App\Models\Resturant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LiveordersController extends Controller
 {
@@ -12,7 +15,12 @@ class LiveordersController extends Controller
      */
     public function index()
     {
-return view('DashboardOwnerResturant.liveorder.index');
+        $resturant=Resturant::Where('user_id',Auth::guard('owner')->user()->id)->first();
+ 
+        $orders=Order::where('resturant_id',$resturant->id)->get();
+        $orders_ACCEPTED=Order::where('resturant_id',$resturant->id)->where('statue','ACCEPTED')->get();
+ 
+    return view('DashboardOwnerResturant.liveorder.index',compact('orders','resturant','orders_ACCEPTED'));
     }
 
     /**
@@ -52,7 +60,7 @@ return view('DashboardOwnerResturant.liveorder.index');
      */
     public function update(Request $request, string $id)
     {
-        //
+         dd('omar');
     }
 
     /**
