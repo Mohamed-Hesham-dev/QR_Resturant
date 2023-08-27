@@ -4,14 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Resturant extends Model
+
+class Resturant extends Model implements HasMedia
 {
+    use InteractsWithMedia;
     use HasFactory;
     protected $fillable = [
         'resturant_name',
         'package',
-        'image',
+        'resturant_logo', 
+        'resturant_cover', 
         'is_active',
         'user_id',
         'description'
@@ -20,6 +25,11 @@ class Resturant extends Model
     {
         return $this->belongsTo(user::class);
     }
-
+    public function getImageAttribute($value)
+    {
+      
+        $file = $this->getMedia('image')->all();
+        return $file;
+    }
 
 }

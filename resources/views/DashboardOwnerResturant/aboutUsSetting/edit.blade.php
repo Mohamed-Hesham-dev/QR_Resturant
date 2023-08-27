@@ -52,10 +52,29 @@ Dashboard
             </div>
               <div class="">
                       <label for="password">Resturant Logo*</label>
-                <img src="{{$all_aboutUsSetting->image}}" id="output" width="70px" height="40px">
-                <input class="form-control" placeholder="Image" type="file" accept="image/*"  name="image">
+                <img src="{{$all_aboutUsSetting->resturant_logo}}" id="output" width="70px" height="40px">
+                <input class="form-control" placeholder="Image" type="file" accept="image/*"  name="resturant_logo">
             </div>
             
+              <div class="">
+                      <label for="password">Resturant Cover*</label>
+                <img src="{{$all_aboutUsSetting->resturant_cover ?? null}}" id="output" width="70px" height="40px">
+                <input class="form-control" placeholder="Image" type="file" accept="image/*"  name="resturant_cover">
+            </div>
+            
+            <div class="form-group">
+                <label for="exampleInputFile">Resturant Ads</label>
+                @foreach ($all_aboutUsSetting->getMedia('images') as $img)
+
+                <img src="{{ $img ? $img->getUrl() : '' }}" width="70px" height="40px">
+                @endforeach
+                <div class="input-group">
+                    <div class="custom-file">
+                        <input type="file" name="images[]" id="imageUpload" multiple>
+                    </div>
+                </div>
+            </div>
+
             <br>
             
             <br>

@@ -66,10 +66,10 @@
                 </div>
                 <div class="form-group">
                     <label for="password">Resturant Image*</label>
-                    <img src="{{ $resturant->image }}" id="output" width="80px" height="40px">
+                    <img src="{{ $resturant->resturant_logo }}" id="output" width="80px" height="40px">
                     <div class="input-group">
                         <div class="custom-file">
-                            <input type="file" class="form-control" name="image" placeholder="Image"
+                            <input type="file" class="form-control" name="resturant_logo" placeholder="Image"
                                 id="exampleInputFile" onchange="loadFile(event)" accept="image/*">
                             <label class="custom-file-label" for="exampleInputFile" id="fileLabel">Choose file</label>
                         </div>

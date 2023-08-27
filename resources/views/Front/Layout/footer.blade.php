@@ -68,5 +68,5 @@
 </div>
 <br class="clear" />
 <div id="copyright">
-    © Copyright By <a>Omar_A_Mahran</a>
+    © Copyright By <a>O&H Group</a>
 </div>
