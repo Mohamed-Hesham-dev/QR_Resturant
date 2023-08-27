@@ -176,7 +176,7 @@
                                     <div class=" col-12 col-md-3 p-5 " style="width: 15rem;  ">
                                         <a href="{{ route('resturant', $rest_item->id) }}">
                                             <img class="card-img-top" style="border-radius:50%"
-                                                src={{ $rest_item->image }} alt="Card image cap">
+                                                src={{ $rest_item->resturant_logo }} alt="Card image cap">
                                             <div class="card-body">
                                                 <h5 class="card-title fw-bold">{{ $rest_item->resturant_name }}</h5>
                                         </a>

@@ -64,11 +64,14 @@ class ResturantContactUsSettingController extends Controller
         try
         {
             if($request->id != null){
-                 $contactUsSetting = ResturantContactUsSetting::find($request->id);
+        
+                $contactUsSetting = ResturantContactUsSetting::find($request->id);
+     
                 $contactUsSetting->mobile=$request->mobile;
                 $contactUsSetting->facebook=$request->facebook;
                 $contactUsSetting->instagram=$request->instagram;
                 $contactUsSetting->youtube=$request->youtube;
+                $contactUsSetting->loaction=$request->location;
                 $contactUsSetting->resturant_id= Auth::guard('owner')->user()->resturant->id;
                 $contactUsSetting->user_id= Auth::guard('owner')->user()->id;
                 $contactUsSetting->save();
@@ -78,6 +81,7 @@ class ResturantContactUsSettingController extends Controller
                     'facebook'=>$request->facebook,
                     'instagram'=>$request->instagram,
                     'youtube'=>$request->youtube,
+                    'loaction'=>$request->location,
                     'resturant_id'=> Auth::guard('owner')->user()->resturant->id,
                     'user_id'=> Auth::guard('owner')->user()->id,
                 ];

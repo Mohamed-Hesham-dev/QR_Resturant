@@ -51,15 +51,15 @@
                 <div id="rev_slider_3_1" class="rev_slider fullwidthabanner tp-overflow-hidden" style="display:none;"
                     data-version="5.4.8">
                     <ul>
+
                         <!-- SLIDE  abreakey-raw-foodphotography-squid-still-life-100x50.jpg-->
                         <li data-index="rs-3" data-transition="zoomin" data-slotamount="7" data-hideafterloop="0"
                             data-hideslideonmobile="off" data-easein="default" data-easeout="default" data-masterspeed="300"
-                            data-thumb={{ asset('assets/frontend/upload/sella.jpeg') }} data-rotate="0"
-                            data-saveperformance="on" data-title="Slide" data-param1="" data-param2="" data-param3=""
-                            data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9=""
-                            data-param10="" data-description="">
+                            data-thumb={{ $resturant->resturant_cover }} data-rotate="0" data-saveperformance="on"
+                            data-title="Slide" data-param1="" data-param2="" data-param3="" data-param4="" data-param5=""
+                            data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">
                             <!-- MAIN IMAGE -->
-                            <img src={{ asset('assets/frontend/upload/sella.jpeg') }} alt=""
+                            <img src={{ $resturant->resturant_cover }} alt=""
                                 title="abreakey-raw-foodphotography-squid-still-life" width="1400" height="1049"
                                 data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat"
                                 class="rev-slidebg" data-no-retina>
@@ -83,7 +83,6 @@
                                 data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[0,0,0,0]"
                                 style="font-family:'Cairo'!important; font-weight:bold; z-index: 6; white-space: nowrap; line-height: ; color: #ffffff; letter-spacing: ;">
                                 {{ $resturant->resturant_name }} <strong>Restaurant</strong> </div>
-
                             <!-- LAYER NR. 3 -->
 
                         </li>
@@ -198,57 +197,65 @@
         <!-- Modal -->
         <!-------------Story-------------->
         <div id="aboutus" class="container d-flex  justify-content-start">
-            <div class="row justify-content-center ">
-                <div class=" col-12 d-flex align-items-center">
-                    <img src="{{ $resturant->image }}" width="15%" class="pe-3" style="border-radius:50%;">
-                    <div class="d-flex flex-column align-items-start">
-                        <div class="d-flex flex-column align-items-left">
-                            <p style="margin-bottom:-10px" class=" fs-2 fw-bold">{{ $resturant->resturant_name }}</p>
-                            <p class=" fs-5 mt-2 mb-3"><a href="tel:{{ $contactUs->mobile ?? '' }}">
-                                    {{ $contactUs->mobile ?? '' }}
+            <div class="row align-items-center">
+                <div class=" col-10 row justify-content-center ">
+                    <div class=" col-12 d-flex align-items-center">
+                        <img src="{{ $resturant->resturant_logo }}" width="15%" class="pe-3"
+                            style="border-radius:50%;">
+                        <div class="d-flex flex-column align-items-start">
+                            <div class="d-flex flex-column align-items-left">
+                                <p style="margin-bottom:-10px" class=" fs-2 fw-bold">{{ $resturant->resturant_name }}</p>
+                                <p class=" fs-5 mt-2 mb-3"><a href="tel:{{ $contactUs->mobile ?? '' }}">
+                                        {{ $contactUs->mobile ?? '' }}
 
-                                </a></p>
-                        </div>
-                        <div style="margin-top:-5px">
-                            <ul class="d-flex justify-content-center gap-4 list-unstyled mt-2">
-                                <li class="facebook soci"><a target="_blank" title="Facebook"
-                                        href="{{ $contactUs->facebook ?? ' ' }}"><i
-                                            class="fa fa-facebook  social fs-5"></i></a>
-                                </li>
+                                    </a></p>
+                            </div>
+                            <div style="margin-top:-5px">
+                                <ul class="d-flex justify-content-center gap-4 list-unstyled mt-2">
+                                    <li class="facebook soci"><a target="_blank" title="Facebook"
+                                            href="{{ $contactUs->facebook ?? ' ' }}"><i
+                                                class="fa fa-facebook  social fs-5"></i></a>
+                                    </li>
 
-                                <li class="youtube soci"><a target="_blank" title="Youtube"
-                                        href="{{ $contactUs->youtube ?? ' ' }}"><i
-                                            class="fa fa-youtube social fs-5"></i></a>
-                                </li>
+                                    <li class="youtube soci"><a target="_blank" title="Youtube"
+                                            href="{{ $contactUs->youtube ?? ' ' }}"><i
+                                                class="fa fa-youtube social fs-5"></i></a>
+                                    </li>
 
-                                <li class="instagram soci"><a target="_blank" title="Instagram"
-                                        href="{{ $contactUs->instagram ?? '' }}"><i
-                                            class="fa fa-instagram social fs-5"></i></a>
-                                </li>
+                                    <li class="instagram soci"><a target="_blank" title="Instagram"
+                                            href="{{ $contactUs->instagram ?? '' }}"><i
+                                                class="fa fa-instagram social fs-5"></i></a>
+                                    </li>
 
-                                <li class="instagram soci"><a target="_blank" title="Instagram"
-                                        href="{{ $contactUs->loaction ?? '' }}"><i
-                                            class="fa fa-crosshairs social fs-5"></i></a>
+                                    <li class="instagram soci"><a target="_blank" title="Instagram"
+                                            href="{{ $contactUs->loaction ?? '' }}"><i
+                                                class="fa fa-crosshairs social fs-5"></i></a>
 
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="  mt-1">
-                            <div>
-                                <nav class=" d-flex gap-4 nav-pills nav-fill">
-                                    @foreach ($categories as $category)
-                                        <a class="  btn btn-light p-2"
-                                            href={{ route('resturant.category', $category->category_name) }}>{{ $category->category_name }}</a>
-                                    @endforeach
-                                </nav>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="  mt-1">
+                                <div>
+                                    <nav class=" d-flex gap-4 nav-pills nav-fill">
+                                        @foreach ($categories as $category)
+                                            <a class="  btn btn-light p-2"
+                                                href={{ route('resturant.category', $category->category_name) }}>{{ $category->category_name }}</a>
+                                        @endforeach
+                                    </nav>
+                                </div>
                             </div>
                         </div>
                     </div>
+
+
                 </div>
-
-
+                <div class="col-2 ">
+                    <img class="rounded" src={{ $resturant->resturant_logo }} alt=""
+                        title="abreakey-raw-foodphotography-squid-still-life" width="190px" height="190px"
+                        data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg"
+                        data-no-retina>
+                </div>
             </div>
-
 
         </div>
 
@@ -414,6 +421,138 @@
     </div>
 @endsection
 @section('script')
+    <script>
+        function openProductModal(alldata) {
+            console.log(alldata);
+            var productData = $(alldata).data('menu');
+
+
+            var modal = document.getElementById('exampleModal'); // Select the modal using Bootstrap's Modal class
+            var modalTitle = modal.querySelector('.modal-title');
+            var modaldescription = modal.querySelector('.modal-description');
+
+            modalTitle.textContent = productData.name;
+            modaldescription.textContent = productData.description;
+            document.getElementById('productname').setAttribute('value', productData.name);
+            document.getElementById('productdescription').setAttribute('value', productData.description);
+            document.getElementById('productid').setAttribute('value', productData.id);
+            document.getElementById('resturant_id').setAttribute('value', productData.resturant_id);
+
+
+            modal.addEventListener('shown.bs.modal', function(event) {
+
+                $.ajax({
+                    url: '/get-images/' + productData.id,
+                    method: 'GET',
+                    dataType: 'json',
+                    success: function(response) {
+
+                        var imagesContainer = modal.querySelector('.carousel-inner');
+                        imagesContainer.innerHTML = ''; // Clear previous content
+
+                        var optionsContainer = modal.querySelector('.options-container');
+                        optionsContainer.innerHTML = ''; // Clear previous content
+
+
+                        $.each(response.images, function(index, image) {
+
+                            if (index == 0) {
+                                var tag = $('<div class="carousel-item active"></div>');
+                            } else {
+                                var tag = $('<div class="carousel-item"></div>');
+                            }
+
+                            var imgElement = $(
+                                    '<img class="d-block w-100" alt="...">'
+                                )
+                                .attr('src', image).addClass('modal-image');
+
+                            tag[0].appendChild(imgElement[0]);
+
+                            imagesContainer.appendChild(tag[0]); // Append the DOM element
+                        });
+
+                        $.each(response.result, function(index, val) {
+                            var contain = $('<div class="col-12 col-md-6 mt-2 "></div>');
+                            var options = $(' <h5 class = "fw-bold pb-2"></h5>')
+                            var optionElement = options.text(val.option);
+                            var variab = contain.append(optionElement[0]);
+
+                            $.each(val.values, function(index, value) {
+                                var containvalue = $(
+                                    '<div class="form-check d-flex  gap-2"></div>')
+                                var inputval = $(
+                                    '<input class="form-check-input mt-1" type="checkbox" > '
+                                );
+
+                                inputval.attr('value', value.name);
+                                inputval.attr('name', val.option)
+                                inputval.attr('data-price', value.price);
+                                var label = $(
+                                    ' <label class="  d-flex align-items-center gap-3" for="flexCheckDefault"></div>'
+                                );
+                                var valuename = $('<p>').text(value
+                                    .name);
+                                label[0].append(valuename[0]);
+
+                                var valueprice = $('<p class="fw-bold"></p>')
+                                    .text(value
+                                        .price);
+                                valueprice.append(
+                                    '<span>EGP</span>');
+                                label[0].append(
+                                    valueprice[0]);
+
+                                var valueText = 'value_name : ' + value.name;
+                                if (value.price !== null) {
+                                    valueText += ' - Price: ' + value.price;
+                                }
+
+                                containvalue.append(inputval[0]);
+                                containvalue
+                                    .append(label[0]);
+
+                                contain.append(containvalue[0]);
+
+                                // Append value text to the option element
+                                // optionElement.append($('<br>')).append(valueText);
+                            });
+                            // Append the <p> element to the options container
+                            optionsContainer.appendChild(variab[0]);
+                        });
+                    },
+                    error: function(error) {
+                        console.error('Error fetching images:', error);
+                    }
+
+                });
+
+
+                modal.addEventListener('click', function(event) {
+                    var checkboxes = document.querySelectorAll("input[type=checkbox]");
+                    var totalPrice = 0;
+
+                    for (var i = 0; i < checkboxes.length; i++) {
+
+                        var checkbox = checkboxes[i];
+
+                        if (checkbox.checked) {
+                            totalPrice += parseFloat(checkbox.dataset.price);
+                        }
+                    }
+
+
+                    var quantity = document.getElementById('form1');
+
+                    totalPrice = quantity.value * totalPrice
+                    document.getElementById("totalPrice").textContent = totalPrice; // }
+                    document.getElementById("allprice").setAttribute("value", totalPrice);
+
+                })
+            });
+
+        }
+    </script>
     <script>
         function openProductModal(alldata) {
             var productData = $(alldata).data('menu');
