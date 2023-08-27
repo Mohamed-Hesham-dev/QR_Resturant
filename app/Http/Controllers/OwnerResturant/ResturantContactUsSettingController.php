@@ -58,19 +58,34 @@ class ResturantContactUsSettingController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,  $id)
+    public function update(Request $request)
     {
-     
+
         try
         {
-             $contactUsSetting = ResturantContactUsSetting::find($id);
-             $contactUsSetting->mobile=$request->mobile;
-             $contactUsSetting->facebook=$request->facebook;
-             $contactUsSetting->instagram=$request->instagram;
-             $contactUsSetting->youtube=$request->youtube;
-             $contactUsSetting->location=$request->location;
-             $contactUsSetting->resturant_id= Auth::guard('owner')->user()->resturant->id;
-             $contactUsSetting->save();
+            if($request->id != null){
+                 $contactUsSetting = ResturantContactUsSetting::find($request->id);
+                $contactUsSetting->mobile=$request->mobile;
+                $contactUsSetting->facebook=$request->facebook;
+                $contactUsSetting->instagram=$request->instagram;
+                $contactUsSetting->youtube=$request->youtube;
+                $contactUsSetting->resturant_id= Auth::guard('owner')->user()->resturant->id;
+                $contactUsSetting->user_id= Auth::guard('owner')->user()->id;
+                $contactUsSetting->save();
+             }else{
+                $data=[
+                    'mobile'=>$request->mobile,
+                    'facebook'=>$request->facebook,
+                    'instagram'=>$request->instagram,
+                    'youtube'=>$request->youtube,
+                    'resturant_id'=> Auth::guard('owner')->user()->resturant->id,
+                    'user_id'=> Auth::guard('owner')->user()->id,
+                ];
+                ResturantContactUsSetting::create($data);
+               
+                
+             }
+           
              return redirect()->back()->with('success','Contact Us Setting Updated Successfully');
          }
          catch(Exception $e){

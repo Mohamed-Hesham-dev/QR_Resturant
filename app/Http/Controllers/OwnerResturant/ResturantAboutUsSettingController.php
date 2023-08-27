@@ -43,16 +43,37 @@ class ResturantAboutUsSettingController extends Controller
                    // dd($AboutUsSetting);
                     $AboutUsSetting->description=$request->description;
                     $AboutUsSetting->resturant_name=$request->resturant_name;
-                    if($request->hasfile('image')) 
+                    if($request->hasfile('resturant_logo')) 
                     {
-                         $image = $request->file('image');
+                         $image = $request->file('resturant_logo');
                           $image_name = $image->getClientOriginalName();
                           $image->move(public_path('/image'),$image_name);
                           $image_path = "/image/" . $image_name;
-                          $AboutUsSetting['image']=$image_path;
+                          $AboutUsSetting['resturant_logo']=$image_path;
+                    }
+                    if($request->hasfile('resturant_cover')) 
+                    {
+                         $image = $request->file('resturant_cover');
+                          $image_name = $image->getClientOriginalName();
+                          $image->move(public_path('/image'),$image_name);
+                          $image_path = "/image/" . $image_name;
+                          $AboutUsSetting['resturant_cover']=$image_path;
                     }
                    
                     $AboutUsSetting->save();
+
+                    if ($request->hasFile('images')) {
+                        foreach ($AboutUsSetting->getMedia('images') as $media) {
+                            $media->delete(); // This deletes the media file from storage
+                        }
+                     $AboutUsSetting->clearMediaCollection('images');
+                            $fileAdders = $AboutUsSetting->addMultipleMediaFromRequest(['images'])
+                                ->each(function ($fileAdder) {
+                                    $fileAdder->toMediaCollection('images');
+                               });
+            
+                     }
+
                     return redirect()->back()->with('success','About Us Setting Updated Successfully');
                 }
                 catch(Exception $e){

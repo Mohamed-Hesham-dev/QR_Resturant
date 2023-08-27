@@ -50,13 +50,13 @@ class ResturantController extends Controller
                 'resturant_name'=>$request->resturant_name,
                 'description'=>$request->description
                 ];
-                if($request->hasfile('image')) 
+                if($request->hasfile('resturant_logo')) 
       {
-           $image = $request->file('image');
+           $image = $request->file('resturant_logo');
             $image_name = $image->getClientOriginalName();
             $image->move(public_path('/image'),$image_name);
             $image_path = "/image/" . $image_name;
-            $data['image']=$image_path;
+            $data['resturant_logo']=$image_path;
       }
             $data=Resturant::create($data);
             
@@ -105,13 +105,13 @@ class ResturantController extends Controller
             'resturant_name' => $request->resturant_name,
             'description'=>$request->description
         ];
-        if($request->hasfile('image')) 
+        if($request->hasfile('resturant_logo')) 
       {
-           $image = $request->file('image');
+           $image = $request->file('resturant_logo');
             $image_name = $image->getClientOriginalName();
             $image->move(public_path('/image'),$image_name);
             $image_path = "/image/" . $image_name;
-            $data['image']=$image_path;
+            $data['resturant_logo']=$image_path;
       }
         $resturant->update($data);
       

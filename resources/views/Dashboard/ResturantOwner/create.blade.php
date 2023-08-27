@@ -66,7 +66,7 @@
                     <label for="exampleInputFile">Resturant Image*</label>
                     <div class="input-group">
                         <div class="custom-file">
-                            <input type="file" class="form-control" name="image" placeholder="Image"
+                            <input type="file" class="form-control" name="resturant_logo" placeholder="Image"
                                 id="exampleInputFile" onchange="loadFile(event)" accept="image/*">
                             <label class="custom-file-label" for="exampleInputFile" id="fileLabel">Choose file</label>
                         </div>

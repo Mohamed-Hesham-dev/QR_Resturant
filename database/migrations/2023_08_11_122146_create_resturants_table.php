@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('resturant_name');
             $table->string('package');
-            $table->string('image');
+            $table->string('resturant_logo');
+            $table->string('resturant_cover')->nullable();
             $table->boolean('is_active');
             $table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade');
             $table->timestamps();

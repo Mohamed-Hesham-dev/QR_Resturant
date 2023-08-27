@@ -41,6 +41,7 @@
 
             <form action="{{ route('contactUsSettingResturant.update') }}" method="POST" enctype="multipart/form-data">
                 @csrf
+                <input type="hidden" name="id"  value="{{ $all_contactUsSetting->id ?? '' }}">
                 <div class="input-group mb-3">
                     <input type="text" name="mobile" class="form-control" placeholder="Mobile"
                         value="{{ $all_contactUsSetting->mobile ?? '' }}">
