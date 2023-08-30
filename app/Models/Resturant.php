@@ -19,11 +19,16 @@ class Resturant extends Model implements HasMedia
         'resturant_cover', 
         'is_active',
         'user_id',
+        'foodcourt_id',
         'description'
     ];
     public function user()
     {
         return $this->belongsTo(user::class);
+    }
+    public function table()
+    {
+        return $this->hasMany(ResturantTableDashboard::class);
     }
     public function getImageAttribute($value)
     {

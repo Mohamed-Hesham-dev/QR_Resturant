@@ -1,6 +1,6 @@
-@extends('Dashboard.Layout.master')
+@extends('DashboardOwnerResturant.Layout.master')
 @section('title')
-    Dashboard.Resturants
+    Dashboard.Account
 @endsection
 
 
@@ -28,7 +28,7 @@
 
 
 @section('title-page')
-    Resturants / Edit
+    Account / Edit
 @endsection
 
 @section('title-page2')
@@ -38,70 +38,36 @@
 @section('content')
     <div class="card">
         <div class=" card-primary ">
+            @if (session('success'))
+                <div class="alert alert-success" id="success-alert">
+                    {{ session('success') }}
+                </div>
+            @endif
             <div class="card-header">
                 <h3 class="card-title">Edit resturant</h3>
             </div>
-
-            <form action="{{ route('resturant.update', $resturant->id) }}" method="POST" enctype="multipart/form-data">
+            {{-- {{ route('resturant.update', $resturant->id) }} --}}
+            <form class='container pb-5' action={{ route('account.update', $resturant->user->id) }} method="POST"
+                enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="form-group">
-                    <label for="email">Owner Name</label>
+                    <label for="name">Owner Name</label>
                     <input class="required_field  form-control" id="name" name="name"
-                        value="{{ $resturant->user->name }}" type="text" />
-                </div>
-                <div class="form-group">
-                    <label for="resturant_name">Resturant Name</label>
-                    <input class="required_field  form-control" id="resturant_name" name="resturant_name"
-                        value="{{ $resturant->resturant_name }}" type="text" />
+                        value="{{ $currentuser->name }}" type="text" />
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input class="required_field  form-control" id="email" name="email" type="text"
-                        value="{{ $resturant->user->email }}" />
+                        value="{{ $currentuser->email }}" />
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
                     <input class="required_field  form-control" id="password" name="password" type="password" />
                 </div>
-                <div class="form-group">
-                    <label for="password">Resturant Image*</label>
-                    <img src="{{ $resturant->image }}" id="output" width="80px" height="40px">
-                    <div class="input-group">
-                        <div class="custom-file">
-                            <input type="file" class="form-control" name="image" placeholder="Image"
-                                id="exampleInputFile" onchange="loadFile(event)" accept="image/*">
-                            <label class="custom-file-label" for="exampleInputFile" id="fileLabel">Choose file</label>
-                        </div>
-                    </div>
-                </div>
-                <br>
-                <div class="form-group">
-                    <div class="">
-                        <label for="email">Packages</label>
-                        <select name="package" class="form-control">
-                            @foreach ($all_packages as $value)
-                                <option value="{{ $value->title }}"
-                                    {{ $resturant->package == $value->title ? 'selected' : '' }}>{{ $value->title }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-                <div class="">
-                    <label for="email">Description*</label>
-                    <textarea style="width: 100%" id="name" name="description" class="required_field">{{ $resturant->description }}</textarea>
-                </div>
-                <br>
-                <div class="input-group mb-3">
-                    <label for="email">Status &nbsp; &nbsp;</label>
-                    <input class="checkbox form-control" type="checkbox" name="is_active" id="switch" value="1"
-                        {{ $resturant->is_active == 1 ? 'checked' : '' }}>
-                    <label for="switch" class="toggle">
-                    </label>
-                </div>
+
                 <div class="col-6" style="float:right;">
-                    <button type="submit" class="btn btn-primary">Edit Owner Resturant</button>
+                    <button type="submit" class="btn btn-primary">Edit User Info</button>
                 </div>
                 <!-- /.col -->
 
@@ -166,4 +132,16 @@
             display: none;
         }
     </style>
+@endsection
+@section('script')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
+                var successAlert = document.getElementById('success-alert');
+                if (successAlert) {
+                    successAlert.style.display = 'none';
+                }
+            }, 2000); // 5000 milliseconds = 5 seconds
+        });
+    </script>
 @endsection

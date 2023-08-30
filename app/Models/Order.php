@@ -17,6 +17,8 @@ class Order extends Model
     'clientname',
     'phonenumber',
     'PickupTime',
+    'address',
+    'payment'
     ];
     public function cart(){
         return $this->hasMany(Cart::class,'order_id');

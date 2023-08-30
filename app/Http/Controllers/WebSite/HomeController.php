@@ -4,6 +4,7 @@ namespace App\Http\Controllers\WebSite;
 use App\Http\Controllers\Controller;
 use App\Models\AboutUsSetting;
 use App\Models\ContactUsSetting;
+use App\Models\Foodcourt;
 use App\Models\Meta;
 use App\Models\Package;
 use App\Models\Post;
@@ -30,11 +31,12 @@ class HomeController extends Controller
 
         //resturant 
         $resturant=Resturant::where('is_active',1)->get();
+        $allfoodcourts=Foodcourt::where('is_active',1)->get();
         $contactUs=ResturantContactUsSetting::get();
 
         $contact=ContactUsSetting::first();
  
-        return view('Front.home',compact('packages','resturant','contact','contactUs'));
+        return view('Front.home',compact('packages','resturant','contact','contactUs','allfoodcourts'));
 
     }
     public function clientform(Request $request){

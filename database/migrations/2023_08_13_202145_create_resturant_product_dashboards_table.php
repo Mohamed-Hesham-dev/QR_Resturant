@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('resturant_product_dashboards', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->text('description')->nullable();
+            $table->text('description')->nullable()->default('null');
             $table->foreignId('category_id')->nullable()->constrained('resturant_category_dashboards')->onDelete('cascade');
             $table->timestamps();
         });

@@ -160,250 +160,280 @@
             </div>
 
 
-            <!------------------resturants----------------------->
+            <!------------------ Food Court----------------------->
+            @if (count($allfoodcourts) > 0)
+                <div id="foodcourt" class="one withsmallpadding ppb_team_column"
+                    >
+                    <div class="page_content_wrapper" style="text-align:center">
+                        <h1 class="">
+                            <span class="ppb_title_first">Our</span>Food Courts
+                        </h1>
+                        <div class="inner">
+                            <div class="container ">
+                                <div class="row container justify-content-center">
+                                    @foreach ($allfoodcourts as $item)
+                                        <div class=" col-12 col-md-3 p-5 " style="width: 15rem;  ">
+                                            <a href={{ route('foodcourt.index', ['id' => $item->id]) }}>
+                                                <img class="card-img-top" style="border-radius:20%"
+                                                    src={{ $item->foodcourt_logo }} alt="Card image cap">
+                                                <div class="card-body">
+                                                    <h5 class="card-title fw-bold">{{ $item->foodcourt_name }}</h5>
+                                            </a>
 
+                                        </div>
 
-            <div id="resturants" class="one withsmallpadding ppb_team_column"
-                style="padding-top: 100px !important;padding:30px;">
-                <div class="page_content_wrapper" style="text-align:center">
-                    <h1 class="">
-                        <span class="ppb_title_first">Our</span>Resturants
-                    </h1>
-                    <div class="inner">
-                        <div class="container ">
-                            <div class="row gap-4 container justify-content-center">
-                                @foreach ($resturant as $rest_item)
-                                    <div class=" col-12 col-md-3 p-5 " style="width: 15rem;  ">
-                                        <a href="{{ route('resturant', $rest_item->id) }}">
-                                            <img class="card-img-top" style="border-radius:50%"
-                                                src={{ $rest_item->resturant_logo }} alt="Card image cap">
-                                            <div class="card-body">
-                                                <h5 class="card-title fw-bold">{{ $rest_item->resturant_name }}</h5>
-                                        </a>
-                                        <ul class="d-flex justify-content-center gap-4 list-unstyled mt-3">
-                                            <li class="facebook soci"><a target="_blank" title="Facebook"
-                                                    href="{{ $contactUs->where('resturant_id', $rest_item->id)->first()->facebook ?? ' ' }}"><i
-                                                        class="fa fa-facebook  social fs-5"></i></a>
-                                            </li>
-
-                                            <li class="youtube soci"><a target="_blank" title="Youtube"
-                                                    href="{{ $contactUs->where('resturant_id', $rest_item->id)->first()->youtube ?? ' ' }}"><i
-                                                        class="fa fa-youtube social fs-5"></i></a>
-                                            </li>
-
-                                            <li class="instagram soci"><a target="_blank" title="Instagram"
-                                                    href="{{ $contactUs->where('resturant_id', $rest_item->id)->first()->instagram ?? '' }}"><i
-                                                        class="fa fa-instagram social fs-5"></i></a></li>
-                                        </ul>
-                                    </div>
-
-                            </div>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-            </div>
+                                </div>
+            @endforeach
         </div>
+    </div>
+    </div>
+    </div>
+    @endif
+    </div>
 
-        <!------counter--------->
-        <div class="one withsmallpadding ppb_text" style="padding:30px 0 30px 0;">
-            <div class="standard_wrapper">
-                <div class="page_content_wrapper">
-                    <div class="inner">
-                        <div style="margin:auto;width:100%">
-                            </p>
-                            <div class="one_fifth " style="padding:30px 10px 30px 10px;">
-                                <div class="animate_counter_wrapper">
-                                    <div id="1570096072336597485" class="odometer"
-                                        style="font-size:50px;line-height:50px;">0</div>
-                                    <div class="count_separator"><span></span></div>
-                                    <div class="counter_subject">Years of Experience</div>
-                                </div>
-                            </div>
-                            <div class="one_fifth " style="padding:30px 10px 30px 10px;">
-                                <div class="animate_counter_wrapper">
-                                    <div id="1570096072772185217" class="odometer"
-                                        style="font-size:50px;line-height:50px;">0</div>
-                                    <div class="count_separator"><span></span></div>
-                                    <div class="counter_subject">Award Winning Chiefs</div>
-                                </div>
-                            </div>
-                            <div class="one_fifth " style="padding:30px 10px 30px 10px;">
-                                <div class="animate_counter_wrapper">
-                                    <div id="15700960721959780185" class="odometer"
-                                        style="font-size:50px;line-height:50px;">0</div>
-                                    <div class="count_separator"><span></span></div>
-                                    <div class="counter_subject">Customers Served</div>
-                                </div>
-                            </div>
-                            <div class="one_fifth " style="padding:30px 10px 30px 10px;">
-                                <div class="animate_counter_wrapper">
-                                    <div id="15700960721803188826" class="odometer"
-                                        style="font-size:50px;line-height:50px;">0</div>
-                                    <div class="count_separator"><span></span></div>
-                                    <div class="counter_subject">Dishes</div>
-                                </div>
-                            </div>
-                            <div class="one_fifth last " style="padding:30px 10px 30px 10px;">
-                                <div class="animate_counter_wrapper">
-                                    <div id="15700960721920355529" class="odometer"
-                                        style="font-size:50px;line-height:50px;">0</div>
-                                    <div class="count_separator"><span></span></div>
-                                    <div class="counter_subject">Awards</div>
-                                </div>
-                            </div>
-                            <p>
-                                <br class="clear" />
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <!------pricing------>
-        <div class="  mb-5">
-            <h1 class="mb-4">
-                packages
+    <!------------------ Food Court----------------------->
+
+    <!------------------resturants----------------------->
+    <div id="resturants" class="one withsmallpadding ppb_team_column">
+        <div class="page_content_wrapper" style="text-align:center">
+            <h1 class="">
+                <span class="ppb_title_first">Our</span>Resturants
             </h1>
-            <div class=" row justify-content-center gap-4" id="pricing">
-                @if ($packages->count() > 0)
-                    @foreach ($packages as $value)
-                        <div class=" col-12 col-md-4  card" style=" width:20%">
-                            <div class="card-body" style="margin-top: 10% ">
-                                <img src={{ asset('assets/frontend/upload/dollar.png') }} width="30%" class="mb-3">
-                                <h3 class="card-title fw-bold">{{ $value->title }}</h3>
-                                <h6 class="card-subtitle mb-2 text-body-secondary">{{ $value->price }}
-                                    <span><small>EGP</small></span>
-                                </h6>
-                                <p class="card-text mb-4 ">{{ $value->description }}</p>
-                                <a onclick="val({{ $value->id }})" href="#" class="btn backgebtn"
-                                    data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                    data-value="{{ $value->id }}"
-                                    style="background: #cfa670;color:white ; bottom:0; ">Register with
-                                    Us </a>
+            <div class="inner">
+                <div class="container ">
+                    <div class="row gap-4 container justify-content-center">
+                        @foreach ($resturant as $rest_item)
+                            <div class=" col-12 col-md-3 p-5 " style="width: 15rem;  ">
+                                <a href="{{ route('resturant', [$rest_item->resturant_name, $rest_item->id]) }}">
+                                    <img class="card-img-top" style="border-radius:50%"
+                                        src={{ $rest_item->resturant_logo }} alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title fw-bold">{{ $rest_item->resturant_name }}</h5>
+                                </a>
+                                <ul class="d-flex justify-content-center gap-4 list-unstyled mt-3">
+                                    <li class="facebook soci"><a target="_blank" title="Facebook"
+                                            href="{{ $contactUs->where('resturant_id', $rest_item->id)->first()->facebook ?? ' ' }}"><i
+                                                class="fa fa-facebook  social fs-5"></i></a>
+                                    </li>
 
+                                    <li class="youtube soci"><a target="_blank" title="Youtube"
+                                            href="{{ $contactUs->where('resturant_id', $rest_item->id)->first()->youtube ?? ' ' }}"><i
+                                                class="fa fa-youtube social fs-5"></i></a>
+                                    </li>
+
+                                    <li class="instagram soci"><a target="_blank" title="Instagram"
+                                            href="{{ $contactUs->where('resturant_id', $rest_item->id)->first()->instagram ?? '' }}"><i
+                                                class="fa fa-instagram social fs-5"></i></a></li>
+                                </ul>
+                            </div>
+
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!------counter--------->
+    <div class="one withsmallpadding ppb_text" style="padding:30px 0 30px 0;">
+        <div class="standard_wrapper">
+            <div class="page_content_wrapper">
+                <div class="inner">
+                    <div style="margin:auto;width:100%">
+                        </p>
+                        <div class="one_fifth " style="padding:30px 10px 30px 10px;">
+                            <div class="animate_counter_wrapper">
+                                <div id="1570096072336597485" class="odometer" style="font-size:50px;line-height:50px;">0
+                                </div>
+                                <div class="count_separator"><span></span></div>
+                                <div class="counter_subject">Years of Experience</div>
                             </div>
                         </div>
-                    @endforeach
-                @else
-                    <b>
-                        <p class="card-text">Sorry! No packages Now.</p>
-                    </b>
-                @endif
-
-
-
-
-                <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Fill your contact information</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
+                        <div class="one_fifth " style="padding:30px 10px 30px 10px;">
+                            <div class="animate_counter_wrapper">
+                                <div id="1570096072772185217" class="odometer" style="font-size:50px;line-height:50px;">0
+                                </div>
+                                <div class="count_separator"><span></span></div>
+                                <div class="counter_subject">Award Winning Chiefs</div>
                             </div>
-                            <div class="modal-body">
-                                <form action='{{ route('clientform') }}' method="post">
-                                    @csrf
-                                    <input type="hidden" id="packageinput" name='packageid' class="form-control" />
-                                    <!-- Name input -->
-                                    <div class="form-outline mb-4">
-                                        <label class="form-label" for="form4Example1">Name</label>
-                                        <input type="text" id="form4Example1" name='Name' class="form-control" />
-
-                                    </div>
-
-                                    <!-- Name input -->
-                                    <div class="form-outline mb-4">
-                                        <label class="form-label" for="Phone">Phone Number</label>
-                                        <input type="number" id="Phone" name='Phone' class="form-control" />
-
-                                    </div>
-
-                                    <div class="form-outline mb-4">
-                                        <label class="form-label" for="resturant">resturant name</label>
-                                        <input type="text" id="resturant" name='resturant' class="form-control" />
-
-                                    </div>
-
-
-                                    <!-- Message input -->
-                                    <div class="form-outline mb-4">
-                                        <label class="form-label" for="form4Example3">Message</label>
-                                        <textarea class="form-control" id="form4Example3" name="Message" rows="4"></textarea>
-
-                                    </div>
-
-
-
-                                    <!-- Submit button -->
-                                    <button type="submit" class="btn btn-primary btn-block mb-4">Send</button>
-                                </form>
+                        </div>
+                        <div class="one_fifth " style="padding:30px 10px 30px 10px;">
+                            <div class="animate_counter_wrapper">
+                                <div id="15700960721959780185" class="odometer" style="font-size:50px;line-height:50px;">
+                                    0</div>
+                                <div class="count_separator"><span></span></div>
+                                <div class="counter_subject">Customers Served</div>
                             </div>
+                        </div>
+                        <div class="one_fifth " style="padding:30px 10px 30px 10px;">
+                            <div class="animate_counter_wrapper">
+                                <div id="15700960721803188826" class="odometer" style="font-size:50px;line-height:50px;">
+                                    0</div>
+                                <div class="count_separator"><span></span></div>
+                                <div class="counter_subject">Dishes</div>
+                            </div>
+                        </div>
+                        <div class="one_fifth last " style="padding:30px 10px 30px 10px;">
+                            <div class="animate_counter_wrapper">
+                                <div id="15700960721920355529" class="odometer" style="font-size:50px;line-height:50px;">
+                                    0</div>
+                                <div class="count_separator"><span></span></div>
+                                <div class="counter_subject">Awards</div>
+                            </div>
+                        </div>
+                        <p>
+                            <br class="clear" />
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!------pricing------>
+    <div class="  mb-5">
+        <h1 class="mb-4">
+            packages
+        </h1>
+        <div class=" row justify-content-center gap-4" id="pricing">
+            @if ($packages->count() > 0)
+                @foreach ($packages as $value)
+                    <div class=" col-12 col-md-4  card" style=" width:20%">
+                        <div class="card-body" style="margin-top: 10% ">
+                            <img src={{ asset('assets/frontend/upload/dollar.png') }} width="30%" class="mb-3">
+                            <h3 class="card-title fw-bold">{{ $value->title }}</h3>
+                            <h6 class="card-subtitle mb-2 text-body-secondary">{{ $value->price }}
+                                <span><small>EGP</small></span>
+                            </h6>
+                            <p class="card-text mb-4 ">{{ $value->description }}</p>
+                            <a onclick="val({{ $value->id }})" href="#" class="btn backgebtn"
+                                data-bs-toggle="modal" data-bs-target="#exampleModal" data-value="{{ $value->id }}"
+                                style="background: #cfa670;color:white ; bottom:0; ">Register with
+                                Us </a>
 
                         </div>
                     </div>
+                @endforeach
+            @else
+                <b>
+                    <p class="card-text">Sorry! No packages Now.</p>
+                </b>
+            @endif
+
+
+
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Fill your contact information</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action='{{ route('clientform') }}' method="post">
+                                @csrf
+                                <input type="hidden" id="packageinput" name='packageid' class="form-control" />
+                                <!-- Name input -->
+                                <div class="form-outline mb-4">
+                                    <label class="form-label" for="form4Example1">Name</label>
+                                    <input type="text" id="form4Example1" name='Name' class="form-control" />
+
+                                </div>
+
+                                <!-- Name input -->
+                                <div class="form-outline mb-4">
+                                    <label class="form-label" for="Phone">Phone Number</label>
+                                    <input type="number" id="Phone" name='Phone' class="form-control" />
+
+                                </div>
+
+                                <div class="form-outline mb-4">
+                                    <label class="form-label" for="resturant">resturant name</label>
+                                    <input type="text" id="resturant" name='resturant' class="form-control" />
+
+                                </div>
+
+
+                                <!-- Message input -->
+                                <div class="form-outline mb-4">
+                                    <label class="form-label" for="form4Example3">Message</label>
+                                    <textarea class="form-control" id="form4Example3" name="Message" rows="4"></textarea>
+
+                                </div>
+
+
+
+                                <!-- Submit button -->
+                                <button type="submit" class="btn btn-primary btn-block mb-4">Send</button>
+                            </form>
+                        </div>
+
+                    </div>
                 </div>
-
             </div>
+
         </div>
-    @endsection
+    </div>
+@endsection
 
 
-    @section('script')
-        <script>
-            function val(re) {
-                var packageid = document.getElementById("packageinput");
-                packageid.setAttribute("value", re);
+@section('script')
+    <script>
+        function val(re) {
+            var packageid = document.getElementById("packageinput");
+            packageid.setAttribute("value", re);
 
-                console.log(packageid);
-            }
-        </script>
-        <script>
-            window.odometerOptions = {
-                format: '(,ddd).dd'
-            };
-            setTimeout(function() {
-                jQuery('#1570096072336597485').html(20);
-            }, 1000);
+            console.log(packageid);
+        }
+    </script>
+    <script>
+        window.odometerOptions = {
+            format: '(,ddd).dd'
+        };
+        setTimeout(function() {
+            jQuery('#1570096072336597485').html(20);
+        }, 1000);
 
-            window.odometerOptions = {
-                format: '(,ddd).dd'
-            };
-            setTimeout(function() {
-                jQuery('#1570096072772185217').html(12);
-            }, 1000);
+        window.odometerOptions = {
+            format: '(,ddd).dd'
+        };
+        setTimeout(function() {
+            jQuery('#1570096072772185217').html(12);
+        }, 1000);
 
-            window.odometerOptions = {
-                format: '(,ddd).dd'
-            };
-            setTimeout(function() {
-                jQuery('#15700960721959780185').html(15500);
-            }, 1000);
+        window.odometerOptions = {
+            format: '(,ddd).dd'
+        };
+        setTimeout(function() {
+            jQuery('#15700960721959780185').html(15500);
+        }, 1000);
 
-            window.odometerOptions = {
-                format: '(,ddd).dd'
-            };
-            setTimeout(function() {
-                jQuery('#15700960721803188826').html(85);
-            }, 1000);
+        window.odometerOptions = {
+            format: '(,ddd).dd'
+        };
+        setTimeout(function() {
+            jQuery('#15700960721803188826').html(85);
+        }, 1000);
 
-            window.odometerOptions = {
-                format: '(,ddd).dd'
-            };
-            setTimeout(function() {
-                jQuery('#15700960721920355529').html(15);
-            }, 1000);
-        </script>
-        <script type='text/javascript'>
-            /* <![CDATA[ */
-            var tgAjax = {
-                "ajaxurl": "#",
-                "ajax_nonce": "c5281db0c2"
-            };
-            /* ]]> */
-        </script>
-    @endsection
+        window.odometerOptions = {
+            format: '(,ddd).dd'
+        };
+        setTimeout(function() {
+            jQuery('#15700960721920355529').html(15);
+        }, 1000);
+    </script>
+    <script type='text/javascript'>
+        /* <![CDATA[ */
+        var tgAjax = {
+            "ajaxurl": "#",
+            "ajax_nonce": "c5281db0c2"
+        };
+        /* ]]> */
+    </script>
+@endsection

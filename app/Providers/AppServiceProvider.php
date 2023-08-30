@@ -30,7 +30,5 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrap();
         
         View::share(['aboutUs'=>$aboutUs ,'contact'=>$contact]);
-
-        //
-    }
+     }
 }

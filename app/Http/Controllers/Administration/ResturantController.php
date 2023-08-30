@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Administration;
 
 use App\Http\Controllers\Controller;
+use App\Models\Foodcourt;
 use App\Models\Package;
 use App\Models\Resturant;
 use App\Models\User;
@@ -28,7 +29,8 @@ class ResturantController extends Controller
     public function create()
     {
         $all_packages = Package::where('is_active',1)->get();
-        return view('Dashboard.ResturantOwner.create',compact('all_packages'));
+        $foodcourts = Foodcourt::where('is_active',1)->get();
+        return view('Dashboard.ResturantOwner.create',compact('all_packages','foodcourts'));
     }
 
     /**
@@ -36,7 +38,6 @@ class ResturantController extends Controller
      */
     public function store(Request $request)
     {
-        
            $owner_date=User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -48,6 +49,7 @@ class ResturantController extends Controller
                 'user_id'=>$owner_date->id,
                 'package'=>$request->package,
                 'resturant_name'=>$request->resturant_name,
+                'foodcourt_id'=>$request->foodcourt_id,
                 'description'=>$request->description
                 ];
                 if($request->hasfile('resturant_logo')) 
@@ -77,8 +79,9 @@ class ResturantController extends Controller
      */
     public function edit(Resturant $resturant)
     {
+        $foodcourts = Foodcourt::where('is_active',1)->get();
         $all_packages = Package::where('is_active',1)->get();
-            return view('Dashboard.ResturantOwner.edit',compact('resturant','all_packages'));
+            return view('Dashboard.ResturantOwner.edit',compact('resturant','all_packages','foodcourts'));
         
     }
 
@@ -102,6 +105,7 @@ class ResturantController extends Controller
         $data=[
             'is_active' => $request->boolean('is_active'),
             'package' => $request->package,
+            'foodcourt_id'=>$request->foodcourt_id,
             'resturant_name' => $request->resturant_name,
             'description'=>$request->description
         ];

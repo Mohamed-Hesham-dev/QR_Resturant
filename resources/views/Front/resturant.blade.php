@@ -151,18 +151,18 @@
 
                                 <div class="row align-items-center pb-3 m-2 options-container">
 
-                                    <div class="col-12 col-md-6 mt-2 ">
+                                    {{-- <div class="col-12 col-md-6 mt-2 ">
                                         <h5 class="fw-bold pb-2 option"></h5>
                                         <div class="form-check d-flex  gap-2">
                                             <input class="form-check-input mt-1" type="checkbox" value=""
                                                 id="flexCheckDefault">
                                             <label class="  d-flex align-items-center gap-3" for="flexCheckDefault">
-                                                <p>Xl</p>
-                                                <p class="fw-bold">33<span>EGP</span></p>
+                                                <p></p>
+                                                <p class="fw-bold"><span>EGP</span></p>
                                             </label>
 
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                                 <div class="mb-4 m-2">
                                     <h4 class="fw-bold mb-3"> Quantity</h4>
@@ -234,16 +234,7 @@
                                     </li>
                                 </ul>
                             </div>
-                            <div class="  mt-1">
-                                <div>
-                                    <nav class=" d-flex gap-4 nav-pills nav-fill">
-                                        @foreach ($categories as $category)
-                                            <a class="  btn btn-light p-2"
-                                                href={{ route('resturant.category', $category->category_name) }}>{{ $category->category_name }}</a>
-                                        @endforeach
-                                    </nav>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
 
@@ -280,27 +271,50 @@
 
 
         <h2 class="ppb_title text-center mb-5 pt-5"><span class="ppb_title_first ">Resturant</span>Menu</h2>
+        <div class="  mt-1">
+            <div class="container-fluid">
+                <nav class=" d-flex gap-4 justify-content-center nav-pills nav-fill">
+                    @foreach ($categories as $category)
+                        <a onclick=filter({{ $category->id }}) class=" cattego btn btn-light p-2" href="">
+                            {{ $category->category_name }}</a>
+                    @endforeach
+                </nav>
+            </div>
+        </div>
         <div class="ppb_portfolio one nopadding " style="padding:0px 0 0px 0;">
+
             <div class=" mb-5 ">
                 <div class="container ">
-                    <div class="row align-items-center justify-contnet-center">
-                        @foreach ($allproducts as $productt)
-                            <div class=" col-6 col-md-3 mb-5">
+                    <div id='allproducct'>
+                        <div class="row align-items-center justify-contnet-center">
 
-                                <a id="modalnfo" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                                    onclick="openProductModal(this);" data-menu="{{ json_encode($productt) }}"
-                                    data-options="{{ json_encode($productt->options()->get()) }}">
+                            @foreach ($categories as $cat)
+                                <h2 class="mt-4 mb-3 fw-bold mb-4">
+                                    {{ $cat->category_name }}
+                                    <div class="mt-2" style="border-bottom:6px solid #cfa670; width:10%"></div>
+                                </h2>
 
-                                    <img src={{ asset($productt->logo) }} class="card-img-top"
-                                        style="width: 100%; border-radius:50%;   " alt="...">
-                                    <div class="card-body text-center">
-                                        <h5 class="card-title">{{ $productt->name }}</h5>
-                                        <p class="card-textt">
-                                            {{ Str::limit(strip_tags($productt->description), 33) }}</p>
+                                @foreach ($cat->product as $productt)
+                                    <div class=" col-6 col-md-3 mb-5">
+
+                                        <a id="modalnfo" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                            onclick="openProductModal(this);" data-menu="{{ json_encode($productt) }}"
+                                            data-options="{{ json_encode($productt->options()->get()) }}">
+
+                                            <img src={{ asset($productt->logo) }} class="card-img-top"
+                                                style="width: 100%; border-radius:50%;   " alt="...">
+                                            <div class="card-body text-center">
+                                                <h5 class="card-title">{{ $productt->name }}</h5>
+                                                <p class="card-textt">
+                                                    {{ Str::limit(strip_tags($productt->description), 33) }}</p>
+                                            </div>
+                                        </a>
                                     </div>
-                                </a>
-                            </div>
-                        @endforeach
+                                @endforeach
+                            @endforeach
+
+
+                        </div>
                     </div>
                 </div>
 
@@ -422,8 +436,39 @@
 @endsection
 @section('script')
     <script>
+        function filter($id) {
+
+            document.querySelector('.cattego');
+            event.preventDefault();
+            // 
+            $.ajax({
+                url: '/resturant/category/' + $id,
+                method: 'GET',
+                dataType: 'json',
+                success: function(response) {
+                    console.log(response)
+                    var container = document.getElementById('allproducct')
+                    container.innerHTML = '';
+                    var main = $('<div class = "row align-items-center justify-contnet-center"></div>')
+                    container.append(main[0]);
+
+                    for (var i = 0; i < response.length; i++) {
+                        console.log(response[i].logo)
+                      
+                        main.append('catmain');
+                    }
+
+                },
+                error: function(error) {
+
+                }
+
+            });
+        }
+    </script>
+    <script>
         function openProductModal(alldata) {
-            console.log(alldata);
+
             var productData = $(alldata).data('menu');
 
 

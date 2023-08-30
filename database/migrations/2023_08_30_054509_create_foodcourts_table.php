@@ -11,18 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('resturants', function (Blueprint $table) {
+        Schema::create('foodcourts', function (Blueprint $table) {
             $table->id();
-            $table->string('resturant_name');
-            $table->string('package');
-            $table->string('resturant_logo');
-            $table->string('resturant_cover')->nullable();
-            $table->foreignId('foodcourt_id')->nullable()->onDelete('cascade')->default(1);
-            $table->boolean('is_active');
             $table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade');
-            
-
+            $table->string('foodcourt_name');
+            $table->string('foodcourt_logo');
+            $table->boolean('is_active');
             $table->timestamps();
+            
         });
     }
 
@@ -31,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('resturants');
+        Schema::dropIfExists('foodcourts');
     }
 };

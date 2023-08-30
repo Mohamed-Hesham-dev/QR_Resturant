@@ -266,7 +266,7 @@
                         <hr>
                         <br>
                         <div>
-                            <h2 class="mb-4 fw-bold">Dine In / Takeaway
+                            <h2 class="mb-4 fw-bold">Dine In / Takeaway / Delivery
                             </h2>
                             <div class="form-check d-flex gap-2">
                                 <input class="form-check-input" type="radio" name="methodd" value="DineIn" id="DineIn">
@@ -281,6 +281,13 @@
                                     Takeaway
                                 </label>
                             </div>
+                            <div class="form-check d-flex gap-2">
+                                <input class="form-check-input" type="radio" name="methodd" id="Delivery"
+                                    value="Delivery">
+                                <label class="form-check-label" for="Delivery">
+                                    Delivery
+                                </label>
+                            </div>
                         </div>
                         <div id="toggle">
                             <div class="table dineinfields">
@@ -289,17 +296,33 @@
 
 
                                 <select class="form-select" name="table" aria-label="Default select example">
-                                    <option selected>Nothing</option>
+                                    <option selected>Number of Table</option>
                                     @if (isset($resturan->table))
                                         @foreach ($resturan->table as $item)
-                                            <option value="{{ $item->id }}">{{ $item->title }}</option>
+                                            <option value="{{ $item->num_table }}">{{ $item->num_table }}</option>
                                         @endforeach
                                     @endif
                                 </select>
 
 
                             </div>
+                            <div class="name">
+                                <h2 class="mb-4 fw-bold ">Your Name
+                                </h2>
+                                <div class="mb-3">
+                                    <input type="text" class="form-control" name='clientname' id="name"
+                                        placeholder="Omar Abdullah Mahran">
+                                </div>
+                            </div>
                             <div class="name takeaway-fields">
+                                <h2 class="mb-4 fw-bold">Your Phone
+                                </h2>
+                                <div class="mb-3">
+                                    <input type="number" class="form-control" name="phonenumber"
+                                        placeholder="ex: +2 0100 328 7527">
+                                </div>
+                            </div>
+                            <div id="phone" class=" deliveryfields">
                                 <h2 class="mb-4 fw-bold">Your Phone
                                 </h2>
                                 <div class="mb-3">
@@ -307,7 +330,15 @@
                                         placeholder="ex: +2 0100 328 7527">
                                 </div>
                             </div>
-                            <div class="table takeaway-fields">
+                            <div class="deliveryfields">
+                                <h2 class="mb-4 fw-bold">Your Address
+                                </h2>
+                                <div class="mb-3">
+                                    <textarea class="form-control" name='address' id="address" placeholder="Your Address"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="table deliveryfields takeaway-fields">
                                 <h2 class="mb-4 fw-bold">Pick-up Time
                                 </h2>
 
@@ -324,14 +355,7 @@
                                 </select>
                             </div>
 
-                            <div class="name">
-                                <h2 class="mb-4 fw-bold">Your Name
-                                </h2>
-                                <div class="mb-3">
-                                    <input type="text" class="form-control" name='clientname' id="name"
-                                        placeholder="Omar Abdullah Mahran">
-                                </div>
-                            </div>
+
                             {{-- @if (isset($resturan))
                                 <div class="resturantinfo mt-5">
                                     <input type="hidden" name='resturantname' value="{{ $resturan->resturant_name }}">
@@ -356,15 +380,15 @@
                         </div>
                     </div>
 
-
                     <div class="col-md-4 summary">
                         <div>
                             <h5><b>Checkout</b></h5>
                         </div>
                         <hr>
                         <p>SHIPPING</p>
-                        <select name="payment-method">
-                            <option class="text-muted paymentmeth">Cash</option>
+                        <select name="paymentmethod">
+                            <option class="text-muted paymentmeth " selected value="cash">Cash</option>
+                            <option class="text-muted paymentmeth" value="visa/card">visa/card</option>
                         </select>
 
                         @if (isset($totalprice))
@@ -388,19 +412,31 @@
     <script>
         const dineInRadio = document.getElementById("DineIn");
         const takeawayRadio = document.getElementById("Takeaway");
+        const deliveryRadio = document.getElementById("Delivery");
         const dineInFields = document.querySelectorAll('.dineinfields');
+        const deliveryFields = document.querySelectorAll('.deliveryfields');
         const takeawayFields = document.querySelectorAll('.takeaway-fields');
         const toggle = document.getElementById('toggle').style.display = 'none';
         dineInRadio.addEventListener('click', function() {
             const toggle = document.getElementById('toggle').style.display = 'block';
-
+            deliveryFields.forEach(field => field.style.display = 'none');
             dineInFields.forEach(field => field.style.display = 'block');
             takeawayFields.forEach(field => field.style.display = 'none');
         });
 
+
+        deliveryRadio.addEventListener('click', function() {
+            const toggle = document.getElementById('toggle').style.display = 'block';
+            deliveryFields.forEach(field => field.style.display = 'block');
+            dineInFields.forEach(field => field.style.display = 'none');
+            takeawayFields.forEach(field => field.style.display = 'none');
+        });
+
+
         takeawayRadio.addEventListener('click', function() {
             const toggle = document.getElementById('toggle').style.display = 'block';
-
+            document.getElementById('phone').remove();
+            deliveryFields.forEach(field => field.style.display = 'none');
             dineInFields.forEach(field => field.style.display = 'none');
             takeawayFields.forEach(field => field.style.display = 'block');
         });

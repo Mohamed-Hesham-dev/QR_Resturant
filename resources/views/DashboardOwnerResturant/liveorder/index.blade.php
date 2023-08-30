@@ -49,10 +49,12 @@
                                     style="cursor: pointer">details</a>
 
                                 <hr>
+
                             </div>
                             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-lg" role="document">
+
                                     <div class="modal-content">
                                         <div class="modal-header bg-info">
                                             <h5 class="modal-title" id="exampleModalLabel">Order Details</h5>
@@ -76,10 +78,13 @@
                                                     <h5>Client Name <span
                                                             style="font-weight:bold ">{{ $order->clientname }}</span>
                                                     </h5>
-                                                    <h6>phone number: <span
+                                                    <p>phone number: <span
                                                             style="font-weight:bold ">{{ $order->phonenumber }}</span>
-                                                    </h6>
+                                                    </p>
                                                     <p>PickupTime : <span>{{ $order->PickupTime }}</span></p>
+                                                    <p>Orderid : <span>{{ $order->id }}</span></p>
+                                                    <p>Address : <span>{{ $order->address }}</span></p>
+                                                    <p>paymentmethod : <span>{{ $order->payment }}</span></p>
                                                 </div>
                                                 <div class="col-12">
 
@@ -88,7 +93,6 @@
                                                             Information</h4>
                                                     </div>
                                                     @foreach ($order->cart()->get() as $item)
-                                                        {{-- @dd($item->options()->get()) --}}
                                                         <div class="col-6">
                                                             <div>
                                                                 <p>Quantity

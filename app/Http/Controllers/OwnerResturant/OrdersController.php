@@ -17,11 +17,8 @@ class OrdersController extends Controller
     public function index()
     {
         // dd("index");
-      
         $resturant=Resturant::Where('user_id',Auth::guard('owner')->user()->id)->first();
- 
         $order=Order::where('resturant_id',$resturant->id)->get();
- 
         return view('DashboardOwnerResturant.orders.index',compact('order'));
     }
 

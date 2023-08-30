@@ -27,28 +27,6 @@ class CartController extends Controller
         
         if(session()->has('cart')){
             $data= session()->get('cart');
-            // foreach($data as $item){ 
-            //     $database=[
-            //         'resturant_id'=>$item['resturant_id'],
-            //         'productid'=>$item['productid'],
-            //         'productname'=>$item['productname'],
-            //         'productdescription'=>$item['productdescription'],
-            //         'productquantity'=>$item['productquantity'],
-            //         'totalprice'=>$item['totalprice'],
-            //     ];
-            //     $id= Cart::create($database)->id;
-
-            //     foreach($item['options'] as $key => $value){
-            //     $options=[
-            //         'cart_id'=>$id,
-            //         'key'=>$key,
-            //         'value'=>$value
-            //     ];
-            //     optioncart::create($options);
-            //     }
-
-            // }
-
             $totalprice=0;
             $resturant_id=0;
             foreach($data as $item){
@@ -61,7 +39,6 @@ class CartController extends Controller
             return view('Front.cart',compact('data','resturan','totalprice'));
           }
           else {
-             
              return view('Front.cart' );
           }
    
@@ -134,6 +111,7 @@ class CartController extends Controller
 
     public function storee(Request $request){
  
+ 
     if(session()->has('cart')){
         $data= session()->get('cart');
   
@@ -149,6 +127,8 @@ class CartController extends Controller
             'resturant_id'=>$rest,
             'clientname'=>$request->clientname,
             'phonenumber'=>$request->phonenumber,
+            'address'=>$request->address,
+            'payment'=>$request->paymentmethod,
             'tablemethod'=>$request->table ."/". $request->methodd,
             'Items'=>$request->itemcount,
             'PickupTime'=>$request->pickupTime,
@@ -182,9 +162,10 @@ class CartController extends Controller
         }
         }
     }
+    
         session()->forget('cart');
 
-        return view('Front.success' );
+        return view('Front.success', compact('id','request') );
     
     }
       else {

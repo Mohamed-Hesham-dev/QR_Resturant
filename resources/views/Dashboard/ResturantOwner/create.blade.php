@@ -75,16 +75,28 @@
                 <div class="form-group">
                     <label for="email">Packages*</label>
                     <select name="package" class="form-control">
-                        <option hidden>Select Type Question</option>
+                        <option hidden>Package not selected</option>
                         @foreach ($all_packages as $value)
                             <option value="{{ $value->title }}">{{ $value->title }}</option>
                         @endforeach
                     </select>
                 </div>
+
+                <div class="form-group">
+                    <label for="email">foodcourt </label>
+                    <select name="foodcourt_id" class="form-control">
+                        <option hidden value='0'> foodcourt not selected</option>
+                        @foreach ($foodcourts as $foodcourt)
+                            <option value="{{ $foodcourt->id }}">{{ $foodcourt->foodcourt_name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+
                 <div class="">
-                <label for="email">Description*</label>
-                <textarea style="width: 100%" id="name" name="description"  class="required_field" ></textarea>
-            </div>
+                    <label for="email">Description*</label>
+                    <textarea style="width: 100%" id="name" name="description" class="required_field"></textarea>
+                </div>
                 <br>
                 <div class="input-group mb-3 form-group">
                     <label for="email">Status &nbsp; &nbsp;</label>
@@ -103,19 +115,19 @@
         <!-- /.form-box -->
     </div><!-- /.card -->
 
-<script>
-    function loadFile(event) {
-        var input = event.target;
-        var label = input.nextElementSibling;
+    <script>
+        function loadFile(event) {
+            var input = event.target;
+            var label = input.nextElementSibling;
 
-        if (input.files && input.files[0]) {
-            label.textContent = input.files[0].name;
-        } else {
-            label.textContent = 'Choose file';
+            if (input.files && input.files[0]) {
+                label.textContent = input.files[0].name;
+            } else {
+                label.textContent = 'Choose file';
+            }
         }
-    }
-</script>
-    
+    </script>
+
 
     <style>
         /* toggle in label designing */

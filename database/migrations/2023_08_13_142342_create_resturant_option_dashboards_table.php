@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('resturant_option_dashboards', function (Blueprint $table) {
             $table->id();
-            $table->string('option_name');
+            $table->string('option_name')->nullable()->default('null');
 
             $table->timestamps();
         });
