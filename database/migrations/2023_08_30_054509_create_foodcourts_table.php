@@ -11,10 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('resturant_option_dashboards', function (Blueprint $table) {
+        Schema::create('foodcourts', function (Blueprint $table) {
             $table->id();
-            $table->string('option_name')->nullable()->default('null');
-
             $table->timestamps();
         });
     }
@@ -24,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('resturant_option_dashboards');
+        Schema::dropIfExists('foodcourts');
     }
 };

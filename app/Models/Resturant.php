@@ -25,6 +25,10 @@ class Resturant extends Model implements HasMedia
     {
         return $this->belongsTo(user::class);
     }
+    public function table()
+    {
+        return $this->hasMany(ResturantTableDashboard::class);
+    }
     public function getImageAttribute($value)
     {
       

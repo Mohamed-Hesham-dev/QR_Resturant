@@ -27,8 +27,7 @@ class WebSiteResturantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
-
+    public function index($name,$id)
     {
 
         $resturant = Resturant::where('id', $id)->first();
@@ -41,7 +40,12 @@ class WebSiteResturantController extends Controller
         return view('Front.resturant', compact('resturant', 'contactUs', 'allproducts', 'categories', 'tables'));
     }
 
-
+    public function filter($id){
+      $res=ResturantCategoryDashboard::findOrFail($id);
+      dd($res);
+        $allproductscat=$res->product;
+        return json_decode($allproductscat);
+    }
 
     /**
      * Show the form for creating a new resource.

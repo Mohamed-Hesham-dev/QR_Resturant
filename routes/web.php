@@ -8,6 +8,7 @@ use App\Http\Controllers\Administration\DashboardController;
 use App\Http\Controllers\Administration\PackageController;
 use App\Http\Controllers\Administration\RequestsController;
 use App\Http\Controllers\Administration\ResturantController;
+use App\Http\Controllers\OwnerResturant\Account;
 use App\Http\Controllers\OwnerResturant\FeedbackController;
 use App\Http\Controllers\OwnerResturant\LiveordersController;
 use App\Http\Controllers\OwnerResturant\OrdersController;
@@ -75,7 +76,7 @@ Route::group(['middleware'=>['is_owner'],'prefix'=>'owner'], function () {
      Route::resource('liveorders',LiveordersController::class)->names('liveorders');
      Route::get('reservaition',[ReservationController::class,'index'])->name("Reservation.dashboard");
      Route::resource('feedback', FeedbackController::class)->names('feedback');
-
+    Route::resource('account',Account::class)->names('account');
 
      Route::get('reservaition/{id}',[ReservationController::class,'destroy'])->name("reservation.destroy");
 
@@ -103,9 +104,9 @@ Route::get('/',[HomeController::class,'index'])->name('index');
 Route::post('/',[HomeController::class,'clientform'])->name('clientform');
 
 Route::get('resturant',[WebSiteResturantController::class,'index'])->name('resturant');
-Route::get('resturant/{id}',[WebSiteResturantController::class,'index'])->name('resturant');
+Route::get('resturant/{id}/{res}',[WebSiteResturantController::class,'index'])->name('resturant');
+// Route::get('/resturant/category/{id}',[WebSiteResturantController::class,'filter'])->name('fil');
 Route::get('/get-images/{resturantId}', [WebSiteResturantController::class,'getImages']);
-Route::get('resturant/category/{category}',[WebSiteResturantController::class,'indexcategory'])->name('resturant.category');
 Route::post('reservation',[WebSiteResturantController::class,'reservation'])->name('reservation');
 Route::post('feedback',[WebSiteResturantController::class,'feedback'])->name('feedback');
 
@@ -116,3 +117,4 @@ Route::get('signUp',[WebSiteUserRegisterController::class,'index'])->name('regis
 Route::post('signUp',[WebSiteUserRegisterController::class,'store'])->name('register_user.store');
 Route::resource('cart',CartController::class)->names('cart');
 Route::post('/cart/store', [CartController::class,'storee'])->name('cart.storee');;
+Route::resource('foodcourt',FoodcourtController::class)->names('foodcourt');

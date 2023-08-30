@@ -16,9 +16,11 @@ return new class extends Migration
             $table->id();
             $table->foreignId('resturant_id')->nullable()->constrained()->onDelete('cascade');
             $table->string('tablemethod');
-            $table->string('clientname')->default('Metod no need client name');
-            $table->string('phonenumber')->default('No number insert');
-            $table->string('PickupTime')->default('after 30 min');
+            $table->string('clientname')->default('Method no need client name');
+            $table->string('phonenumber')->nullable()->default('No number insert');
+            $table->string('PickupTime')->nullable()->default('after 30 min');
+            $table->string('address')->nullable();
+            $table->string('payment')->default('cash');
             $table->integer('Items');
             $table->double('price');
             $table->enum('statue', ['pending', 'ACCEPTED', 'REJECTED','PREPARED','DELIVERD','ClOSED'])->default('pending');

@@ -19,7 +19,7 @@
 @endsection
 
 @section('content')
-    <div class="row">
+    <div class="row" id='orderss'>
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
@@ -41,6 +41,11 @@
                         </thead>
                         <tbody>
                             @foreach ($order as $order)
+                                @if ($order->statue == 'pending')
+                                    <audio loop id="playAudio">
+                                        <source src="{{ asset('Audio/Ring.mp3') }}">
+                                    </audio>
+                                @endif
                                 <tr>
                                     <td>{{ $order->id }}</td>
                                     <td>{{ $order->created_at }}
@@ -136,113 +141,22 @@
 @endsection
 
 @section('script')
-    {{-- <script>
-        $(document).ready(function() {
-            $('.accept').click(function(event) {
-                event.preventDefault();
-                const orderId = {{ $order->id }};
-                const action = $(this).data('action');
-                $.ajax({
-                    url: $(this).attr('href'),
-                    type: 'POST',
-                    data: {
-                        order_id: orderId,
-                        action: action,
-                        _token: '{{ csrf_token() }}'
-                    },
-                    success: function(response) {
-                        // Handle the successful response, e.g., show a success message
-                        console.log(response);
-                    },
-                    error: function(error) {
-                        // Handle errors that occur during the AJAX request
-                        console.error('Error:', error);
-                    }
+    <script>
+        var audio = document.getElementById("playAudio");
+        setTimeout(function() {
+            if (audio) {
+
+                document.addEventListener("mouseout", function() {
+                    audio.play();
                 });
-            });
-        });
-    </script> --}}
-    {{-- <script>
-        const action = document.querySelector('.action');
-        const accept = document.querySelector('#accept');
-        const regict = document.querySelector('#regict');
-        const prepared = document.querySelector('#prepared');
-        const delivered = document.querySelector('#delivered');
-        const closed = document.querySelector('#closed');
-
-
-
-        // console.log(e.target.dataset.action);
-        $.ajax({
-            url: "{{ route('orders.update', $order->id) }}",
-            type: "GET",
-            method: "PUT",
-            success: function(statuue) {
-                if (statuue == '"pending"') {
-                    accept.style.display = "bolck";
-                    regict.style.display = "block";
-                    prepared.style.display = "none";
-                    delivered.style.display = "none";
-                    closed.style.display = "none";
-                }
-                if (statuue == '"ACCEPTED"') {
-                    accept.style.display = "none";
-                    regict.style.display = "none";
-                    prepared.style.display = "block";
-                    delivered.style.display = "none";
-                    closed.style.display = "none";
-                }
-                if (statuue == '"REJECTED"') {
-                    accept.style.display = "none";
-                    regict.style.display = "none";
-                    prepared.style.display = "none";
-                    delivered.style.display = "none";
-                    closed.style.display = "block";
-                }
-                if (statuue == '"PREPARED"') {
-                    accept.style.display = "none";
-                    regict.style.display = "none";
-                    prepared.style.display = "none";
-                    delivered.style.display = "block";
-                    closed.style.display = "none";
-                }
-                if (statuue == '"DELIVERD"') {
-                    accept.style.display = "none";
-                    regict.style.display = "none";
-                    prepared.style.display = "none";
-                    delivered.style.display = "none";
-                    closed.style.display = "block";
-                }
-                if (statuue == '"ClOSED"') {
-                    accept.style.display = "none";
-                    regict.style.display = "none";
-                    prepared.style.display = "none";
-                    delivered.style.display = "none";
-                    closed.style.display = "none";
-                }
+                document.addEventListener("mouseover", function() {
+                    audio.pause();
+                });
 
             }
-        });
-    </script> --}}
-    {{-- <script>
-        $(function() {
-            $("#example1").DataTable({
-                "responsive": true,
-                "lengthChange": false,
-                "autoWidth": false,
-                "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-            $('#example2').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false,
-                "responsive": true,
-            });
-        });
-    </script> --}}
+        }, 3000);
+    </script>
+
     <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>

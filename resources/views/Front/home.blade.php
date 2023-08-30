@@ -160,9 +160,13 @@
             </div>
 
 
+            <!------------------ Food Court----------------------->
+
+
+
+            <!------------------ Food Court----------------------->
+
             <!------------------resturants----------------------->
-
-
             <div id="resturants" class="one withsmallpadding ppb_team_column"
                 style="padding-top: 100px !important;padding:30px;">
                 <div class="page_content_wrapper" style="text-align:center">
@@ -174,7 +178,7 @@
                             <div class="row gap-4 container justify-content-center">
                                 @foreach ($resturant as $rest_item)
                                     <div class=" col-12 col-md-3 p-5 " style="width: 15rem;  ">
-                                        <a href="{{ route('resturant', $rest_item->id) }}">
+                                        <a href="{{ route('resturant', [$rest_item->resturant_name, $rest_item->id]) }}">
                                             <img class="card-img-top" style="border-radius:50%"
                                                 src={{ $rest_item->resturant_logo }} alt="Card image cap">
                                             <div class="card-body">

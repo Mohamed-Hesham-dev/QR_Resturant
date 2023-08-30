@@ -56,36 +56,16 @@
                     </a>
 
                 </li>
-                {{-- <li class="nav-item">
-                    <a href="#" onclick="content()" class="nav-link">
-                        <i class="nav-icon fas fa-th"></i>
-                        <p>
-                            Live Orders
-                            <span class="right badge badge-danger">New</span>
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-copy"></i>
-                        <p>
-                            Orders
-                            <i class="fas fa-angle-right right"></i>
-                            <span class="badge badge-info right">6</span>
-                        </p>
-                    </a>
-                </li>
+                <li class="nav-item ">
 
-                <li class="nav-item">
-                    <a href="#" class="nav-link">
-                        <i class="nav-icon fas fa-tree"></i>
-                        <p>
-                            Menu
-                            <i class="fas fa-angle-right right"></i>
+                    <a class="nav-link" href="{{ route('account.edit', Auth::guard('owner')->user()->id) }}">
+                        <i class="nav-icon fas fa-wallet"></i>
+                        <p style="pointer:cursor">
+                            My Account
                         </p>
                     </a>
 
-                </li> --}}
+                </li>
 
                 <li class="nav-item">
                     <a href="{{ route('table.index') }}" class="nav-link">

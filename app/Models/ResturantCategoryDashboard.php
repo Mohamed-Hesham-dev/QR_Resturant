@@ -14,4 +14,7 @@ class ResturantCategoryDashboard extends Model
         'resturant_id'
         
     ];
+    public function product(){
+        return $this->hasMany(ResturantProductDashboard::class,'category_id');
+    }
 }
