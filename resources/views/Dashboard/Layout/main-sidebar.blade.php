@@ -81,10 +81,8 @@
                         <i class="nav-icon fas fa-hamburger" style='font-size:20px;color:rgb(255, 255, 255)'></i>
                         <p>
                             Resturants
-
                         </p>
                     </a>
-
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('contactUsSetting.edit') }}" class="nav-link">
