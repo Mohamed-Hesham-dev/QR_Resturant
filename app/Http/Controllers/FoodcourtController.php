@@ -98,6 +98,6 @@ class FoodcourtController extends Controller
     public function destroy(Foodcourt $foodcourt)
     {
         $foodcourt->delete();
-        return redirect('/admin/resturant')->with('success','foodcourt Delete Successfully');
+        return redirect('/admin/foodcourt')->with('success','foodcourt Delete Successfully');
     }
 }

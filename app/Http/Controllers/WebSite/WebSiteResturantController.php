@@ -41,10 +41,10 @@ class WebSiteResturantController extends Controller
     }
 
     public function filter($id){
-      $res=ResturantCategoryDashboard::findOrFail($id);
-      dd($res);
-        $allproductscat=$res->product;
-        return json_decode($allproductscat);
+        dd($id);
+    //   $res=ResturantCategoryDashboard::findOrFail($id);
+    //     $allproductscat=$res->product;
+    //     return json_decode($allproductscat);
     }
 
     /**

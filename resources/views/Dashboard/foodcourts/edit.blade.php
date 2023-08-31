@@ -42,7 +42,7 @@
                 <h3 class="card-title">Edit resturant</h3>
             </div>
             <div class="card-body">
-                <form action="{{ route('foodcourt.update', $foodcourt->id) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('admin.foodcourt.update', $foodcourt->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
 
@@ -72,7 +72,7 @@
                         </label>
                     </div>
                     <div class="col-6" style="float:right;">
-                        <button type="submit" class="btn btn-primary">Edit Owner Resturant</button>
+                        <button type="submit" class="btn btn-primary">Edit Food court</button>
                     </div>
                     <!-- /.col -->
 

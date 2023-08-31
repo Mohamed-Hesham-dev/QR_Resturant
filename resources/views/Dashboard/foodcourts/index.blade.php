@@ -47,7 +47,7 @@
                 <h4 class="card-title"><strong>Foodcourt section</strong></h3>
                     <div class="col-md-2" style="float:right;">
 
-                        <a href="{{ route('foodcourt.create') }}">
+                        <a href="{{ route('admin.foodcourt.create') }}">
 
                             <button type="button" title="Add Resturant" class="btn btn-success">
                                 Add new Foodcourt
@@ -75,9 +75,9 @@
                             <td>{{ $data->is_active ? 'Active' : 'not_active' }}</td>
 
                             <td>
-                                <form action="{{ route('foodcourt.destroy', $data->id) }}" method="POST">
+                                <form action="{{ route('admin.foodcourt.destroy', $data->id) }}" method="POST">
                                     <a class="btn btn-primary" title="Edit"
-                                        href="{{ route('foodcourt.edit', $data->id) }}">
+                                        href="{{ route('admin.foodcourt.edit', $data->id) }}">
                                         <i class="fa fa-pen"></i>
                                     </a>
                                     @csrf

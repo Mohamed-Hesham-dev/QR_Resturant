@@ -45,13 +45,13 @@
                                 <p> Table / Method : <span><b>{{ $order->tablemethod }}</b></span></p>
                                 <p> numbers of Items: <span><b>{{ $order->Items }}</b></p>
                                 <p> price: <span><b>{{ $order->price }}</b><span style="font-size:10px"> EGP</span></p>
-                                <a class="right badge badge-primary" data-toggle="modal" data-target="#exampleModal"
-                                    style="cursor: pointer">details</a>
+                                <a class="right badge badge-primary" data-toggle="modal"
+                                    data-target="#order-{{ $order->id }}" style="cursor: pointer">details</a>
 
                                 <hr>
 
                             </div>
-                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                            <div class="modal fade" id="order-{{ $order->id }}" tabindex="-1" role="dialog"
                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-lg" role="document">
 

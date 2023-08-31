@@ -47,7 +47,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('admin/login',[DashboardController::class, 'loginAdmin'])->name('admin.login');
 Route::post('admin/login',[DashboardController::class, 'login']);
 Route::group(['middleware'=>['is_admin'],'prefix'=>'admin'], function () {
-    Route::resource('foodcourt',FoodcourtController::class)->names('foodcourt');
+    Route::resource('foodcourt',FoodcourtController::class)->names('admin.foodcourt');
 
     Route::get('/', [DashboardController::class,'index'])->name('admin.dashboard');
     Route::resource('resturant', ResturantController::class)->names('resturant');
@@ -109,7 +109,7 @@ Route::post('/',[HomeController::class,'clientform'])->name('clientform');
 
 Route::get('resturant',[WebSiteResturantController::class,'index'])->name('resturant');
 Route::get('resturant/{id}/{res}',[WebSiteResturantController::class,'index'])->name('resturant');
-// Route::get('/resturant/category/{id}',[WebSiteResturantController::class,'filter'])->name('fil');
+Route::get('category',[WebSiteResturantController::class,'filter'])->name('fil');
 Route::get('/get-images/{resturantId}', [WebSiteResturantController::class,'getImages']);
 Route::post('reservation',[WebSiteResturantController::class,'reservation'])->name('reservation');
 Route::post('feedback',[WebSiteResturantController::class,'feedback'])->name('feedback');

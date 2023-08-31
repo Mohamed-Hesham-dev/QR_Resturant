@@ -77,7 +77,7 @@
 
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('foodcourt.index') }}" class="nav-link">
+                    <a href="{{ route('admin.foodcourt.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-hamburger" style='font-size:20px;color:rgb(255, 255, 255)'></i>
                         <p>
                             Food Court

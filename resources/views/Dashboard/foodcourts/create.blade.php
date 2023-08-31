@@ -42,7 +42,7 @@
         </div>
 
 
-        <form action="{{ route('foodcourt.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.foodcourt.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="card-body  ">
 
@@ -73,7 +73,7 @@
                     </label>
                 </div>
                 <div class="col-6" style="float:right;">
-                    <button type="submit" class="btn btn-primary">Add Owner Resturant</button>
+                    <button type="submit" class="btn btn-primary">Add food court</button>
                 </div>
                 <!-- /.col -->
             </div>

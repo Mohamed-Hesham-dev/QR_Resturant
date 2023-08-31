@@ -240,15 +240,46 @@
 
 
                 </div>
-                <div class="col-2 ">
-                    <img class="rounded" src={{ $resturant->resturant_logo }} alt=""
-                        title="abreakey-raw-foodphotography-squid-still-life" width="190px" height="190px"
-                        data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg"
-                        data-no-retina>
-                </div>
+                {{-- <div class="col-2 ">
+                    <img class="rounded" src={{ $resturant->resturant_logo }} alt="" width="190px"
+                        height="190px" data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat"
+                        class="rev-slidebg" data-no-retina>
+                </div> --}}
             </div>
 
         </div>
+
+
+        @if (count($resturant->getMedia('images')) > 0)
+            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel"
+                style="border-top:12px solid rgb(151, 0, 0)">
+                <div class="carousel-inner">
+                    <div class="carousel-inner" style="height: 400px; width:100%">
+                        <div class="carousel-item active">
+                            <img src="{{ $resturant->getMedia('images')[0]->getUrl() }}" width="100%">
+                        </div>
+                        @foreach ($resturant->getMedia('images') as $img)
+                            <div class="carousel-item">
+                                <img src="{{ $img ? $img->getUrl() : '' }}" width="100%">
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        @endif
+
+
+
 
 
         <div class="container text-center mt-5">
@@ -275,25 +306,25 @@
             <div class="container-fluid">
                 <nav class=" d-flex gap-4 justify-content-center nav-pills nav-fill">
                     @foreach ($categories as $category)
-                        <a onclick=filter({{ $category->id }}) class=" cattego btn btn-light p-2" href="">
+                        <a class=" cattego btn btn-light p-2" onclick="filter({{ $category->id }})">
                             {{ $category->category_name }}</a>
                     @endforeach
                 </nav>
             </div>
         </div>
         <div class="ppb_portfolio one nopadding " style="padding:0px 0 0px 0;">
-
             <div class=" mb-5 ">
                 <div class="container ">
                     <div id='allproducct'>
                         <div class="row align-items-center justify-contnet-center">
 
                             @foreach ($categories as $cat)
-                                <h2 class="mt-4 mb-3 fw-bold mb-4">
-                                    {{ $cat->category_name }}
-                                    <div class="mt-2" style="border-bottom:6px solid #cfa670; width:10%"></div>
-                                </h2>
-
+                                @if (count($cat->product) > 0)
+                                    <h2 class="mt-4 mb-3 fw-bold mb-4">
+                                        {{ $cat->category_name }}
+                                        <div class="mt-2" style="border-bottom:6px solid #cfa670; width:10%"></div>
+                                    </h2>
+                                @endif
                                 @foreach ($cat->product as $productt)
                                     <div class=" col-6 col-md-3 mb-5">
 
@@ -437,26 +468,17 @@
 @section('script')
     <script>
         function filter($id) {
-
-            document.querySelector('.cattego');
             event.preventDefault();
-            // 
+
             $.ajax({
-                url: '/resturant/category/' + $id,
+                url: route('fil'),
                 method: 'GET',
-                dataType: 'json',
+                dataType: [
+                    'id': $id
+                ],
                 success: function(response) {
                     console.log(response)
-                    var container = document.getElementById('allproducct')
-                    container.innerHTML = '';
-                    var main = $('<div class = "row align-items-center justify-contnet-center"></div>')
-                    container.append(main[0]);
 
-                    for (var i = 0; i < response.length; i++) {
-                        console.log(response[i].logo)
-                      
-                        main.append('catmain');
-                    }
 
                 },
                 error: function(error) {
