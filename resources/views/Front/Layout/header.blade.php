@@ -60,7 +60,7 @@
                                 <li class="menu-item menu-item-has-children "><a href="#aboutus">Abou us</a>
 
                                 </li>
-                                <li class="menu-item menu-item-has-children "><a href="#resturants">Resturants</a>
+                                <li class="menu-item menu-item-has-children "><a href="#resturants">Restaurants</a>
 
                                 </li>
                                 <li class="megamenu col3 menu-item menu-item-has-children  "><a

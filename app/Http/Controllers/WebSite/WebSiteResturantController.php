@@ -122,12 +122,15 @@ class WebSiteResturantController extends Controller
     }
     public function reservation(Request $request)
     {
+        
+        $resturant_name=Resturant::where('id',$request->resturant_id)->first();
         $request->validate([
                 'phone' => 'required',
                 'date' => 'required',
                 'time' => 'required',
                 'seats' => 'required',
                 'message' => 'required',
+                'email' => 'required|email|unique:reservations',
         ]);
         $data = [
             'name' => Auth::user()->name,
@@ -141,7 +144,7 @@ class WebSiteResturantController extends Controller
         ];
 
         $data = Reservation::create($data);
-        return redirect('/resturant/' . $request->resturant_id)->with('success', 'Reservation Created Successfully');
+        return redirect('/resturant/'.$resturant_name->resturant_name.'/'.$request->resturant_id)->with('success', 'Reservation Created Successfully');
     }
     public function feedback(Request $request){
         $request->validate([

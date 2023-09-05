@@ -121,11 +121,30 @@
                                     <span style="font-family:Kristi;font-size:40px;font-weight:600;">We do both.</span>
                                 </p>
                             </div>
+
                         </div>
                     </div>
                 </div>
             </div>
+            <div>
+                <div class="row container justify-content-center align-items-center"
+                    style="    box-shadow: -1px 3px 32px black;
+        border-radius: 25px;
+        margin: auto;">
+                    <div class="col-12 col-md-4  mb-3">
 
+                        <i class="fa-solid fa-utensils"></i>
+                        <h1 class="fw-bold"> Dine in </h1>
+                    </div>
+                    <div class="col-12 col-md-4   mb-3">
+                        <i class="fa fa-home fs-1"></i>
+                        <h1 class="fw-bold">Takeaway</h1>
+                    </div>
+                    <div class="col-12 col-md-4  mb-3">
+                        <h1 class="fw-bold">Delivery</h1>
+                    </div>
+                </div>
+            </div>
             <!-- aboutus--->
             <div id="aboutus" class="one ppb_card_two_cols_with_image"
                 style="padding: 50px 0 70px 0 !important;position:relative;padding:40px 0 40px 0;">
@@ -197,7 +216,7 @@
     <div id="resturants" class="one withsmallpadding ppb_team_column">
         <div class="page_content_wrapper" style="text-align:center">
             <h1 class="">
-                <span class="ppb_title_first">Our</span>Resturants
+                <span class="ppb_title_first">Our</span>Restaurants
             </h1>
             <div class="inner">
                 <div class="container ">

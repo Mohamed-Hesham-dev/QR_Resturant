@@ -434,8 +434,15 @@
 
                     <form id="tg_reservation_form" action={{ route('reservation') }} method="post">
                         @csrf
+                        @error('email')
+                            <p class="text-danger">You make Reservation before</p>
+                        @enderror
                         <input type="hidden" id="action" name="action" value="tg_reservation_mailer" />
                         <input type="hidden" id="action" name="resturant_id" value="{{ $resturant->id }}" />
+                        @auth
+                            <input type="hidden" id="action" name="email" value="{{ Auth::user()->email }}" />
+
+                        @endauth
 
                         <div class="one_third " style="width: 100%">
                             <label for="phone">Phone*</label>
