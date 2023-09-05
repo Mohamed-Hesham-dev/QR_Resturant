@@ -287,6 +287,7 @@
                                 </label>
                             </div>
 
+
                             @auth
                                 <div class="form-check d-flex gap-2">
                                     <input class="form-check-input" type="radio" name="methodd" id="Delivery"
@@ -305,22 +306,25 @@
                         </div>
                         <div id="toggle">
                             <div class="table dineinfields">
-                                <h2 class="mb-4 fw-bold">Table
-                                </h2>
+                                @if (session('table_number'))
+                                    <input type="hidden" name='table' value="{{ session('table_number') }}">
+                                @endif
+                                @if (session('table_number') == null)
+                                    <h2 class="mb-4 fw-bold">Table
+                                    </h2>
+                                    @error('table')
+                                        <p class="text-danger">{{ $message }}</p>
+                                    @enderror
+                                    <select class="form-select" name="table" aria-label="Default select example">
 
-                                @error('table')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror
-                                <select class="form-select" name="table" aria-label="Default select example">
-
-                                    <option selected>Number of Table</option>
-                                    @if (isset($resturan->table))
-                                        @foreach ($resturan->table as $item)
-                                            <option value="{{ $item->num_table }}">{{ $item->num_table }}</option>
-                                        @endforeach
-                                    @endif
-                                </select>
-
+                                        <option selected>Number of Table</option>
+                                        @if (isset($resturan->table))
+                                            @foreach ($resturan->table as $item)
+                                                <option value="{{ $item->num_table }}">{{ $item->num_table }}</option>
+                                            @endforeach
+                                        @endif
+                                    </select>
+                                @endif
 
                             </div>
                             <div class="name">

@@ -43,11 +43,10 @@ class ResturantTableDashboardController extends Controller
     {
         $request->validate([
                 'title' => 'required',
-      
                 'num_table' => 'required',
                 'num_chairs' => 'required',
         ]);
-         $data = [
+       $data = [
             'is_active' => $request->boolean('is_active'),
             'title' => $request->title,
             'area' => $request->area,

@@ -24,7 +24,7 @@ class CartController extends Controller
      */
     public function index()
     {
- 
+        
         if(session()->has('cart')){
             $data= session()->get('cart');
             $totalprice=0;
