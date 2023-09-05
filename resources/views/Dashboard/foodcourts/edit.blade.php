@@ -42,18 +42,25 @@
                 <h3 class="card-title">Edit resturant</h3>
             </div>
             <div class="card-body">
-                <form action="{{ route('admin.foodcourt.update', $foodcourt->id) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('admin.foodcourt.update', $foodcourt->id) }}" method="POST"
+                    enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
 
                     <div class="form-group">
                         <label for="resturant_name">foodcourt Name</label>
+                        @error('resturant_name')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
                         <input class="required_field  form-control" id="resturant_name" name="resturant_name"
                             value="{{ $foodcourt->foodcourt_name }}" type="text" />
                     </div>
 
                     <div class="form-group">
                         <label for="password">foodcourt Image*</label>
+                        @error('foodcourt_logo')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
                         <img src="{{ $foodcourt->foodcourt_logo }}" id="output" width="80px" height="40px">
                         <div class="input-group">
                             <div class="custom-file">

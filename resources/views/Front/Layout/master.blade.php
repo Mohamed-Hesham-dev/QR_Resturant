@@ -45,6 +45,20 @@
                 <li class="menu-item"><a href="#resturants">Resturants</a></li>
                 <li class="menu-item menu-item-has-children "><a href="#pricing">Pricing</a>
                 </li>
+                <li class="megamenu col3 menu-item menu-item-has-children  ">
+                    <div class="container ">
+                        <a id="cart2" class="btn btn-light" type="button" data-toggle="modal"
+                            data-target="#cartModal">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+                                class="bi bi-cart menu-item text-white" viewBox="0 0 16 16">
+                                <path
+                                    d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l1.313 7h8.17l1.313-7H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                            </svg>
+                            <span>({{ count((array) session('cart')) }})</span>
+                        </a>
+                    </div>
+
+                </li>
 
             </ul>
         </div>
@@ -98,7 +112,10 @@
                 </div>
                 <div class="modal-footer border-top-0 d-flex justify-content-between">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <a href="{{ route('cart.index') }}" type="button" class="btn btn-success">Checkout</a>
+
+                    @if (session()->has('cart') && count(session()->get('cart')) > 0)
+                        <a href="{{ route('cart.index') }}" type="button" class="btn btn-success">Checkout</a>
+                    @endif
                 </div>
             </div>
         </div>

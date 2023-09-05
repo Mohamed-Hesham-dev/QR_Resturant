@@ -162,8 +162,7 @@
 
             <!------------------ Food Court----------------------->
             @if (count($allfoodcourts) > 0)
-                <div id="foodcourt" class="one withsmallpadding ppb_team_column"
-                    >
+                <div id="foodcourt" class="one withsmallpadding ppb_team_column">
                     <div class="page_content_wrapper" style="text-align:center">
                         <h1 class="">
                             <span class="ppb_title_first">Our</span>Food Courts
@@ -293,26 +292,31 @@
     </div>
 
     <!------pricing------>
-    <div class="  mb-5">
-        <h1 class="mb-4">
+    <div class=" container mb-5 text-center justify-content-center">
+        <h1 class="mb-4 fw-b">
             packages
         </h1>
-        <div class=" row justify-content-center gap-4" id="pricing">
+        <div class=" row justify-content-center mb-5" id="pricing">
             @if ($packages->count() > 0)
                 @foreach ($packages as $value)
-                    <div class=" col-12 col-md-4  card" style=" width:20%">
-                        <div class="card-body" style="margin-top: 10% ">
-                            <img src={{ asset('assets/frontend/upload/dollar.png') }} width="30%" class="mb-3">
-                            <h3 class="card-title fw-bold">{{ $value->title }}</h3>
-                            <h6 class="card-subtitle mb-2 text-body-secondary">{{ $value->price }}
-                                <span><small>EGP</small></span>
-                            </h6>
-                            <p class="card-text mb-4 ">{{ $value->description }}</p>
-                            <a onclick="val({{ $value->id }})" href="#" class="btn backgebtn"
-                                data-bs-toggle="modal" data-bs-target="#exampleModal" data-value="{{ $value->id }}"
-                                style="background: #cfa670;color:white ; bottom:0; ">Register with
-                                Us </a>
-
+                    <div class="col-12 col-md-4 mb-5" style="margin: auto">
+                        <div class="card"
+                            style=" width:90%; height:500px; overflow:hidden; width:90%; height:500px; overflow:hidden; margin:auto">
+                            <div class="card-body" style="margin-top: 10% ">
+                                {{-- <img src={{ asset('assets/frontend/upload/dollar.png') }} width="30%" class="mb-3"> --}}
+                                <h3 class="card-title fw-bold">{{ $value->title }}</h3>
+                                <h6 class="card-subtitle mb-2 text-body-secondary">{{ $value->price }}
+                                    <span><small>EGP</small></span>
+                                </h6>
+                                <p class="card-text mb-4 ">{{ $value->description }}</p>
+                                <div>
+                                    <a onclick="val({{ $value->id }})" href="#" class="btn backgebtn"
+                                        data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                        data-value="{{ $value->id }}"
+                                        style="background: #cfa670;color:white ; bottom:0; ">Register with
+                                        Us </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 @endforeach
@@ -397,7 +401,7 @@
             format: '(,ddd).dd'
         };
         setTimeout(function() {
-            jQuery('#1570096072336597485').html(20);
+            jQuery('#1570096072336597485').html(2);
         }, 1000);
 
         window.odometerOptions = {

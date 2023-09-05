@@ -46,6 +46,9 @@
                 <div class="card-body">
                     <div class="form-group">
                         <label for="email">Category Name*</label>
+                        @error('category_name')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
                         <input id="name" name="category_name" type="text" class="required_field form-control" />
                     </div>
                     <br>

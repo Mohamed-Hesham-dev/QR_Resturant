@@ -266,6 +266,11 @@
                         <hr>
                         <br>
                         <div>
+                            {{-- @if ($errors->any())
+                            @foreach ($errors->all() as $error)
+                                <p class="text-danger">{{ $error }}</p>
+                            @endforeach
+                        @endif --}}
                             <h2 class="mb-4 fw-bold">Dine In / Takeaway / Delivery
                             </h2>
                             <div class="form-check d-flex gap-2">
@@ -281,21 +286,33 @@
                                     Takeaway
                                 </label>
                             </div>
-                            <div class="form-check d-flex gap-2">
-                                <input class="form-check-input" type="radio" name="methodd" id="Delivery"
-                                    value="Delivery">
-                                <label class="form-check-label" for="Delivery">
-                                    Delivery
-                                </label>
-                            </div>
+
+                            @auth
+                                <div class="form-check d-flex gap-2">
+                                    <input class="form-check-input" type="radio" name="methodd" id="Delivery"
+                                        value="Delivery">
+                                    <label class="form-check-label" for="Delivery">
+                                        Delivery
+                                    </label>
+                                </div>
+                            @else
+                                <p class="text-success">If you need make your order Delivery Please Log in and make your account
+                                    now
+                                    <a class="text-danger" href="{{ route('register_user.index') }}">Register</a>
+                                </p>
+                            @endauth
+
                         </div>
                         <div id="toggle">
                             <div class="table dineinfields">
                                 <h2 class="mb-4 fw-bold">Table
                                 </h2>
 
-
+                                @error('table')
+                                    <p class="text-danger">{{ $message }}</p>
+                                @enderror
                                 <select class="form-select" name="table" aria-label="Default select example">
+
                                     <option selected>Number of Table</option>
                                     @if (isset($resturan->table))
                                         @foreach ($resturan->table as $item)
@@ -307,29 +324,28 @@
 
                             </div>
                             <div class="name">
+                                @error('clientname')
+                                    <p class="text-danger">{{ $message }}</p>
+                                @enderror
                                 <h2 class="mb-4 fw-bold ">Your Name
                                 </h2>
                                 <div class="mb-3">
                                     <input type="text" class="form-control" name='clientname' id="name"
-                                        placeholder="Omar Abdullah Mahran">
+                                        placeholder=" ">
                                 </div>
                             </div>
-                            <div class="name takeaway-fields">
+                            <div class="name ">
+                                @error('phonenumber')
+                                    <p class="text-danger">{{ $message }}</p>
+                                @enderror
                                 <h2 class="mb-4 fw-bold">Your Phone
                                 </h2>
                                 <div class="mb-3">
-                                    <input type="number" class="form-control" name="phonenumber"
-                                        placeholder="ex: +2 0100 328 7527">
+                                    <input type="number" class="form-control" name="phonenumber" placeholder=" ">
                                 </div>
                             </div>
-                            <div id="phone" class=" deliveryfields">
-                                <h2 class="mb-4 fw-bold">Your Phone
-                                </h2>
-                                <div class="mb-3">
-                                    <input type="number" class="form-control" name="phonenumber" id="number"
-                                        placeholder="ex: +2 0100 328 7527">
-                                </div>
-                            </div>
+
+
                             <div class="deliveryfields">
                                 <h2 class="mb-4 fw-bold">Your Address
                                 </h2>
@@ -338,21 +354,14 @@
                                 </div>
                             </div>
 
-                            <div class="table deliveryfields takeaway-fields">
+                            <div class="table takeaway-fields">
                                 <h2 class="mb-4 fw-bold">Pick-up Time
                                 </h2>
 
-
-                                <select class="form-select" name="pickupTime" aria-label="Default select example">
-                                    <option selected>Time</option>
-                                    <option value="12am-1am">12am-1am</option>
-                                    <option value="1am-2am">1am-2am</option>
-                                    <option value="2am-3am">2am-3am</option>
-                                    <option value="3am-4am">3am-4am</option>
-                                    <option value="4am-5am">4am-5am</option>
-                                    <option value="5am-6am">5am-6am</option>
-
-                                </select>
+                                <div class="mb-3">
+                                    <input type="text" class="form-control" name="pickupTime" id="pickupTime"
+                                        placeholder="">
+                                </div>
                             </div>
 
 
@@ -414,8 +423,9 @@
         const takeawayRadio = document.getElementById("Takeaway");
         const deliveryRadio = document.getElementById("Delivery");
         const dineInFields = document.querySelectorAll('.dineinfields');
-        const deliveryFields = document.querySelectorAll('.deliveryfields');
         const takeawayFields = document.querySelectorAll('.takeaway-fields');
+        const deliveryFields = document.querySelectorAll('.deliveryfields');
+
         const toggle = document.getElementById('toggle').style.display = 'none';
         dineInRadio.addEventListener('click', function() {
             const toggle = document.getElementById('toggle').style.display = 'block';
@@ -424,21 +434,20 @@
             takeawayFields.forEach(field => field.style.display = 'none');
         });
 
-
-        deliveryRadio.addEventListener('click', function() {
-            const toggle = document.getElementById('toggle').style.display = 'block';
-            deliveryFields.forEach(field => field.style.display = 'block');
-            dineInFields.forEach(field => field.style.display = 'none');
-            takeawayFields.forEach(field => field.style.display = 'none');
-        });
-
-
         takeawayRadio.addEventListener('click', function() {
             const toggle = document.getElementById('toggle').style.display = 'block';
-            document.getElementById('phone').remove();
+            takeawayFields.forEach(field => field.style.display = 'block');
             deliveryFields.forEach(field => field.style.display = 'none');
             dineInFields.forEach(field => field.style.display = 'none');
-            takeawayFields.forEach(field => field.style.display = 'block');
+
         });
+        if (deliveryRadio) {
+            deliveryRadio.addEventListener('click', function() {
+                const toggle = document.getElementById('toggle').style.display = 'block';
+                deliveryFields.forEach(field => field.style.display = 'block');
+                dineInFields.forEach(field => field.style.display = 'none');
+                takeawayFields.forEach(field => field.style.display = 'none');
+            });
+        }
     </script>
 @endsection

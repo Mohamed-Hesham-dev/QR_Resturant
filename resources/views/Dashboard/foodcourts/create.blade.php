@@ -48,12 +48,18 @@
 
                 <div class="form-group">
                     <label for="foodcourt_name">foodcourt Name*</label>
+                    @error('resturant_name')
+                        <p class="text-danger">{{ $message }}</p>
+                    @enderror
                     <input class="required_field form-control" id="resturant_name" name="resturant_name" type="text" />
                 </div>
 
 
                 <div class="form-group">
                     <label for="exampleInputFile">foodcourt Image*</label>
+                    @error('foodcourt_logo')
+                        <p class="text-danger">{{ $message }}</p>
+                    @enderror
                     <div class="input-group">
                         <div class="custom-file">
                             <input type="file" class="form-control" name="foodcourt_logo" placeholder="Image"

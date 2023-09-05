@@ -224,13 +224,11 @@
             url: "/cart/show",
             method: 'GET',
             success: function(response) {
-                console.log(response);
-
                 var totalprice = 0;
                 var bod = modal.getElementsByClassName('tbodyy');
                 bod[0].innerHTML = "";
                 $.each(response.data, function(index, dat) {
-                    if (index == 0) {
+                    if (index < 0) {
                         var tag = $('<tr class="allde"></tr>');
                     } else {
                         var tag = $('<tr class="allde"></tr>');
@@ -238,9 +236,8 @@
                         const keys = Object.keys(dat.options);
                         const values = Object.values(dat.options);
 
-                        // var result = "";
-
                         var td2 = $('<td class="productdescription"></td>');
+
                         for (let i = 0; i < keys.length; i++) {
                             var option = $(`<p>${keys[i] + ": " + values[i]}</p>`);
                             td2.append(option);
@@ -254,7 +251,9 @@
                         var action = $(
                             '<a class="btn btn-danger btn-sm"> <i class = "fa fa-times"> </i> </a>'
                         )
-                        action.attr('href', `/cart/destroy/${dat.productid}`);
+                        action.attr('class', `orderdelete`);
+                        action.attr('data-id', `${index}`);
+
                         td5.append(action);
                         var td11 = tag.append(td1);
                         var td22 = tag.append(td2);
@@ -263,11 +262,102 @@
                         var td55 = tag.append(td5);
                         bod[0].appendChild(tag[0]);
                     }
+                    document.querySelectorAll('.orderdelete')[`${index}`]
+                        .addEventListener(
+                            'click',
+                            function() {
+                                var id = this.dataset.id;
+                                $.ajax({
+                                    url: `/cart/destroy/${id}`,
+                                    method: 'GET',
+                                    success: function(response) {
 
+                                        location.reload();
+                                    }
+                                })
+                            });
                     totalprice += parseInt(dat.totalprice);
+
                 });
 
-                console.log(totalprice)
+                var price = modal.querySelector(".pricee").innerHTML = totalprice
+
+
+            },
+            error: function(error) {
+                console.error('Error fetching ass:', error);
+            }
+
+        });
+    })
+</script>
+
+
+<script>
+    var cart = document.getElementById('cart2');
+    cart.addEventListener('click', function() {
+        var modal = document.getElementById('cartModal'); // Select the modal using Bootstrap's Modal class
+
+        $.ajax({
+            url: "/cart/show",
+            method: 'GET',
+            success: function(response) {
+                var totalprice = 0;
+                var bod = modal.getElementsByClassName('tbodyy');
+                bod[0].innerHTML = "";
+                $.each(response.data, function(index, dat) {
+                    if (index < 0) {
+                        var tag = $('<tr class="allde"></tr>');
+                    } else {
+                        var tag = $('<tr class="allde"></tr>');
+                        var td1 = $('<td class="productname"></td>').text(dat.productname)
+                        const keys = Object.keys(dat.options);
+                        const values = Object.values(dat.options);
+
+                        var td2 = $('<td class="productdescription"></td>');
+
+                        for (let i = 0; i < keys.length; i++) {
+                            var option = $(`<p>${keys[i] + ": " + values[i]}</p>`);
+                            td2.append(option);
+                        }
+                        var td3 = $('<td class="productprice"></td>').text(dat.totalprice)
+                        var td4 = $('<td class="productquantity"></td>').text(dat
+                            .productquantity)
+                        var td5 = $(
+                            ' <td>  </td>'
+                        )
+                        var action = $(
+                            '<a class="btn btn-danger btn-sm"> <i class = "fa fa-times"> </i> </a>'
+                        )
+                        action.attr('class', `orderdelete`);
+                        action.attr('data-id', `${index}`);
+
+                        td5.append(action);
+                        var td11 = tag.append(td1);
+                        var td22 = tag.append(td2);
+                        var td33 = tag.append(td3);
+                        var td44 = tag.append(td4);
+                        var td55 = tag.append(td5);
+                        bod[0].appendChild(tag[0]);
+                    }
+                    document.querySelectorAll('.orderdelete')[`${index}`]
+                        .addEventListener(
+                            'click',
+                            function() {
+                                var id = this.dataset.id;
+                                $.ajax({
+                                    url: `/cart/destroy/${id}`,
+                                    method: 'GET',
+                                    success: function(response) {
+
+                                        location.reload();
+                                    }
+                                })
+                            });
+                    totalprice += parseInt(dat.totalprice);
+
+                });
+
                 var price = modal.querySelector(".pricee").innerHTML = totalprice
 
 

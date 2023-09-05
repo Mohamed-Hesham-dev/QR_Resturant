@@ -40,6 +40,12 @@ class ResturantTableDashboardController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+                'title' => 'required',
+      
+                'num_table' => 'required',
+                'num_chairs' => 'required',
+        ]);
          $data = [
             'is_active' => $request->boolean('is_active'),
             'title' => $request->title,
@@ -75,6 +81,12 @@ class ResturantTableDashboardController extends Controller
      */
     public function update(Request $request, ResturantTableDashboard $resturantTableDashboard)
     {
+        $request->validate([
+            'title' => 'required',
+  
+            'num_table' => 'required',
+            'num_chairs' => 'required',
+    ]);
         $data = [
             'is_active' => $request->boolean('is_active'),
             'title' => $request->title,

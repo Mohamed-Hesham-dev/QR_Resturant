@@ -31,6 +31,11 @@ class PackageController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'title'=>'required',
+            'price'=>'required',
+            'description'=>'required',
+        ]);
         $data=[
             'is_active'=>$request->boolean('is_active'),
             'title'=>$request->title,
@@ -64,6 +69,11 @@ class PackageController extends Controller
      */
     public function update(Request $request, Package $package)
     {
+        $request->validate([
+            'title'=>'required',
+            'price'=>'required',
+            'description'=>'required',
+        ]);
         $data=[
             'is_active'=>$request->boolean('is_active'),
             'title'=>$request->title,

@@ -47,25 +47,40 @@
                     @method('PUT')
                     <div class="form-group">
                         <label for="email">Owner Name</label>
+                        @error('name')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
                         <input class="required_field  form-control" id="name" name="name"
                             value="{{ $resturant->user->name }}" type="text" />
                     </div>
                     <div class="form-group">
                         <label for="resturant_name">Resturant Name</label>
+                        @error('resturant_name')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
                         <input class="required_field  form-control" id="resturant_name" name="resturant_name"
                             value="{{ $resturant->resturant_name }}" type="text" />
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
+                        @error('email')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
                         <input class="required_field  form-control" id="email" name="email" type="text"
                             value="{{ $resturant->user->email }}" />
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>
+                        @error('password')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
                         <input class="required_field  form-control" id="password" name="password" type="password" />
                     </div>
                     <div class="form-group">
                         <label for="password">Resturant Image*</label>
+                        @error('resturant_logo')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
                         <img src="{{ $resturant->resturant_logo }}" id="output" width="80px" height="40px">
                         <div class="input-group">
                             <div class="custom-file">
@@ -101,13 +116,16 @@
 
                     <div class="">
                         <label for="email">Description*</label>
+                        @error('description')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
                         <textarea style="width: 100%" id="name" name="description" class="required_field">{{ $resturant->description }}</textarea>
                     </div>
                     <br>
                     <div class="input-group mb-3">
                         <label for="email">Status &nbsp; &nbsp;</label>
-                        <input class="checkbox form-control" type="checkbox" name="is_active" id="switch" value="1"
-                            {{ $resturant->is_active == 1 ? 'checked' : '' }}>
+                        <input class="checkbox form-control" type="checkbox" name="is_active" id="switch"
+                            value="1" {{ $resturant->is_active == 1 ? 'checked' : '' }}>
                         <label for="switch" class="toggle">
                         </label>
                     </div>

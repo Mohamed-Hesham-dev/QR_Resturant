@@ -40,7 +40,7 @@ class ResturantAboutUsSettingController extends Controller
             try
                {
                     $AboutUsSetting = Resturant::find($id);
-                   // dd($AboutUsSetting);
+           
                     $AboutUsSetting->description=$request->description;
                     $AboutUsSetting->resturant_name=$request->resturant_name;
                     if($request->hasfile('resturant_logo')) 

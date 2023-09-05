@@ -24,12 +24,15 @@
         <div class="card">
             <div class="card-body register-card-body">
                 <p class="login-box-msg">Login</p>
-
+                @if ($errors->any())
+                    @foreach ($errors->all() as $error)
+                        <p>{{ $error }}</p>
+                    @endforeach
+                @endif
                 <form action="{{ url('owner/login') }}" method="post">
                     @csrf
                     <div class="input-group mb-3">
-                        <input type="email" name="email" class="form-control" placeholder="Email" required
-                            autofocus>
+                        <input type="email" name="email" class="form-control" placeholder="Email" autofocus>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>
@@ -37,8 +40,8 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control" type="password" name="password" required
-                            autocomplete="current-password">
+                        <input type="password" class="form-control" type="password" name="password"
+                            placeholder="Password" required autocomplete="current-password">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>

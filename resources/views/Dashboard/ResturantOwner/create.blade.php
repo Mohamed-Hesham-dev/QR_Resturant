@@ -47,27 +47,47 @@
             <div class="card-body  ">
                 <div class="form-group">
                     <label for="email">Owner Name*</label>
-                    <input class="required_field form-control" id="name" name="name" type="text" />
+                    @error('name')
+                        <p class="text-danger">{{ $message }}</p>
+                    @enderror
+                    <input class="required_field form-control" value="{{ old('name') }}" id="name" name="name"
+                        type="text" />
                 </div>
                 <div class="form-group">
                     <label for="resturant_name">Resturant Name*</label>
-                    <input class="required_field form-control" id="resturant_name" name="resturant_name" type="text" />
+                    @error('resturant_name')
+                        <p class="text-danger">{{ $message }}</p>
+                    @enderror
+                    <input class="required_field form-control" id="resturant_name" name="resturant_name" type="text"
+                        value="{{ old('resturant_name') }}" />
                 </div>
                 <div class="form-group">
                     <label for="email">Email*</label>
-                    <input class="required_field form-control" id="email" name="email" type="text" />
+                    @error('email')
+                        <p class="text-danger">{{ $message }}</p>
+                    @enderror
+                    <input class="required_field form-control" id="email" name="email" type="text"
+                        value="{{ old('email') }}" />
                 </div>
                 <div class="form-group">
                     <label for="password">Password*</label>
-                    <input class="required_field form-control" id="password" name="password" type="password" />
+                    @error('password')
+                        <p class="text-danger">{{ $message }}</p>
+                    @enderror
+                    <input class="required_field form-control" id="password" name="password" type="password"
+                        value="{{ old('password') }}" />
                 </div>
 
                 <div class="form-group">
                     <label for="exampleInputFile">Resturant Image*</label>
+                    @error('resturant_logo')
+                        <p class="text-danger">{{ $message }}</p>
+                    @enderror
                     <div class="input-group">
                         <div class="custom-file">
                             <input type="file" class="form-control" name="resturant_logo" placeholder="Image"
-                                id="exampleInputFile" onchange="loadFile(event)" accept="image/*">
+                                id="exampleInputFile" onchange="loadFile(event)" accept="image/*"
+                                value="{{ old('resturant_logo') }}">
                             <label class="custom-file-label" for="exampleInputFile" id="fileLabel">Choose file</label>
                         </div>
                     </div>
@@ -95,6 +115,9 @@
 
                 <div class="">
                     <label for="email">Description*</label>
+                    @error('description')
+                        <p class="text-danger">{{ $message }}</p>
+                    @enderror
                     <textarea style="width: 100%" id="name" name="description" class="required_field"></textarea>
                 </div>
                 <br>

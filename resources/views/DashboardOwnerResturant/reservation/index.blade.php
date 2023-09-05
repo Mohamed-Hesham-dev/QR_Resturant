@@ -77,7 +77,8 @@
                             <td>{{ $data->date }}</td>
                             <td>{{ $data->time }}</td>
                             <td>
-                                <form action="{{ route('reservation.destroy', $data->id) }}" method="POST">
+                                <form action="{{ route('reservation.destroy', $data->id) }}"
+                                    method="POST">
                                     @csrf
                                     @method('DELETE')
 
@@ -85,6 +86,7 @@
                                         <i class="fa fa-ban"></i>
                                     </button>
                                 </form>
+
 
                             </td>
                             </tr>

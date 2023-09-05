@@ -38,6 +38,9 @@ class ResturantCategoryDashboardController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'category_name' => 'required',
+        ]);
       
         $data = [
             'category_name' => $request->category_name,
@@ -72,6 +75,9 @@ class ResturantCategoryDashboardController extends Controller
      */
     public function update(Request $request, ResturantCategoryDashboard $resturantCategoryDashboard)
     {
+        $request->validate([
+            'category_name' => 'required',
+        ]);
         $data = [
             'category_name' => $request->category_name,
             'user_id'=>Auth::guard('owner')->user()->id,

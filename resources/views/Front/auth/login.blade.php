@@ -18,6 +18,7 @@
 
                         <div class="">
                             <label for="email">Email*</label>
+                          
                             <input style="width: 100%" id="email" name="email" type="text"
                                 class="required_field" />
                         </div>

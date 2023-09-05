@@ -47,22 +47,33 @@
                 <h3 class="card-title">Edit resturant</h3>
             </div>
             {{-- {{ route('resturant.update', $resturant->id) }} --}}
+
             <form class='container pb-5' action={{ route('account.update', $resturant->user->id) }} method="POST"
                 enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
+
                 <div class="form-group">
                     <label for="name">Owner Name</label>
+                    @error('name')
+                        <p class="text-danger">{{ $message }}</p>
+                    @enderror
                     <input class="required_field  form-control" id="name" name="name"
                         value="{{ $currentuser->name }}" type="text" />
                 </div>
                 <div class="form-group">
                     <label for="email">Email</label>
+                    @error('email')
+                        <p class="text-danger">{{ $message }}</p>
+                    @enderror
                     <input class="required_field  form-control" id="email" name="email" type="text"
                         value="{{ $currentuser->email }}" />
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
+                    @error('password')
+                        <p class="text-danger">{{ $message }}</p>
+                    @enderror
                     <input class="required_field  form-control" id="password" name="password" type="password" />
                 </div>
 

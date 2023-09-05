@@ -18,10 +18,9 @@ class ReservationController extends Controller
        return(view('DashboardOwnerResturant.reservation.index',compact('reservation','resturant')));
 
     }
-    public function destroy(Reservation $Reservation){
-    dd($Reservation);
+    public function destroy(Reservation $Reservation,Request $request){
             $Reservation->delete();
-            return redirect('/Reservation')->with('success', 'reservation Delete Successfully');
+            return redirect('/reservaition')->with('success', 'reservation Delete Successfully');
     
     }
 }

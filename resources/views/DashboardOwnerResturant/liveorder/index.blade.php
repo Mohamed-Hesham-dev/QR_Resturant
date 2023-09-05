@@ -84,7 +84,7 @@
                                                     <p>PickupTime : <span>{{ $order->PickupTime }}</span></p>
                                                     <p>Orderid : <span>{{ $order->id }}</span></p>
                                                     <p>Address : <span>{{ $order->address }}</span></p>
-                                                    <p>paymentmethod : <span>{{ $order->payment }}</span></p>
+                                                    <p>payment method : <span>{{ $order->payment }}</span></p>
                                                 </div>
                                                 <div class="col-12">
 
@@ -178,12 +178,12 @@
                                 <p> Table / Method : <span><b>{{ $order->tablemethod }}</b></span></p>
                                 <p> numbers of Items: <span><b>{{ $order->Items }}</b></p>
                                 <p> price: <span><b>{{ $order->price }}</b><span style="font-size:10px"> EGP</span></p>
-                                <a class="right badge badge-primary" data-toggle="modal" data-target="#exampleModal1"
+                                <a class="right badge badge-primary" data-toggle="modal"  data-target="#order-{{ $order->id }}"
                                     style="cursor: pointer">details</a>
 
                                 <hr>
                             </div>
-                            <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog"
+                            <div class="modal fade" id="order-{{ $order->id }}" tabindex="-1" role="dialog"
                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-lg" role="document">
                                     <div class="modal-content">
@@ -210,10 +210,13 @@
                                                     <h5>Client Name <span
                                                             style="font-weight:bold ">{{ $order->clientname }}</span>
                                                     </h5>
-                                                    <h6>phone number: <span
+                                                    <p>phone number: <span
                                                             style="font-weight:bold ">{{ $order->phonenumber }}</span>
-                                                    </h6>
+                                                    </p>
                                                     <p>PickupTime : <span>{{ $order->PickupTime }}</span></p>
+                                                    <p>Orderid : <span>{{ $order->id }}</span></p>
+                                                    <p>Address : <span>{{ $order->address }}</span></p>
+                                                    <p>payment method : <span>{{ $order->payment }}</span></p>
                                                 </div>
                                                 <div class="col-12">
 
@@ -307,12 +310,12 @@
                                 <p> Table / Method : <span><b>{{ $order->tablemethod }}</b></span></p>
                                 <p> numbers of Items: <span><b>{{ $order->Items }}</b></p>
                                 <p> price: <span><b>{{ $order->price }}</b><span style="font-size:10px"> EGP</span></p>
-                                <a class="right badge badge-primary" data-toggle="modal" data-target="#exampleModal2"
+                                <a class="right badge badge-primary" data-toggle="modal"  data-target="#order-{{ $order->id }}"
                                     style="cursor: pointer">details</a>
 
                                 <hr>
                             </div>
-                            <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog"
+                            <div class="modal fade" id="order-{{ $order->id }}" tabindex="-1" role="dialog"
                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-lg" role="document">
                                     <div class="modal-content">
@@ -339,10 +342,13 @@
                                                     <h5>Client Name <span
                                                             style="font-weight:bold ">{{ $order->clientname }}</span>
                                                     </h5>
-                                                    <h6>phone number: <span
+                                                    <p>phone number: <span
                                                             style="font-weight:bold ">{{ $order->phonenumber }}</span>
-                                                    </h6>
+                                                    </p>
                                                     <p>PickupTime : <span>{{ $order->PickupTime }}</span></p>
+                                                    <p>Orderid : <span>{{ $order->id }}</span></p>
+                                                    <p>Address : <span>{{ $order->address }}</span></p>
+                                                    <p>payment method : <span>{{ $order->payment }}</span></p>
                                                 </div>
                                                 <div class="col-12">
 

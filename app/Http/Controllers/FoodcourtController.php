@@ -33,6 +33,10 @@ class FoodcourtController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'resturant_name'=>'required',
+            'foodcourt_logo'=>'required',
+        ]);
             $data=[
                 'is_active'=>$request->boolean('is_active'),
                 'foodcourt_name'=>$request->resturant_name,
@@ -74,6 +78,10 @@ class FoodcourtController extends Controller
      */
     public function update(Request $request, Foodcourt $foodcourt)
     {
+        $request->validate([
+            'resturant_name'=>'required',
+            'foodcourt_logo'=>'required',
+        ]);
         $data=[
             'is_active'=>$request->boolean('is_active'),
             'foodcourt_name'=>$request->resturant_name,

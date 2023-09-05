@@ -24,7 +24,7 @@ class CartController extends Controller
      */
     public function index()
     {
-        
+ 
         if(session()->has('cart')){
             $data= session()->get('cart');
             $totalprice=0;
@@ -61,10 +61,10 @@ class CartController extends Controller
         }, ARRAY_FILTER_USE_KEY);
 
         $data=['resturant_id'=>$request->resturant_id,'productid'=>$request->productid,'productname'=>$request->productname,'productdescription' => $request->productdescription,'productquantity' => $request->quantity,'totalprice' => $request->totalprice,'options'=> $options];
-        $cart=session()->get('cart',[]);
-        
-        $cart[$request->productid]=$data;
-        session()->put('cart',$cart);
+        $cart=session()->get('cart');
+   
+        $cart[]=$data;
+         session()->put('cart',$cart);
         return redirect()->back()->with('success','product added to cart');
     }
     /**
@@ -72,6 +72,7 @@ class CartController extends Controller
      */
     public function show()
     {
+   
         if(session()->has('cart')){
             $data= session()->get('cart');
         
@@ -80,6 +81,7 @@ class CartController extends Controller
           else {
              $data="No data on Cart";
           }
+     
         return view('Front.resturant', compact('data'));
     }
 
@@ -102,15 +104,37 @@ class CartController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy()
+    public function destroy(Request $request ,string $id)
     {
-        dd("omar");
-        $data= session()->get('cart');
-        echo $data;
+    $cart = session()->get('cart');
+    $data=[];
+    if (isset($cart)) {
+    unset($cart [$id]);
+
+    foreach( $cart as $arr){
+        $data[]=$arr;
+    }
+    session()->forget('cart');
+
+    session()->put('cart',$data);
+            // Redirect to the cart page   
+            $dat= session()->get('cart');
+
+            return response()->json(['data' => $dat]);
+        }
     }
 
     public function storee(Request $request){
- 
+  $request->validate([
+    'clientname'=>'required',
+    'phonenumber'=>'required',
+    // 'address'=>'required',
+    // 'payment'=>'required',
+    // 'tablemethod'=>'required',
+    // 'Items'=>'required',
+    // 'PickupTime'=>'required',
+    // 'price'=>'required',
+  ]);
  
     if(session()->has('cart')){
         $data= session()->get('cart');
@@ -118,6 +142,7 @@ class CartController extends Controller
         $resturant_ids = [];
       
         foreach($data as $item){
+            
        $resturant_ids[]= $item['resturant_id'];
         }
         $unique_restaurant_ids = array_unique($resturant_ids);
@@ -133,7 +158,6 @@ class CartController extends Controller
             'Items'=>$request->itemcount,
             'PickupTime'=>$request->pickupTime,
             'price'=>$request->totalprice,
-          
         ];
         $orderid=Order::create($order)->id;
        

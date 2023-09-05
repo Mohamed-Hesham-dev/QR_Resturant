@@ -8,6 +8,10 @@
 @endsection
 @section('head')
     <style>
+        .productt {
+            height: 300px;
+        }
+
         .card-img-top {
             border: 5px solid #717171;
         }
@@ -35,6 +39,12 @@
             background: #cfa670;
             margin-top: 20px;
             border-radius: 15px;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .productt {
+                height: 90px;
+            }
         }
     </style>
 @endsection
@@ -111,7 +121,7 @@
                         <input type="hidden" name="totalprice" id="allprice" />
                         <div class="modal-header">
                             <h4>Add Product</h4>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            <button type="button" class="btn-close" onclick="relod()" data-bs-dismiss="modal"
                                 aria-label="Close"></button>
                         </div>
                         <div class="row align-items-center">
@@ -184,10 +194,9 @@
                             </div>
                         </div>
 
-
-
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                                onclick="relod()">Close</button>
                             <button type="submit" class="btn btn-primary">Add to cart</button>
                         </div>
                     </form>
@@ -196,13 +205,14 @@
         </div>
         <!-- Modal -->
         <!-------------Story-------------->
-        <div id="aboutus" class="container d-flex  justify-content-start">
+        <div id="aboutus" class="container d-flex m-4 m-md-1 justify-content-start">
             <div class="row align-items-center">
-                <div class=" col-10 row justify-content-center ">
-                    <div class=" col-12 d-flex align-items-center">
-                        <img src="{{ $resturant->resturant_logo }}" width="15%" class="pe-3"
-                            style="border-radius:50%;">
-                        <div class="d-flex flex-column align-items-start">
+                <div class=" col-10 row justify-content-start ">
+                    <div class=" col-12 row   justify-content-start align-items-center justify-content-center">
+                        <div class=" col-6 col-md-4"> <img src="{{ $resturant->resturant_logo }}" width="15%"
+                                class="pe-3" style="border-radius:50%; width:100% !important;"> </div>
+
+                        <div class="col-6  col-md-6 d-flex flex-column align-items-start">
                             <div class="d-flex flex-column align-items-left">
                                 <p style="margin-bottom:-10px" class=" fs-2 fw-bold">{{ $resturant->resturant_name }}</p>
                                 <p class=" fs-5 mt-2 mb-3"><a href="tel:{{ $contactUs->mobile ?? '' }}">
@@ -282,8 +292,8 @@
 
 
 
-        <div class="container text-center mt-5">
-            <div id="aboutus" style=" position:relative; ">
+        <div class="container text-center  mt-2 mt-m-5">
+            <div id="aboutus" style=" width:90%; margin: auto; position:relative; ">
                 <div class=" " style="" data-stellar-ratio="1">
                     <h2 class="fw-bold"><span class="ppb_title_first sw-bold">Find Us</h2>
                     {{-- <div class="ppb_subtitle">
@@ -304,9 +314,10 @@
         <h2 class="ppb_title text-center mb-5 pt-5"><span class="ppb_title_first ">Resturant</span>Menu</h2>
         <div class="  mt-1">
             <div class="container-fluid">
-                <nav class=" d-flex gap-4 justify-content-center nav-pills nav-fill">
+                <nav class=" row gap-4 justify-content-center nav-pills nav-fill">
                     @foreach ($categories as $category)
-                        <a class=" cattego btn btn-light p-2" onclick="filter({{ $category->id }})">
+                        <a href={{ route('fil', ['id' => $category->id, 'restid' => $category->resturant_id]) }}
+                            class=" col-3 col-md-1 cattego btn btn-light p-2 fw-bold">
                             {{ $category->category_name }}</a>
                     @endforeach
                 </nav>
@@ -316,28 +327,30 @@
             <div class=" mb-5 ">
                 <div class="container ">
                     <div id='allproducct'>
-                        <div class="row align-items-center justify-contnet-center">
+                        <div class=" m-2 row align-items-center justify-contnet-center">
 
                             @foreach ($categories as $cat)
                                 @if (count($cat->product) > 0)
-                                    <h2 class="mt-4 mb-3 fw-bold mb-4">
+                                    <h2 class="mt-4 mb-3  mb-4 fw-bold">
                                         {{ $cat->category_name }}
-                                        <div class="mt-2" style="border-bottom:6px solid #cfa670; width:10%"></div>
+                                        {{-- <div class="mt-2" style="border-bottom:6px solid #cfa670; width:10%"></div> --}}
                                     </h2>
                                 @endif
                                 @foreach ($cat->product as $productt)
-                                    <div class=" col-6 col-md-3 mb-5">
+                                    <div class=" col-3 col-md-3 mb-5">
 
                                         <a id="modalnfo" data-bs-toggle="modal" data-bs-target="#exampleModal"
                                             onclick="openProductModal(this);" data-menu="{{ json_encode($productt) }}"
                                             data-options="{{ json_encode($productt->options()->get()) }}">
-
-                                            <img src={{ asset($productt->logo) }} class="card-img-top"
-                                                style="width: 100%; border-radius:50%;   " alt="...">
+                                            <div>
+                                                <img class="productt" src={{ asset($productt->logo) }}
+                                                    class="card-img-top" style="width: 100%; border-radius:50%;   "
+                                                    alt="...">
+                                            </div>
                                             <div class="card-body text-center">
-                                                <h5 class="card-title">{{ $productt->name }}</h5>
-                                                <p class="card-textt">
-                                                    {{ Str::limit(strip_tags($productt->description), 33) }}</p>
+                                                <h5 class="card-title fw-bold">{{ $productt->name }}</h5>
+                                                {{-- <p class="card-textt">
+                                                    {{ Str::limit(strip_tags($productt->description), 33) }}</p> --}}
                                             </div>
                                         </a>
                                     </div>
@@ -365,14 +378,17 @@
                 <div class="reservation_wrapper container">
                     <a id="reservation_cancel_btn" href="javascript:;"><i class="fa fa-close"></i></a>
                     <h2 class="ppb_title"><span class="ppb_title_first">Write</span class="fw-400">Feedback</h2>
-
-
                     <form action={{ route('feedback') }} method="post">
                         @csrf
                         <input type="hidden" id="action" name="resturant_id" value="{{ $resturant->id }}" />
+                        <input type="hidden" id="action" name="resturant_name"
+                            value="{{ $resturant->resturant_name }}" />
 
                         <div class="one_third " style="width: 100%">
                             <label for="phone">Phone*</label>
+                            @error('phone')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
                             <input id="phone" name="phone" type="text" class="required_field" />
                         </div>
                         <br class="clear" />
@@ -380,6 +396,9 @@
 
                         <div class="one">
                             <label for="message">Write Feedback</label>
+                            @error('feedback')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
                             <textarea id="message" name="feedback" rows="7" cols="10"></textarea>
                         </div>
                         <br class="clear" />
@@ -420,22 +439,34 @@
 
                         <div class="one_third " style="width: 100%">
                             <label for="phone">Phone*</label>
+                            @error('phone')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
                             <input id="phone" name="phone" type="text" class="required_field" />
                         </div>
                         <br class="clear" />
                         <br />
                         <div class="one_third">
                             <label for="date" class="hidden">Date*</label>
+                            @error('date')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
                             <input type="text" class="  required_field" id="date" name="date"
                                 value="05/10/2019">
                         </div>
                         <div class="one_third">
                             <label for="time">Time*</label>
+                            @error('time')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
                             <input type="text" class="pp_time required_field" id="time" name="time"
                                 value="06:00 PM" />
                         </div>
                         <div class="one_third last">
                             <label for="seats">Seats*</label>
+                            @error('seats')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
                             <select id="seats" name="seats" class="required_field" style="width:99%">
                                 @foreach ($tables as $table)
                                     <option value="{{ $table->num_chairs }}">{{ $table->num_chairs }}</option>
@@ -446,6 +477,9 @@
                         <br />
                         <div class="one">
                             <label for="message">Special Requests</label>
+                            @error('message')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
                             <textarea id="message" name="message" rows="7" cols="10"></textarea>
                         </div>
                         <br class="clear" />
@@ -467,27 +501,12 @@
 @endsection
 @section('script')
     <script>
-        function filter($id) {
-            event.preventDefault();
-
-            $.ajax({
-                url: route('fil'),
-                method: 'GET',
-                dataType: [
-                    'id': $id
-                ],
-                success: function(response) {
-                    console.log(response)
-
-
-                },
-                error: function(error) {
-
-                }
-
-            });
+        function relod() {
+            location.reload();
         }
     </script>
+
+
     <script>
         function openProductModal(alldata) {
 
@@ -495,6 +514,7 @@
 
 
             var modal = document.getElementById('exampleModal'); // Select the modal using Bootstrap's Modal class
+
             var modalTitle = modal.querySelector('.modal-title');
             var modaldescription = modal.querySelector('.modal-description');
 
@@ -549,141 +569,10 @@
                                 var containvalue = $(
                                     '<div class="form-check d-flex  gap-2"></div>')
                                 var inputval = $(
-                                    '<input class="form-check-input mt-1" type="checkbox" > '
+                                    '<input class="form-check-input mt-1" type="checkbox" >'
                                 );
-
                                 inputval.attr('value', value.name);
-                                inputval.attr('name', val.option)
-                                inputval.attr('data-price', value.price);
-                                var label = $(
-                                    ' <label class="  d-flex align-items-center gap-3" for="flexCheckDefault"></div>'
-                                );
-                                var valuename = $('<p>').text(value
-                                    .name);
-                                label[0].append(valuename[0]);
 
-                                var valueprice = $('<p class="fw-bold"></p>')
-                                    .text(value
-                                        .price);
-                                valueprice.append(
-                                    '<span>EGP</span>');
-                                label[0].append(
-                                    valueprice[0]);
-
-                                var valueText = 'value_name : ' + value.name;
-                                if (value.price !== null) {
-                                    valueText += ' - Price: ' + value.price;
-                                }
-
-                                containvalue.append(inputval[0]);
-                                containvalue
-                                    .append(label[0]);
-
-                                contain.append(containvalue[0]);
-
-                                // Append value text to the option element
-                                // optionElement.append($('<br>')).append(valueText);
-                            });
-                            // Append the <p> element to the options container
-                            optionsContainer.appendChild(variab[0]);
-                        });
-                    },
-                    error: function(error) {
-                        console.error('Error fetching images:', error);
-                    }
-
-                });
-
-
-                modal.addEventListener('click', function(event) {
-                    var checkboxes = document.querySelectorAll("input[type=checkbox]");
-                    var totalPrice = 0;
-
-                    for (var i = 0; i < checkboxes.length; i++) {
-
-                        var checkbox = checkboxes[i];
-
-                        if (checkbox.checked) {
-                            totalPrice += parseFloat(checkbox.dataset.price);
-                        }
-                    }
-
-
-                    var quantity = document.getElementById('form1');
-
-                    totalPrice = quantity.value * totalPrice
-                    document.getElementById("totalPrice").textContent = totalPrice; // }
-                    document.getElementById("allprice").setAttribute("value", totalPrice);
-
-                })
-            });
-
-        }
-    </script>
-    <script>
-        function openProductModal(alldata) {
-            var productData = $(alldata).data('menu');
-
-
-            var modal = document.getElementById('exampleModal'); // Select the modal using Bootstrap's Modal class
-            var modalTitle = modal.querySelector('.modal-title');
-            var modaldescription = modal.querySelector('.modal-description');
-
-            modalTitle.textContent = productData.name;
-            modaldescription.textContent = productData.description;
-            document.getElementById('productname').setAttribute('value', productData.name);
-            document.getElementById('productdescription').setAttribute('value', productData.description);
-            document.getElementById('productid').setAttribute('value', productData.id);
-            document.getElementById('resturant_id').setAttribute('value', productData.resturant_id);
-
-
-            modal.addEventListener('shown.bs.modal', function(event) {
-
-                $.ajax({
-                    url: '/get-images/' + productData.id,
-                    method: 'GET',
-                    dataType: 'json',
-                    success: function(response) {
-
-                        var imagesContainer = modal.querySelector('.carousel-inner');
-                        imagesContainer.innerHTML = ''; // Clear previous content
-
-                        var optionsContainer = modal.querySelector('.options-container');
-                        optionsContainer.innerHTML = ''; // Clear previous content
-
-
-                        $.each(response.images, function(index, image) {
-
-                            if (index == 0) {
-                                var tag = $('<div class="carousel-item active"></div>');
-                            } else {
-                                var tag = $('<div class="carousel-item"></div>');
-                            }
-
-                            var imgElement = $(
-                                    '<img class="d-block w-100" alt="...">'
-                                )
-                                .attr('src', image).addClass('modal-image');
-
-                            tag[0].appendChild(imgElement[0]);
-
-                            imagesContainer.appendChild(tag[0]); // Append the DOM element
-                        });
-
-                        $.each(response.result, function(index, val) {
-                            var contain = $('<div class="col-12 col-md-6 mt-2 "></div>');
-                            var options = $(' <h5 class = "fw-bold pb-2"></h5>')
-                            var optionElement = options.text(val.option);
-                            var variab = contain.append(optionElement[0]);
-
-                            $.each(val.values, function(index, value) {
-                                var containvalue = $(
-                                    '<div class="form-check d-flex  gap-2"></div>')
-                                var inputval = $(
-                                    '<input class="form-check-input mt-1" type="checkbox" > '
-                                );
-
-                                inputval.attr('value', value.name);
                                 inputval.attr('name', val.option)
                                 inputval.attr('data-price', value.price);
                                 var label = $(

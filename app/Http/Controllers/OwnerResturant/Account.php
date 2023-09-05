@@ -57,6 +57,10 @@ class Account extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $request->validate([
+            'name'=>'required',
+            'email'=>'required',
+           'password'=>'required']);
         $user=User::findOrFail($id);
 
     $data=['name'=>$request->name,

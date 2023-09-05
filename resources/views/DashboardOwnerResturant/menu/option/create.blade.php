@@ -46,6 +46,9 @@
                 @csrf
                 <div class="">
                     <label for="email">Option Name*</label>
+                    @error('option_name')
+                        <p class="text-danger">{{ $message }}</p>
+                    @enderror
                     <input style="width: 100%" id="name" name="option_name" type="text" class="required_field" />
                 </div>
                 <div class="">
@@ -53,7 +56,9 @@
                         style="grid-auto-flow: column;justify-content: center; align-content: center;">
                         <thead class='' style='background-color: #2a415b;font-size:11px;
     color: white;'>
-
+                            @error('value.*.value_name')
+                                <p class="text-danger">value can not be empty</p>
+                            @enderror
                             <th class=" col-form-label">remove/add</th>
                             <th class=" col-form-label">value name</th>
 

@@ -47,6 +47,18 @@ class ResturantProductDashboardController extends Controller
      */
     public function store(Request $request)
     {
+      
+       $validation= $request->validate([
+            "logo"=>'required',
+            "name"=>'required',
+            "category_id"=>'required|integer',
+            "values.*"=>'required|integer',
+            "options.*"=>'required|integer',
+            "prices.*"=>'required|integer',
+           
+
+        ]);
+        // dd($validation);
         $data=[
             "name"=>$request->name,
             "category_id"=>$request->category_id,
@@ -98,6 +110,17 @@ class ResturantProductDashboardController extends Controller
      */
     public function update(Request $request, ResturantProductDashboard $resturantProductDashboard)
     {
+        // dd($request);
+        $validation= $request->validate([
+            "logo"=>'required',
+            "name"=>'required',
+            "category_id"=>'required|integer',
+            "values.*"=>'required|integer',
+            "options.*"=>'required|integer',
+            "prices.*"=>'required',
+           
+
+        ]);
         $data=[
             "name"=>$request->name,
             "category_id"=>$request->category_id,

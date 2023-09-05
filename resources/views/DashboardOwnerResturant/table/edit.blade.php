@@ -37,29 +37,38 @@
 
 @section('content')
     <div class="card card-primary">
-        
-            <div class="card-header">
-                <h3 class="card-title">Edit Table</h3>
-            </div>
 
-            <form action="{{ route('table.update', $resturantTableDashboard->id) }}" method="POST"
-                enctype="multipart/form-data">
-                @csrf
-                @method('PUT')
-                <div class="card-body">
+        <div class="card-header">
+            <h3 class="card-title">Edit Table</h3>
+        </div>
+
+        <form action="{{ route('table.update', $resturantTableDashboard->id) }}" method="POST"
+            enctype="multipart/form-data">
+            @csrf
+            @method('PUT')
+            <div class="card-body">
                 <div class="form-group">
                     <label for="email">Title*</label>
-                    <input   id="name" name="title" type="text"
-                        value="{{ $resturantTableDashboard->title }}" class="required_field form-control" />
+                    @error('title')
+                        <p class="text-danger">{{ $message }}</p>
+                    @enderror
+                    <input id="name" name="title" type="text" value="{{ $resturantTableDashboard->title }}"
+                        class="required_field form-control" />
                 </div>
                 <div class="form-group">
                     <label for="email">Table Number*</label>
-                    <input   id="name" name="num_table" type="number"
-                        value="{{ $resturantTableDashboard->num_table }}" class="required_field form-control" />
+                    @error('num_table')
+                        <p class="text-danger">{{ $message }}</p>
+                    @enderror
+                    <input id="name" name="num_table" type="number" value="{{ $resturantTableDashboard->num_table }}"
+                        class="required_field form-control" />
                 </div>
                 <div class="form-group">
                     <label for="email">Number Of Chairs*</label>
-                    <input   id="name" name="num_chairs" type="number"
+                    @error('num_chairs')
+                        <p class="text-danger">{{ $message }}</p>
+                    @enderror
+                    <input id="name" name="num_chairs" type="number"
                         value="{{ $resturantTableDashboard->num_chairs }}" class="required_field form-control" />
                 </div>
 
@@ -88,8 +97,8 @@
                 </div>
                 <!-- /.col -->
             </div>
-            </form>
-     
+        </form>
+
         <!-- /.form-box -->
     </div><!-- /.card -->
 

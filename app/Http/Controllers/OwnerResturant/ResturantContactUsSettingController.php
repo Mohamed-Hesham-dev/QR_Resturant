@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Resturant;
 use App\Models\ResturantContactUsSetting;
 use Exception;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -60,6 +61,7 @@ class ResturantContactUsSettingController extends Controller
      */
     public function update(Request $request)
     {
+ 
 
         try
         {

@@ -27,7 +27,7 @@ class WebSiteUserLoginController extends Controller
 
     public function loginUser(Request $request)
     {
-       // dd($request->all());
+
         $request->validate([
             'email' => 'required',
             'password' => 'required',

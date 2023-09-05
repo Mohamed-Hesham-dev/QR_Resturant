@@ -36,6 +36,7 @@
                                 <th>ITEMS</th>
                                 <th>PRICE</th>
                                 <th>LAST STATUS </th>
+
                                 <th>Actions </th>
                             </tr>
                         </thead>
@@ -54,6 +55,7 @@
                                     <td>{{ $order->Items }}</td>
                                     <td>{{ $order->price }}</td>
                                     <td>{{ $order->statue }}</td>
+
 
                                     <td>
                                         {{-- href="{{ route('orders.edit', $order->id) }}" --}}
@@ -109,6 +111,16 @@
                                                             class="accept pe-auto  btn-secondary rounded mr-1"
                                                             data-action="closed">closed</a>
                                                     </form>
+                                                @elseif($order->statue == 'ClOSED')
+                                                    <form action="{{ route('orders.destroy', $order->id) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+
+                                                        <button type="submit" title="Delete" class="btn btn-danger">
+                                                            <i class="fa fa-ban"></i>
+                                                        </button>
+                                                    </form>
                                                 @endif
                                             </div>
                                         </div>
@@ -142,19 +154,29 @@
 
 @section('script')
     <script>
+        $(function() {
+            $("#example1").DataTable({
+                "responsive": true,
+                "lengthChange": false,
+                "autoWidth": false,
+                // "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+            $('#example2').DataTable({
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+            });
+        });
+    </script>
+    <script>
+        console.log('omaaaa');
         var audio = document.getElementById("playAudio");
-        setTimeout(function() {
-            if (audio) {
 
-                document.addEventListener("mouseout", function() {
-                    audio.play();
-                });
-                document.addEventListener("mouseover", function() {
-                    audio.pause();
-                });
-
-            }
-        }, 3000);
+        audio.play();
     </script>
 
     <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>

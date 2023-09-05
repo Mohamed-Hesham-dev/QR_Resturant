@@ -19,7 +19,7 @@ class OrdersController extends Controller
         // dd("index");
         $resturant=Resturant::Where('user_id',Auth::guard('owner')->user()->id)->first();
         $order=Order::where('resturant_id',$resturant->id)->get();
-        return view('DashboardOwnerResturant.orders.index',compact('order'));
+        return view('DashboardOwnerResturant.orders.index',compact('order','resturant'));
     }
 
     /**
@@ -73,6 +73,7 @@ class OrdersController extends Controller
      */
     public function destroy(Order $Order)
     {
-        //
+        Order::findOrFail($Order->id)->delete();
+     return redirect(route('orders.index'));
     }
 }

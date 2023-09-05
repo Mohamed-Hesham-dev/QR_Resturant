@@ -46,14 +46,23 @@
             <div class="card-body">
                 <div class="form-group">
                     <label for="email">Title*</label>
-                    <input class="required_field form-control" id="name" name="title" type="text"  />
+                    @error('title')
+                        <p class="text-danger">{{ $message }}</p>
+                    @enderror
+                    <input class="required_field form-control" id="name" name="title" type="text" />
                 </div>
                 <div class="form-group">
                     <label for="email">Table Number*</label>
-                    <input class="required_field form-control" id="name" name="num_table" type="number"   />
+                    @error('num_table')
+                        <p class="text-danger">{{ $message }}</p>
+                    @enderror
+                    <input class="required_field form-control" id="name" name="num_table" type="number" />
                 </div>
                 <div class="form-group">
                     <label for="email">Number Of Chairs*</label>
+                    @error('num_chairs')
+                        <p class="text-danger">{{ $message }}</p>
+                    @enderror
                     <input class="required_field form-control" id="name" name="num_chairs" type="number" />
                 </div>
 

@@ -38,12 +38,22 @@ class ResturantController extends Controller
      */
     public function store(Request $request)
     {
-           $owner_date=User::create([
+        $request->validate([
+            'name'=>'required',
+            'email' => 'required|unique:users',
+            'password' => 'required',
+            'resturant_name'=>'required',
+            'resturant_logo'=>'required',
+            'description'=>'required',
+
+        ]);
+           $userdata=[
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'type'=>"owner_resturant",
-        ]);
+        ];
+        $owner_date=User::create($userdata);
             $data=[
                 'is_active'=>$request->boolean('is_active'),
                 'user_id'=>$owner_date->id,
@@ -60,6 +70,7 @@ class ResturantController extends Controller
             $image_path = "/image/" . $image_name;
             $data['resturant_logo']=$image_path;
       }
+     
             $data=Resturant::create($data);
             
             return redirect('/admin/resturant')->with('success','Resturant Owner Created Successfully');
@@ -90,7 +101,15 @@ class ResturantController extends Controller
      */
     public function update(Request $request, Resturant $resturant)
     {
-      
+        $request->validate([
+            'name'=>'required',
+            'email' => 'required|unique:users',
+            'password' => 'required',
+            'resturant_name'=>'required',
+            'resturant_logo'=>'required',
+            'description'=>'required',
+
+        ]);
         $user=User::findOrFail($resturant->user->id);
         
         $user->name = $request->input('name');

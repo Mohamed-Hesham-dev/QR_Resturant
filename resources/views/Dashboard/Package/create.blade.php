@@ -47,17 +47,26 @@
             <div class="card-body">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Title</label>
+                    @error('title')
+                        <p class="text-danger">{{ $message }}</p>
+                    @enderror
                     <input id="name" name="title" type="text" class="required_field  form-control"
                         id="exampleInputEmail1" placeholder="Enter Title">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Price</label>
+                    @error('price')
+                        <p class="text-danger">{{ $message }}</p>
+                    @enderror
                     <input id="name" name="price" type="text" class="required_field form-control"
                         id="exampleInputPassword1" placeholder="Enter price">
                 </div>
                 <div class="form-group">
 
                     <label for="">Description</label>
+                    @error('description')
+                        <p class="text-danger">{{ $message }}</p>
+                    @enderror
                     <textarea style="width: 100%" id="name" name="description" class="required_field"></textarea>
                 </div>
                 <div class="input-group mb-3">
@@ -67,7 +76,7 @@
                     <label for="switch" class="toggle">
                     </label>
                 </div>
-                
+
             </div>
             <!-- /.card-body -->
 

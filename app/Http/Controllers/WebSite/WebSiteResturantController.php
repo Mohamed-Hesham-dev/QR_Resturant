@@ -40,11 +40,18 @@ class WebSiteResturantController extends Controller
         return view('Front.resturant', compact('resturant', 'contactUs', 'allproducts', 'categories', 'tables'));
     }
 
-    public function filter($id){
-        dd($id);
-    //   $res=ResturantCategoryDashboard::findOrFail($id);
-    //     $allproductscat=$res->product;
-    //     return json_decode($allproductscat);
+    public function filter( Request $request){
+        $resturant = Resturant::where('id',$request->restid)->first();
+        $tables = ResturantTableDashboard::where('resturant_id', $request->restid)->get();
+
+        $contactUs = ResturantContactUsSetting::where('resturant_id', $request->restid)->first();
+        $categories = ResturantCategoryDashboard::where('resturant_id', $resturant->id)->get();
+
+      $res=ResturantCategoryDashboard::findOrFail($request->id);
+        $allproducts=$res->product;
+  
+        return view('Front.categoryproduct', compact('resturant', 'contactUs', 'allproducts', 'categories', 'tables'));
+
     }
 
     /**
@@ -114,6 +121,13 @@ class WebSiteResturantController extends Controller
     }
     public function reservation(Request $request)
     {
+        $request->validate([
+                'phone' => 'required',
+                'date' => 'required',
+                'time' => 'required',
+                'seats' => 'required',
+                'message' => 'required',
+        ]);
         $data = [
             'name' => Auth::user()->name,
             'email' => Auth::user()->email,
@@ -129,6 +143,11 @@ class WebSiteResturantController extends Controller
         return redirect('/resturant/'.$request->resturant_id)->with('success', 'Reservation Created Successfully');
     }
     public function feedback(Request $request){
+        $request->validate([
+            'phone'=> 'required',
+            'feedback'=>'required',
+        ]);
+        
         $data=[
        'phone'=> $request->phone,
        'feedback'=>$request->feedback,
@@ -136,7 +155,7 @@ class WebSiteResturantController extends Controller
         ];
        
        feedback::create($data);
-       return redirect('/resturant/'.$request->resturant_id)->with('success', 'Thank you for your opinion');
+       return redirect('/resturant/'.$request->resturant_name.'/'.$request->resturant_id)->with('success', 'Thank you for your opinion');
     }
     public function getImages($resturantId)
     {

@@ -48,16 +48,25 @@
                     @method('PUT')
                     <div class="form-group">
                         <label for="name">Title*</label>
+                        @error('title')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
                         <input class="required_field  form-control" id="name" name="title"
                             value="{{ $package->title }}" type="text" class="required_field" />
                     </div>
                     <div class="form-group">
                         <label for="price">Price*</label>
-                        <input class="required_field  form-control"id="price" name="price"
+                        @error('price')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                        <input class="required_field  form-control" id="price" name="price"
                             value="{{ $package->price }}" type="number" class="required_field" />
                     </div>
                     <div class="form-group">
                         <label for="email">Description*</label>
+                        @error('description')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
                         <textarea class="required_field  form-control" id="name" name="description" class="required_field">{{ $package->description }}</textarea>
                     </div>
 

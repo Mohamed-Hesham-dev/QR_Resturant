@@ -36,7 +36,11 @@ class ResturantOptionDashboardController extends Controller
      */
     public function store(Request $request)
     {
-      
+        $request->validate([
+            'option_name' => 'required',
+            'value' => 'required|array|min:1',
+            'value.*.value_name' => 'required',
+        ]);
         $data = [
             'option_name' => $request->option_name,
             'resturant_id'=>Auth::guard('owner')->user()->resturant->id,
@@ -79,6 +83,11 @@ class ResturantOptionDashboardController extends Controller
      */
     public function update(Request $request, ResturantOptionDashboard $resturantOptionDashboard)
     {
+        $request->validate([
+            'option_name' => 'required',
+            'value' => 'required|array|min:1',
+            'value.*.value_name' => 'required',
+        ]);
         $data = [
             'option_name' => $request->option_name,
             'resturant_id'=>Auth::guard('owner')->user()->resturant->id,
