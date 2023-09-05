@@ -69,6 +69,7 @@ Route::group(['middleware'=>['is_owner'],'prefix'=>'owner'], function () {
     Route::get('/', [ResturantDashboardController::class,'index'])->name('dashboard');
      Route::resource('resturantTableDashboard', ResturantTableDashboardController::class)->names('table');
      Route::get('/qrcode/{id}', [ResturantTableDashboardController::class, 'generate'])->name('qrcode.generate');
+
      Route::resource('resturantCategoryDashboard', ResturantCategoryDashboardController::class)->names('categories');
      Route::resource('resturantOptionDashboard', ResturantOptionDashboardController::class)->names('options');
      Route::resource('resturantProductDashboard', ResturantProductDashboardController::class)->names('products');
@@ -106,7 +107,7 @@ Route::group(['middleware'=>['is_owner'],'prefix'=>'owner'], function () {
 
 Route::get('/',[HomeController::class,'index'])->name('index');
 Route::post('/',[HomeController::class,'clientform'])->name('clientform');
-
+Route::get('/scan-qr-code/{table_number}/{restaurant_id}', [WebSiteResturantController::class, 'scanQRCode'])->name('scanQRCode');
 Route::get('resturant',[WebSiteResturantController::class,'index'])->name('resturant');
 Route::get('resturant/{id}/{res}',[WebSiteResturantController::class,'index'])->name('resturant');
 Route::get('/category/{id}/{restid}',[WebSiteResturantController::class,'filter'])->name('fil');

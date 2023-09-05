@@ -17,6 +17,7 @@ use App\Models\ResturantTableDashboard;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 use Laravel\Sanctum\Guard;
 
 
@@ -27,7 +28,7 @@ class WebSiteResturantController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($name,$id)
+    public function index($name, $id)
     {
 
         $resturant = Resturant::where('id', $id)->first();
@@ -140,7 +141,7 @@ class WebSiteResturantController extends Controller
         ];
 
         $data = Reservation::create($data);
-        return redirect('/resturant/'.$request->resturant_id)->with('success', 'Reservation Created Successfully');
+        return redirect('/resturant/' . $request->resturant_id)->with('success', 'Reservation Created Successfully');
     }
     public function feedback(Request $request){
         $request->validate([
@@ -167,53 +168,62 @@ class WebSiteResturantController extends Controller
         });
 
         $optionsWithValues = $product->options()
-        ->with(['values.productOptionValues' => function ($query) use ($resturantId) {
-            $query->where('product_id', $resturantId)
-                ->whereNotNull('price'); // Only select values with prices
-        }])
-        ->get();
-    
-    $result = [];
-    
-    foreach ($optionsWithValues as $option) {
-        $optionName = $option->option_name;
-    
-        // Initialize the valuesData array for the option if it doesn't exist
-        if (!isset($result[$optionName])) {
-            $result[$optionName] = [
-                'option' => $optionName,
-                'values' => [],
-                'addedValues' => [], // Initialize addedValues array
-            ];
-        }
-    
-        $valuesData = $result[$optionName]['values'];
-    
-        foreach ($option->values as $value) {
-            // Check if the value has a related productOptionValue with a price
-            if ($value->productOptionValues->isNotEmpty()) {
-                $valueName = $value->value_name;
-                $price = $value->productOptionValues->first()->price;
-    
-                // Check if the value is already added for this option
-                if (!in_array($valueName, $result[$optionName]['addedValues'])) {
-                    $valuesData[] = [
-                        'name' => $valueName,
-                        'price' => $price,
-                    ];
-                    $result[$optionName]['addedValues'][] = $valueName;
+            ->with(['values.productOptionValues' => function ($query) use ($resturantId) {
+                $query->where('product_id', $resturantId)
+                    ->whereNotNull('price'); // Only select values with prices
+            }])
+            ->get();
+
+        $result = [];
+
+        foreach ($optionsWithValues as $option) {
+            $optionName = $option->option_name;
+
+            // Initialize the valuesData array for the option if it doesn't exist
+            if (!isset($result[$optionName])) {
+                $result[$optionName] = [
+                    'option' => $optionName,
+                    'values' => [],
+                    'addedValues' => [], // Initialize addedValues array
+                ];
+            }
+
+            $valuesData = $result[$optionName]['values'];
+
+            foreach ($option->values as $value) {
+                // Check if the value has a related productOptionValue with a price
+                if ($value->productOptionValues->isNotEmpty()) {
+                    $valueName = $value->value_name;
+                    $price = $value->productOptionValues->first()->price;
+
+                    // Check if the value is already added for this option
+                    if (!in_array($valueName, $result[$optionName]['addedValues'])) {
+                        $valuesData[] = [
+                            'name' => $valueName,
+                            'price' => $price,
+                        ];
+                        $result[$optionName]['addedValues'][] = $valueName;
+                    }
                 }
             }
-        }
-    
-        // Update the values for the option
-        $result[$optionName]['values'] = $valuesData;
-    }
-    
-    // Convert the result array back to indexed array
-    $finalResult = array_values($result);
 
-    return response()->json(['images' => $imageUrls, 'result' => $finalResult]);
-    
+            // Update the values for the option
+            $result[$optionName]['values'] = $valuesData;
+        }
+
+        // Convert the result array back to indexed array
+        $finalResult = array_values($result);
+
+        return response()->json(['images' => $imageUrls, 'result' => $finalResult]);
+    }
+
+    public function scanQRCode(Request $request, $tableNumber, $restaurantId)
+    {
+     
+        $resturant = Resturant::where('id', $restaurantId)->first();
+        Session::put('table_number', $tableNumber);
+
+        // Redirect the user to the desired page
+        return redirect()->route('resturant', [$resturant->resturant_name, $resturant->id]); // Replace 'desiredRoute' with your actual route
     }
 }

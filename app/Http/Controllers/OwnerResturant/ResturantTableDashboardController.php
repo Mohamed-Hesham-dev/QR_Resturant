@@ -7,6 +7,7 @@ use App\Models\Resturant;
 use App\Models\ResturantTableDashboard;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 
@@ -17,11 +18,11 @@ class ResturantTableDashboardController extends Controller
      */
     public function index()
     {
-        $user=Auth::guard('owner')->user()->id;
-        $resturantname=Resturant::where('user_id',$user)->first();
+        $user = Auth::guard('owner')->user()->id;
+        $resturantname = Resturant::where('user_id', $user)->first();
 
-        $all_tables = ResturantTableDashboard:: where('user_id',$user)->get();
-        return view('DashboardOwnerResturant.table.index', compact('all_tables','resturantname' ));
+        $all_tables = ResturantTableDashboard::where('user_id', $user)->get();
+        return view('DashboardOwnerResturant.table.index', compact('all_tables', 'resturantname'));
     }
 
     /**
@@ -29,10 +30,10 @@ class ResturantTableDashboardController extends Controller
      */
     public function create()
     {
-        $user=Auth::guard('owner')->user()->id;
-        $resturantname=Resturant::where('user_id',$user)->first();
- 
-        return view('DashboardOwnerResturant.table.create',compact('resturantname'));
+        $user = Auth::guard('owner')->user()->id;
+        $resturantname = Resturant::where('user_id', $user)->first();
+
+        return view('DashboardOwnerResturant.table.create', compact('resturantname'));
     }
 
     /**
@@ -52,8 +53,8 @@ class ResturantTableDashboardController extends Controller
             'area' => $request->area,
             'num_table' => $request->num_table,
             'num_chairs' => $request->num_chairs,
-            'user_id'=>Auth::guard('owner')->user()->id,
-            'resturant_id'=>Auth::guard('owner')->user()->resturant->id,
+            'user_id' => Auth::guard('owner')->user()->id,
+            'resturant_id' => Auth::guard('owner')->user()->resturant->id,
         ];
         $data = ResturantTableDashboard::create($data);
 
@@ -93,8 +94,8 @@ class ResturantTableDashboardController extends Controller
             'area' => $request->area,
             'num_table' => $request->num_table,
             'num_chairs' => $request->num_chairs,
-            'user_id'=>Auth::guard('owner')->user()->id,
-            'resturant_id'=>Auth::guard('owner')->user()->resturant->id
+            'user_id' => Auth::guard('owner')->user()->id,
+            'resturant_id' => Auth::guard('owner')->user()->resturant->id
         ];
         $resturantTableDashboard->update($data);
 
@@ -114,7 +115,13 @@ class ResturantTableDashboardController extends Controller
     public function generate($id)
     {
         $table = ResturantTableDashboard::where('id', $id)->first();
-        $qrcode = QrCode::format('png')->size(300)->generate(strval($table->num_table));
+        $resturant = Resturant::where('id',  $table->resturant_id)->first();
+        $urlWithParams = route('scanQRCode', [
+            'table_number' => $table->num_table,
+            'restaurant_id' => $resturant->id,
+        ]);
+    
+        $qrcode = QrCode::format('png')->size(300)->generate($urlWithParams);
         $response = response($qrcode)->header('Content-Type', 'image/png');
         $response->header('Content-Disposition', "attachment; filename=\"$table->title.png\"");
         return $response;
