@@ -121,14 +121,22 @@
                         @enderror
                         <textarea style="width: 100%" id="name" name="description" class="required_field">{{ $resturant->description }}</textarea>
                     </div>
-                    <br>
-                    <div class="input-group mb-3">
+                    <div class="form-group">
+                        <label for="end_date">Resturant End Date</label>
+                        @error('end_date')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
+                        <input class="required_field form-control" id="end_date" name="end_date" type="date"
+                            value="{{ $resturant->end_date }}" />
+                    </div>
+                    {{-- <br> --}}
+                    {{-- <div class="input-group mb-3">
                         <label for="email">Status &nbsp; &nbsp;</label>
                         <input class="checkbox form-control" type="checkbox" name="is_active" id="switch"
                             value="1" {{ $resturant->is_active == 1 ? 'checked' : '' }}>
                         <label for="switch" class="toggle">
                         </label>
-                    </div>
+                    </div> --}}
                     <div class="col-6" style="float:right;">
                         <button type="submit" class="btn btn-primary">Edit Owner Resturant</button>
                     </div>

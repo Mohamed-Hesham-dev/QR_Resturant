@@ -55,8 +55,9 @@ class ResturantController extends Controller
         ];
         $owner_date=User::create($userdata);
             $data=[
-                'is_active'=>$request->boolean('is_active'),
+                // 'is_active'=>$request->boolean('is_active'),
                 'user_id'=>$owner_date->id,
+                'end_date'=>$request->end_date,
                 'package'=>$request->package,
                 'resturant_name'=>$request->resturant_name,
                 'foodcourt_id'=>$request->foodcourt_id,
@@ -121,7 +122,8 @@ class ResturantController extends Controller
 
         $user->save();
         $data = [
-            'is_active' => $request->boolean('is_active'),
+            // 'is_active' => $request->boolean('is_active'),
+            'end_date'=>$request->end_date,
             'package' => $request->package,
             'foodcourt_id' => $request->foodcourt_id,
             'resturant_name' => $request->resturant_name,

@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('resturant_logo');
             $table->string('resturant_cover')->nullable();
             $table->foreignId('foodcourt_id')->nullable()->onDelete('cascade')->default(1);
-            $table->boolean('is_active');
+            //$table->boolean('is_active');
+            $table->date('end_date')->nullable();
             $table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade');
             
 

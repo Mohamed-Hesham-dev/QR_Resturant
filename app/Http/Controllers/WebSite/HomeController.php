@@ -12,6 +12,7 @@ use App\Models\Resturant;
 use App\Models\ResturantBooking;
 use App\Models\ResturantContactUsSetting;
 use App\Models\Setting;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -30,7 +31,7 @@ class HomeController extends Controller
 
 
         //resturant 
-        $resturant=Resturant::where('is_active',1)->get();
+        $resturant=Resturant::where('end_date','>=',Carbon::now())->orWhere('end_date',null)->get();
         $allfoodcourts=Foodcourt::where('is_active',1)->get();
         $contactUs=ResturantContactUsSetting::get();
 

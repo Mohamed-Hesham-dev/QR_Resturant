@@ -64,7 +64,7 @@ Dashboard
                         <th>Resturant Owner Name</th>
                         <th>Resturant Name</th>
                         <th>Packages</th>
-                        <th>Status</th>
+                        {{-- <th>Status</th> --}}
                         <th>Control</th>
                         <!-- <th></th> -->
                     </tr>
@@ -76,7 +76,7 @@ Dashboard
                     <td>{{ $data->resturant_name }}</td>
                     <td>{{ $data->package }}</td>
 
-                    <td>{{ $data->is_active ? 'Active' : 'not_active' }}</td>
+                    {{-- <td>{{ $data->is_active ? 'Active' : 'not_active' }}</td> --}}
 
                     <td>
                         <form action="{{ route('resturant.destroy', $data->id) }}" method="POST">

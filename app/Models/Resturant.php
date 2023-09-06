@@ -17,7 +17,8 @@ class Resturant extends Model implements HasMedia
         'package',
         'resturant_logo', 
         'resturant_cover', 
-        'is_active',
+        // 'is_active',
+        'end_date',
         'user_id',
         'foodcourt_id',
         'description'
